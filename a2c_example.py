@@ -11,9 +11,10 @@ from torch.autograd import Variable
 
 import botbowl
 from botbowl.ai.env import BotBowlEnv, RewardWrapper, EnvConf, ScriptedActionWrapper, BotBowlWrapper, PPCGWrapper
-from examples.a2c.a2c_agent import A2CAgent, CNNPolicy
-from examples.a2c.a2c_env import A2C_Reward, a2c_scripted_actions
+from a2c_agent import A2CAgent, CNNPolicy
+from a2c_env import A2C_Reward, a2c_scripted_actions
 from botbowl.ai.layers import *
+from network import MimicBotXNet
 
 # Environment
 env_size = 1  # Options are 1,3,5,7,11
@@ -230,11 +231,7 @@ def main():
     del env, non_spat_obs, action_mask  # remove from scope to avoid confusion further down
 
     # MODEL
-    ac_agent = CNNPolicy(spatial_obs_space,
-                         non_spatial_obs_space,
-                         hidden_nodes=num_hidden_nodes,
-                         kernels=num_cnn_kernels,
-                         actions=action_space)
+    ac_agent = MimicBotXNet()
 
     # OPTIMIZER
     optimizer = optim.RMSprop(ac_agent.parameters(), learning_rate)

@@ -9,14 +9,16 @@ from torch.autograd import Variable
 
 import botbowl
 from botbowl.ai.env import EnvConf, BotBowlEnv
-from examples.a2c.a2c_env import a2c_scripted_actions
+from a2c_env import a2c_scripted_actions
 from botbowl.ai.layers import *
+from network import MimicBotXNet
 
 # Architecture
 model_name = '260d8284-9d44-11ec-b455-faffc23fefdb'
 env_name = f'botbowl-11'
 model_filename = f"models/{env_name}/{model_name}.nn"
 log_filename = f"logs/{env_name}/{env_name}.dat"
+
 
 
 class CNNPolicy(nn.Module):
