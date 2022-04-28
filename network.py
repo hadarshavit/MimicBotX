@@ -1,3 +1,4 @@
+from operator import concat
 import timm.models.layers.activations
 import torch
 from torch import nn
@@ -53,11 +54,20 @@ class ConvNeXtBlock(nn.Module):
 
 class MimicBotXNet(nn.Module):
     def __init__(self, activation=nn.ReLU, block=ConvNeXtBlock):
+        super(MimicBotXNet, self).__init__()
         self.activation = activation
+        self._create_spatial_processing()
+        self._create_non_spatial_processing()
+        self._create_combined_fc()
+        self._create_attention()
+        self._create_actor()
+        self._create_critic()
+
+
 
     def _create_spatial_processing(self):
         self.spatial_processing = nn.Sequential(
-            nn.Conv2d(43, 128, kernel_size=3, stride=1, padding=1),
+            nn.Conv2d(44, 128, kernel_size=3, stride=1, padding=1),
             ConvNeXtBlock(dim=128),
             ConvNeXtBlock(dim=128),
             ConvNeXtBlock(dim=128),
@@ -66,7 +76,7 @@ class MimicBotXNet(nn.Module):
 
     def _create_non_spatial_processing(self):
         self.non_spatial_processing = nn.Sequential(
-            nn.Linear(116, 1024),
+            nn.Linear(115, 1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
             self.activation(inplace=True),
@@ -91,7 +101,7 @@ class MimicBotXNet(nn.Module):
     def _create_attention(self):
         self.sigmoid = nn.Sigmoid()
 
-        self.conv1 = nn.Conv2d(64, 64, kernel_size=3, stride=1)
+        self.conv1 = nn.Conv2d(128, 64, kernel_size=3, stride=1)
         self.fc1 = nn.Linear(1024, 64)
         self.act1 = self.activation(inplace=True)
 
@@ -104,41 +114,81 @@ class MimicBotXNet(nn.Module):
         self.act3 = self.activation(inplace=True)
 
     def _create_actor(self):
-        pass
+        self.actor_fc = nn.Linear(9116,8117)
 
     def _create_critic(self):
-        pass
+        self.critic_fc = nn.Linear(1024, 1)
 
     def _spatial_processing(self, spatial_input) -> torch.Tensor:
-        pass
+        return self.spatial_processing(spatial_input)
 
     def _non_spatial_processing(self, non_spatial_input) -> torch.Tensor:
-        pass
+        return self.non_spatial_processing(non_spatial_input)
 
     def _combined_fc(self, combined) -> torch.Tensor:
-        pass
+        return self.combined_fc(combined)
 
-    def _attention(self, spatial, combined_fc) -> torch.Tensor:
-        pass
+    def _attention(self, spatial, non_spatial) -> torch.Tensor:
+        x = self.conv1(spatial)
+        y = self.fc1(non_spatial)
+        y = self.act1(y)
+        y = self.sigmoid(y)
+        print(x.size())
+        print(y.size())
+        x = x*y.expand_as(x)
+
+        x = self.conv2(spatial)
+        y = self.fc2(non_spatial)
+        y = self.act2(y)
+        y = self.sigmoid(y)
+
+        x = x*y
+
+        x = self.conv3(spatial)
+        y = self.fc3(non_spatial)
+        y = self.act3(y)
+        y = self.sigmoid(y)
+
+        x = x*y
+        return x
 
     def _actor(self, spatial_actor, non_spatial_actor) -> torch.Tensor:
-        pass
+        spatial_actor = spatial_actor.flatten()
+        x = torch.concat(spatial_actor, non_spatial_actor)
+        return self.actor_fc(x)
 
     def _critic(self, combined) -> torch.Tensor:
-        pass
+        return self.critic_fc(combined)
 
     def forward(self, spatial_input: torch.Tensor, non_spatial_input: torch.Tensor):
         spatial_processed = self._spatial_processing(spatial_input)
         non_spatial_processed = self._non_spatial_processing(non_spatial_input)
 
         spatial_flattened =  spatial_processed.flatten(start_dim=1)
-        concated = torch.concat([spatial_flattened, non_spatial_processed])
+        non_spatial_processed = non_spatial_processed.flatten(start_dim=1)
+        
+        concated = torch.cat([spatial_flattened, non_spatial_processed],1)
 
         combined_out = self._combined_fc(concated)
-
+        print('spatial size:' + str(spatial_processed.size()))
+        print('combined_out:' + str(combined_out.size()))
         attention_out = self._attention(spatial_processed, combined_out)
 
         actor = self._actor(attention_out, combined_out)
         critic = self._critic(combined_out)
 
         return critic, actor
+
+    def act(self, spatial_inputs, non_spatial_input, action_mask):
+        values, action_probs = self.get_action_probs(spatial_inputs, non_spatial_input, action_mask=action_mask)
+        actions = action_probs.multinomial(1)
+        return values, actions
+    
+    def get_action_probs(self, spatial_input, non_spatial_input, action_mask):
+        values, actions = self(spatial_input, non_spatial_input)
+        # Masking step: Inspired by: http://juditacs.github.io/2018/12/27/masked-attention.html
+        if action_mask is not None:
+            actions[~action_mask] = float('-inf')
+        action_probs = F.softmax(actions, dim=1)
+        return values, action_probs
+    
