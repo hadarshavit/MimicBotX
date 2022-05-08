@@ -19,7 +19,7 @@ from botbowl.core.procedure import *
 from examples.scripted_bot_example import MyScriptedBot
 
 # Environment
-env_size = 11  # Options are 1,3,5,7,11
+env_size = 3  # Options are 1,3,5,7,11
 env_name = f"botbowl-{env_size}"
 env_conf = EnvConf(size=env_size, pathfinding=False)
 
@@ -132,7 +132,7 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
 
     ppcg_wrapper: Optional[PPCGWrapper] = env.get_wrapper_with_type(PPCGWrapper)
 
-    scripted_bot = MyScriptedBot()
+    scripted_bot = MyScriptedBot(f'scripted{worker_id}')
 
     while True:
         command, data = remote.recv()
@@ -162,6 +162,7 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
                 tds = 0
                 tds_opp = 0
             proc = env.game.get_procedure()
+            action = None
             if proc in scripted_procs and proc not in dont_remove_actions:
                 action = scripted_bot.act(env.game)
             remote.send((spatial_obs, non_spatial_obs, action_mask, reward, tds_scored, tds_opp_scored, done, action))
@@ -173,6 +174,7 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
             env.root_env.away_agent = next_opp
             spatial_obs, non_spatial_obs, action_mask = env.reset()
             proc = env.game.get_procedure()
+            action = None
             if proc in scripted_procs and proc not in dont_remove_actions:
                 action = scripted_bot.act(env.game)
             remote.send((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False, action))
@@ -252,7 +254,8 @@ def main():
     del env, non_spat_obs, action_mask  # remove from scope to avoid confusion further down
 
     # MODEL
-    ac_agent = MimicBotXNet()
+    ac_agent = MimicBotXNet(spatial_shape=spatial_obs_space, non_spatial_inputs=non_spatial_obs_space,
+                            actions=action_space)
 
     # OPTIMIZER
     optimizer = optim.RMSprop(ac_agent.parameters(), learning_rate)
@@ -309,7 +312,7 @@ def main():
         torch.save(ac_agent, model_path)
         self_play_agent = torch.jit.optimize_for_inference(
             torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
-                                                   scripted_actions=scripted_actions)))
+                                                   scripted_actions=scripted_actions + dont_remove_actions)))
         envs.swap(self_play_agent)
         selfplay_models += 1
 
@@ -369,7 +372,7 @@ def main():
             # insert the step taken into memory
             masks = torch.FloatTensor([[0.0] if done_ else [1.0] for done_ in done])
 
-            memory.insert(step, spatial_obs, non_spatial_obs, actions.data, shaped_reward, masks, action_masks)
+            memory.insert(step, spatial_obs, non_spatial_obs, actions.data, shaped_reward, masks, action_masks) # TODO if the action is scripted, we don't need to save. or we do need to save but it has no gradient
 
         # -- TRAINING -- #
 
@@ -460,7 +463,8 @@ def main():
             model_path = os.path.join(model_dir, model_name)
             print(f"Swapping opponent to {model_path}")
             envs.swap(torch.jit.optimize_for_inference(
-                torch.jit.script(make_agent_from_model(name=model_name, filename=model_path, scripted_actions=scripted_actions + [last_scripted]))))
+                torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                                                       scripted_actions=scripted_actions + [last_scripted] + dont_remove_actions))))
 
         # Logging
         if all_updates % log_interval == 0 and len(episode_rewards) >= num_processes:

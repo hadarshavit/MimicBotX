@@ -55,8 +55,11 @@ class ConvNeXtBlock(nn.Module):
 
 
 class MimicBotXNet(nn.Module):
-    def __init__(self, activation=nn.ReLU, block=ConvNeXtBlock):
+    def __init__(self, spatial_shape, non_spatial_inputs, actions, activation=nn.ReLU, block=ConvNeXtBlock):
         super(MimicBotXNet, self).__init__()
+        self.spatial_shape = spatial_shape
+        self.non_spatial_shape = non_spatial_inputs
+        self.actions = actions
         self.activation = activation
         self._create_spatial_processing()
         self._create_non_spatial_processing()
@@ -76,7 +79,7 @@ class MimicBotXNet(nn.Module):
 
     def _create_non_spatial_processing(self):
         self.non_spatial_processing = nn.Sequential(
-            nn.Linear(115, 1024),
+            nn.Linear(self.non_spatial_shape, 1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
             self.activation(inplace=True),
@@ -88,7 +91,7 @@ class MimicBotXNet(nn.Module):
 
     def _create_combined_fc(self):
         self.combined_fc = nn.Sequential(
-            nn.Linear(61952, 1024),
+            nn.Linear(self.spatial_shape[1] * self.spatial_shape[2] * 128 + 1024, 1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
             self.activation(inplace=True),
@@ -101,20 +104,20 @@ class MimicBotXNet(nn.Module):
     def _create_attention(self):
         self.sigmoid = nn.Sigmoid()
 
-        self.conv1 = nn.Conv2d(128, 64, kernel_size=3, stride=1)
+        self.conv1 = nn.Conv2d(128, 64, kernel_size=3, stride=1, padding=1)
         self.fc1 = nn.Linear(1024, 64)
         self.act1 = self.activation(inplace=True)
 
-        self.conv2 = nn.Conv2d(64, 64, kernel_size=3, stride=1)
+        self.conv2 = nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1)
         self.fc2 = nn.Linear(1024, 64)
         self.act2 = self.activation(inplace=True)
 
-        self.conv3 = nn.Conv2d(64, 17, kernel_size=3, stride=1)
+        self.conv3 = nn.Conv2d(64, 17, kernel_size=3, stride=1, padding=1)
         self.fc3 = nn.Linear(1024, 17)
         self.act3 = self.activation(inplace=True)
 
     def _create_actor(self):
-        self.actor_fc = nn.Linear(5138, 8116)
+        self.actor_fc = nn.Linear(self.spatial_shape[1] * self.spatial_shape[2] * 17 + 1024, self.actions)
 
     def _create_critic(self):
         self.critic_fc = nn.Linear(1024, 1)
