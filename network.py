@@ -4,8 +4,9 @@ import torch
 from torch import nn
 from timm.models.convnext import LayerNorm2d
 from functools import partial
-import torch.functional as F
+import torch.nn.functional as F
 from timm.models.layers import trunc_normal_, ClassifierHead, SelectAdaptivePool2d, DropPath, ConvMlp, Mlp
+
 
 class ConvNeXtBlock(nn.Module):
     """ ConvNeXt Block
@@ -52,6 +53,7 @@ class ConvNeXtBlock(nn.Module):
         x = self.drop_path(x) + shortcut
         return x
 
+
 class MimicBotXNet(nn.Module):
     def __init__(self, activation=nn.ReLU, block=ConvNeXtBlock):
         super(MimicBotXNet, self).__init__()
@@ -62,8 +64,6 @@ class MimicBotXNet(nn.Module):
         self._create_attention()
         self._create_actor()
         self._create_critic()
-
-
 
     def _create_spatial_processing(self):
         self.spatial_processing = nn.Sequential(
@@ -114,7 +114,7 @@ class MimicBotXNet(nn.Module):
         self.act3 = self.activation(inplace=True)
 
     def _create_actor(self):
-        self.actor_fc = nn.Linear(9116,8117)
+        self.actor_fc = nn.Linear(5138, 8116)
 
     def _create_critic(self):
         self.critic_fc = nn.Linear(1024, 1)
@@ -133,28 +133,26 @@ class MimicBotXNet(nn.Module):
         y = self.fc1(non_spatial)
         y = self.act1(y)
         y = self.sigmoid(y)
-        print(x.size())
-        print(y.size())
-        x = x*y.expand_as(x)
+        x = x * y.unsqueeze(-1).unsqueeze(-1)
 
-        x = self.conv2(spatial)
+        x = self.conv2(x)
         y = self.fc2(non_spatial)
         y = self.act2(y)
         y = self.sigmoid(y)
 
-        x = x*y
+        x = x * y.unsqueeze(-1).unsqueeze(-1)
 
-        x = self.conv3(spatial)
+        x = self.conv3(x)
         y = self.fc3(non_spatial)
         y = self.act3(y)
         y = self.sigmoid(y)
 
-        x = x*y
+        x = x * y.unsqueeze(-1).unsqueeze(-1)
         return x
 
     def _actor(self, spatial_actor, non_spatial_actor) -> torch.Tensor:
-        spatial_actor = spatial_actor.flatten()
-        x = torch.concat(spatial_actor, non_spatial_actor)
+        spatial_actor = spatial_actor.flatten(start_dim=1)
+        x = torch.concat([spatial_actor, non_spatial_actor], 1)
         return self.actor_fc(x)
 
     def _critic(self, combined) -> torch.Tensor:
@@ -164,14 +162,12 @@ class MimicBotXNet(nn.Module):
         spatial_processed = self._spatial_processing(spatial_input)
         non_spatial_processed = self._non_spatial_processing(non_spatial_input)
 
-        spatial_flattened =  spatial_processed.flatten(start_dim=1)
+        spatial_flattened = spatial_processed.flatten(start_dim=1)
         non_spatial_processed = non_spatial_processed.flatten(start_dim=1)
-        
-        concated = torch.cat([spatial_flattened, non_spatial_processed],1)
+
+        concated = torch.cat([spatial_flattened, non_spatial_processed], 1)
 
         combined_out = self._combined_fc(concated)
-        print('spatial size:' + str(spatial_processed.size()))
-        print('combined_out:' + str(combined_out.size()))
         attention_out = self._attention(spatial_processed, combined_out)
 
         actor = self._actor(attention_out, combined_out)
@@ -179,11 +175,13 @@ class MimicBotXNet(nn.Module):
 
         return critic, actor
 
+    @torch.jit.export
     def act(self, spatial_inputs, non_spatial_input, action_mask):
         values, action_probs = self.get_action_probs(spatial_inputs, non_spatial_input, action_mask=action_mask)
         actions = action_probs.multinomial(1)
         return values, actions
-    
+
+    @torch.jit.export
     def get_action_probs(self, spatial_input, non_spatial_input, action_mask):
         values, actions = self(spatial_input, non_spatial_input)
         # Masking step: Inspired by: http://juditacs.github.io/2018/12/27/masked-attention.html
@@ -191,4 +189,14 @@ class MimicBotXNet(nn.Module):
             actions[~action_mask] = float('-inf')
         action_probs = F.softmax(actions, dim=1)
         return values, action_probs
-    
+
+    def evaluate_actions(self, spatial_inputs, non_spatial_input, actions, actions_mask):
+        value, policy = self(spatial_inputs, non_spatial_input)
+        actions_mask = actions_mask.view(-1, 1, actions_mask.shape[2]).squeeze().bool()
+        policy[~actions_mask] = float('-inf')
+        log_probs = F.log_softmax(policy, dim=1)
+        probs = F.softmax(policy, dim=1)
+        action_log_probs = log_probs.gather(1, actions)
+        log_probs = torch.where(log_probs[None, :] == float('-inf'), torch.tensor(0.), log_probs)
+        dist_entropy = -(log_probs * probs).sum(-1).mean()
+        return action_log_probs, value, dist_entropy

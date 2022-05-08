@@ -15,13 +15,15 @@ from a2c_agent import A2CAgent, CNNPolicy
 from a2c_env import A2C_Reward, a2c_scripted_actions
 from botbowl.ai.layers import *
 from network import MimicBotXNet
+from botbowl.core.procedure import *
+from examples.scripted_bot_example import MyScriptedBot
 
 # Environment
-env_size = 1  # Options are 1,3,5,7,11
+env_size = 11  # Options are 1,3,5,7,11
 env_name = f"botbowl-{env_size}"
 env_conf = EnvConf(size=env_size, pathfinding=False)
 
-make_agent_from_model = partial(A2CAgent, env_conf=env_conf, scripted_func=a2c_scripted_actions)
+make_agent_from_model = partial(A2CAgent, env_conf=env_conf)
 
 
 def make_env():
@@ -34,9 +36,9 @@ def make_env():
 
 
 # Training configuration
-num_steps = 1000000
+num_steps = 100_000_000
 num_processes = 8
-steps_per_update = 20
+steps_per_update = 32
 learning_rate = 0.001
 gamma = 0.99
 entropy_coef = 0.01
@@ -44,6 +46,8 @@ value_loss_coef = 0.5
 max_grad_norm = 0.05
 log_interval = 50
 save_interval = 10
+min_scripted_actions_update_interval = 1_000_000
+max_scripted_actions_update_interval = 100_000
 ppcg = False
 
 
@@ -123,8 +127,12 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
     tds = 0
     tds_opp = 0
     next_opp = botbowl.make_bot('random')
+    scripted_procs = []
+    dont_remove_actions = []
 
     ppcg_wrapper: Optional[PPCGWrapper] = env.get_wrapper_with_type(PPCGWrapper)
+
+    scripted_bot = MyScriptedBot()
 
     while True:
         command, data = remote.recv()
@@ -136,11 +144,12 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
 
             (spatial_obs, non_spatial_obs, action_mask), reward, done, info = env.step(action)
 
-            game = env.game
+            game:botbowl.Game = env.game
             tds_scored = game.state.home_team.state.score - tds
             tds_opp_scored = game.state.away_team.state.score - tds_opp
             tds = game.state.home_team.state.score
             tds_opp = game.state.away_team.state.score
+             # TODO add scripted actions of the "trained" bot, if the proc is in its procs, take a scripted action and return it, otherwise return None
 
             if done or steps >= reset_steps:
                 # If we get stuck or something - reset the environment
@@ -152,7 +161,10 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
                 steps = 0
                 tds = 0
                 tds_opp = 0
-            remote.send((spatial_obs, non_spatial_obs, action_mask, reward, tds_scored, tds_opp_scored, done))
+            proc = env.game.get_procedure()
+            if proc in scripted_procs and proc not in dont_remove_actions:
+                action = scripted_bot.act(env.game)
+            remote.send((spatial_obs, non_spatial_obs, action_mask, reward, tds_scored, tds_opp_scored, done, action))
 
         elif command == 'reset':
             steps = 0
@@ -160,10 +172,15 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
             tds_opp = 0
             env.root_env.away_agent = next_opp
             spatial_obs, non_spatial_obs, action_mask = env.reset()
-            remote.send((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False))
+            proc = env.game.get_procedure()
+            if proc in scripted_procs and proc not in dont_remove_actions:
+                action = scripted_bot.act(env.game)
+            remote.send((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False, action))
 
         elif command == 'swap':
             next_opp = data
+        elif command == 'update_scripted':
+            scripted_procs, dont_remove_actions = data
         elif command == 'close':
             break
 
@@ -204,6 +221,10 @@ class VecEnv:
     def swap(self, agent):
         for remote in self.remotes:
             remote.send(('swap', agent))
+
+    def update_scripted_actions(self, scripted_actions):
+        for remote in self.remotes:
+            remote.send(('update_scripted', scripted_actions))
 
     def close(self):
         if self.closed:
@@ -271,16 +292,31 @@ def main():
     selfplay_next_swap = selfplay_swap_steps
     selfplay_models = 0
 
+    # scripted actions
+    scripted_actions = [CoinTossFlip, CoinTossKickReceive, Setup, Ejection, Reroll, PlaceBall, PlaceBall,
+                       PlaceBall, Turn, MoveAction, BlockAction, PassAction, HandoffAction, BlitzAction,
+                        FoulAction, ThrowBombAction, Block, Push, FollowUp, Apothecary, Interception,
+                        BloodLustBlockOrMove, EatThrall]
+    last_scripted = None
+    dont_remove_actions = [CoinTossFlip, CoinTossKickReceive]
+    last_scripted_change = 0
+
+    envs.update_scripted_actions((scripted_actions, dont_remove_actions))
+
     if selfplay:
         model_name = f"{exp_id}_selfplay_0.nn"
         model_path = os.path.join(model_dir, model_name)
         torch.save(ac_agent, model_path)
-        self_play_agent = make_agent_from_model(name=model_name, filename=model_path)
+        self_play_agent = torch.jit.optimize_for_inference(
+            torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                                                   scripted_actions=scripted_actions)))
         envs.swap(self_play_agent)
         selfplay_models += 1
 
     # Reset environments
-    spatial_obs, non_spatial_obs, action_masks, _, _, _, _ = map(torch.from_numpy, envs.reset(difficulty))
+    reset_out = envs.reset(difficulty)
+    spatial_obs, non_spatial_obs, action_masks, _, _, _, _ = map(torch.from_numpy, reset_out[:-1])
+    scripted_actions = reset_out[-1]
 
     # Add first obs to memory
     non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
@@ -296,9 +332,11 @@ def main():
                 Variable(memory.non_spatial_obs[step]),
                 Variable(memory.action_masks[step]))
 
-            action_objects = (action[0] for action in actions.numpy())
+            action_objects = (action[0] if not scripted_actions[count] else scripted_actions[count]
+                              for count, action in enumerate(actions.numpy()))
 
-            spatial_obs, non_spatial_obs, action_masks, shaped_reward, tds_scored, tds_opp_scored, done = envs.step(action_objects, difficulty=difficulty)
+            spatial_obs, non_spatial_obs, action_masks, shaped_reward, tds_scored, tds_opp_scored, done, scripted_actions \
+                = envs.step(action_objects, difficulty=difficulty)
 
             proc_rewards += shaped_reward
             proc_tds += tds_scored
@@ -384,6 +422,26 @@ def main():
         # Steps
         all_steps += num_processes * steps_per_update
 
+        if last_scripted_change + min_scripted_actions_update_interval <= all_steps:
+            if np.mean(wins) > 0.55:
+                # swap scripted actions
+                last_scripted = random.choice(scripted_actions)
+                scripted_actions.remove(last_scripted)
+                envs.update_scripted_actions(scripted_actions)
+                last_scripted_change = all_steps
+                print(f"Swaping scripted actions (win prob). New scripted:"
+                      f" {scripted_actions}, last_scripted change {last_scripted}")
+            else:
+                if all_steps >= last_scripted_change + max_scripted_actions_update_interval:
+                    new_last_scripted = random.choice(scripted_actions)
+                    scripted_actions.remove(new_last_scripted)
+                    scripted_actions.append(last_scripted)
+                    last_scripted = new_last_scripted
+                    envs.update_scripted_actions(scripted_actions)
+                    last_scripted_change = all_steps
+                    print(f"Swaping scripted actions (cant learn good policy). New scripted:"
+                          f" {scripted_actions}, last_scripted change {last_scripted}")
+
         # Self-play save
         if selfplay and all_steps >= selfplay_next_save:
             selfplay_next_save = max(all_steps+1, selfplay_next_save+selfplay_save_steps)
@@ -395,13 +453,14 @@ def main():
 
         # Self-play swap
         if selfplay and all_steps >= selfplay_next_swap:
-            selfplay_next_swap = max(all_steps + 1, selfplay_next_swap+selfplay_swap_steps)
-            lower = max(0, selfplay_models-1-(selfplay_window-1))
-            i = random.randint(lower, selfplay_models-1)
+            selfplay_next_swap = max(all_steps + 1, selfplay_next_swap + selfplay_swap_steps)
+            lower = max(0, selfplay_models-1 - (selfplay_window - 1))
+            i = random.randint(lower, selfplay_models - 1)
             model_name = f"{exp_id}_selfplay_{i}.nn"
             model_path = os.path.join(model_dir, model_name)
             print(f"Swapping opponent to {model_path}")
-            envs.swap(make_agent_from_model(name=model_name, filename=model_path))
+            envs.swap(torch.jit.optimize_for_inference(
+                torch.jit.script(make_agent_from_model(name=model_name, filename=model_path, scripted_actions=scripted_actions + [last_scripted]))))
 
         # Logging
         if all_updates % log_interval == 0 and len(episode_rewards) >= num_processes:
