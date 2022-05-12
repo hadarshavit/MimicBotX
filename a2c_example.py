@@ -296,8 +296,8 @@ def main():
     selfplay_models = 0
 
     # scripted actions
-    scripted_actions = [CoinTossFlip, CoinTossKickReceive, Setup, Ejection, Reroll, PlaceBall, PlaceBall,
-                       PlaceBall, Turn, MoveAction, BlockAction, PassAction, HandoffAction, BlitzAction,
+    scripted_actions = [CoinTossFlip, CoinTossKickReceive, Setup, Ejection, Reroll, PlaceBall,
+                        Turn, MoveAction, BlockAction, PassAction, HandoffAction, BlitzAction,
                         FoulAction, ThrowBombAction, Block, Push, FollowUp, Apothecary, Interception,
                         BloodLustBlockOrMove, EatThrall]
     last_scripted = None
