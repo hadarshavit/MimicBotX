@@ -96,6 +96,7 @@ class Memory(object):
         self.actions = self.actions.long()
         self.masks = torch.ones(steps_per_update + 1, num_processes, 1)
         self.action_masks = torch.zeros(steps_per_update + 1, num_processes, action_space, dtype=torch.bool)
+        self.scripted = torch.zeros(steps_per_update, num_processes, 1, dtype=torch.bool)
 
     def cuda(self):
         self.spatial_obs = self.spatial_obs.cuda()
@@ -106,13 +107,14 @@ class Memory(object):
         self.masks = self.masks.cuda()
         self.action_masks = self.action_masks.cuda()
 
-    def insert(self, step, spatial_obs, non_spatial_obs, action, reward, mask, action_masks):
+    def insert(self, step, spatial_obs, non_spatial_obs, action, reward, mask, action_masks, scripted):
         self.spatial_obs[step + 1].copy_(torch.from_numpy(spatial_obs).float())
         self.non_spatial_obs[step + 1].copy_(torch.from_numpy(np.expand_dims(non_spatial_obs, axis=1)).float())
         self.actions[step].copy_(action)
         self.rewards[step].copy_(torch.from_numpy(np.expand_dims(reward, 1)).float())
         self.masks[step].copy_(mask)
         self.action_masks[step+1].copy_(torch.from_numpy(action_masks))
+        self.scripted[step + 1] = scripted
 
     def compute_returns(self, next_value, gamma):
         self.returns[-1] = next_value
@@ -337,6 +339,7 @@ def main():
 
             action_objects = (action[0] if not scripted_actions[count] else scripted_actions[count]
                               for count, action in enumerate(actions.numpy()))
+            scripted = [scripted_action is None for scripted_action in scripted_actions]
 
             spatial_obs, non_spatial_obs, action_masks, shaped_reward, tds_scored, tds_opp_scored, done, scripted_actions \
                 = envs.step(action_objects, difficulty=difficulty)
@@ -372,7 +375,7 @@ def main():
             # insert the step taken into memory
             masks = torch.FloatTensor([[0.0] if done_ else [1.0] for done_ in done])
 
-            memory.insert(step, spatial_obs, non_spatial_obs, actions.data, shaped_reward, masks, action_masks) # TODO if the action is scripted, we don't need to save. or we do need to save but it has no gradient
+            memory.insert(step, spatial_obs, non_spatial_obs, actions.data, shaped_reward, masks, action_masks, scripted) # TODO if the action is scripted, we don't need to save. or we do need to save but it has no gradient
 
         # -- TRAINING -- #
 
@@ -434,6 +437,22 @@ def main():
                 last_scripted_change = all_steps
                 print(f"Swaping scripted actions (win prob). New scripted:"
                       f" {scripted_actions}, last_scripted change {last_scripted}")
+                selfplay_next_save = max(all_steps + 1, selfplay_next_save + selfplay_save_steps)
+                model_name = f"{exp_id}_selfplay_{selfplay_models}.nn"
+                model_path = os.path.join(model_dir, model_name)
+                print(f"Saving {model_path}")
+                torch.save(ac_agent, model_path)
+                selfplay_models += 1
+                selfplay_next_swap = max(all_steps + 1, selfplay_next_swap + selfplay_swap_steps)
+                lower = max(0, selfplay_models - 1 - (selfplay_window - 1))
+                i = random.randint(lower, selfplay_models - 1)
+                model_name = f"{exp_id}_selfplay_{i}.nn"
+                model_path = os.path.join(model_dir, model_name)
+                print(f"Swapping opponent to {model_path}")
+                envs.swap(torch.jit.optimize_for_inference(
+                    torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                                                           scripted_actions=scripted_actions + [
+                                                               last_scripted] + dont_remove_actions))))
             else:
                 if all_steps >= last_scripted_change + max_scripted_actions_update_interval:
                     new_last_scripted = random.choice(scripted_actions)
@@ -444,6 +463,22 @@ def main():
                     last_scripted_change = all_steps
                     print(f"Swaping scripted actions (cant learn good policy). New scripted:"
                           f" {scripted_actions}, last_scripted change {last_scripted}")
+                    selfplay_next_save = max(all_steps + 1, selfplay_next_save + selfplay_save_steps)
+                    model_name = f"{exp_id}_selfplay_{selfplay_models}.nn"
+                    model_path = os.path.join(model_dir, model_name)
+                    print(f"Saving {model_path}")
+                    torch.save(ac_agent, model_path)
+                    selfplay_models += 1
+                    selfplay_next_swap = max(all_steps + 1, selfplay_next_swap + selfplay_swap_steps)
+                    lower = max(0, selfplay_models - 1 - (selfplay_window - 1))
+                    i = random.randint(lower, selfplay_models - 1)
+                    model_name = f"{exp_id}_selfplay_{i}.nn"
+                    model_path = os.path.join(model_dir, model_name)
+                    print(f"Swapping opponent to {model_path}")
+                    envs.swap(torch.jit.optimize_for_inference(
+                        torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                                                               scripted_actions=scripted_actions + [
+                                                                   last_scripted] + dont_remove_actions))))
 
         # Self-play save
         if selfplay and all_steps >= selfplay_next_save:
@@ -455,7 +490,7 @@ def main():
             selfplay_models += 1
 
         # Self-play swap
-        if selfplay and all_steps >= selfplay_next_swap:
+        if scripted_actions == [] and selfplay and all_steps >= selfplay_next_swap:
             selfplay_next_swap = max(all_steps + 1, selfplay_next_swap + selfplay_swap_steps)
             lower = max(0, selfplay_models-1 - (selfplay_window - 1))
             i = random.randint(lower, selfplay_models - 1)
