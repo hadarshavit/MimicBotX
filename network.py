@@ -193,13 +193,13 @@ class MimicBotXNet(nn.Module):
         action_probs = F.softmax(actions, dim=1)
         return values, action_probs
 
-    def evaluate_actions(self, spatial_inputs, non_spatial_input, actions, actions_mask):
+    def evaluate_actions(self, spatial_inputs, non_spatial_input, actions, actions_mask, scripted):
         value, policy = self(spatial_inputs, non_spatial_input)
         actions_mask = actions_mask.view(-1, 1, actions_mask.shape[2]).squeeze().bool()
         policy[~actions_mask] = float('-inf')
         log_probs = F.log_softmax(policy, dim=1)
         probs = F.softmax(policy, dim=1)
         action_log_probs = log_probs.gather(1, actions)
-        log_probs = torch.where(log_probs[None, :] == float('-inf'), torch.tensor(0.), log_probs)
+        log_probs = torch.where(log_probs[None, :] == float('-inf') or scripted, torch.tensor(0.), log_probs)
         dist_entropy = -(log_probs * probs).sum(-1).mean()
         return action_log_probs, value, dist_entropy
