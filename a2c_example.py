@@ -106,15 +106,17 @@ class Memory(object):
         self.actions = self.actions.cuda()
         self.masks = self.masks.cuda()
         self.action_masks = self.action_masks.cuda()
+        self.scripted = self.scripted.cuda()
 
     def insert(self, step, spatial_obs, non_spatial_obs, action, reward, mask, action_masks, scripted):
+        # spatial_obs.to(torch.device('cuda'))
         self.spatial_obs[step + 1].copy_(torch.from_numpy(spatial_obs).float())
         self.non_spatial_obs[step + 1].copy_(torch.from_numpy(np.expand_dims(non_spatial_obs, axis=1)).float())
         self.actions[step].copy_(action)
         self.rewards[step].copy_(torch.from_numpy(np.expand_dims(reward, 1)).float())
         self.masks[step].copy_(mask)
         self.action_masks[step+1].copy_(torch.from_numpy(action_masks))
-        self.scripted[step + 1] = scripted
+        self.scripted[step] = scripted
 
     def compute_returns(self, next_value, gamma):
         self.returns[-1] = next_value
@@ -246,6 +248,7 @@ class VecEnv:
 
 
 def main():
+    device = torch.device('cuda')
     envs = VecEnv([make_env() for _ in range(num_processes)])
 
     env = make_env()
@@ -264,6 +267,7 @@ def main():
 
     # MEMORY STORE
     memory = Memory(steps_per_update, num_processes, spatial_obs_space, (1, non_spatial_obs_space), action_space)
+    memory.cuda()
 
     # PPCG
     difficulty = 0.0 if ppcg else 1.0
