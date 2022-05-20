@@ -11,7 +11,7 @@ from torch.autograd import Variable
 
 import botbowl
 from botbowl.ai.env import BotBowlEnv, RewardWrapper, EnvConf, ScriptedActionWrapper, BotBowlWrapper, PPCGWrapper
-from a2c_agent import A2CAgent, CNNPolicy
+from a2c_agent import A2CAgent
 from a2c_env import A2C_Reward, a2c_scripted_actions
 from botbowl.ai.layers import *
 from network import MimicBotXNet
@@ -19,7 +19,7 @@ from botbowl.core.procedure import *
 from examples.scripted_bot_example import MyScriptedBot
 
 # Environment
-env_size = 3  # Options are 1,3,5,7,11
+env_size = 11  # Options are 1,3,5,7,11
 env_name = f"botbowl-{env_size}"
 env_conf = EnvConf(size=env_size, pathfinding=False)
 
@@ -37,7 +37,7 @@ def make_env():
 
 # Training configuration
 num_steps = 100_000_000
-num_processes = 8
+num_processes = 1
 steps_per_update = 32
 learning_rate = 0.001
 gamma = 0.99
@@ -54,7 +54,7 @@ ppcg = False
 reset_steps = 5000  # The environment is reset after this many steps it gets stuck
 
 # Self-play
-selfplay = False  # Use this to enable/disable self-play
+selfplay = True  # Use this to enable/disable self-play
 selfplay_window = 1
 selfplay_save_steps = int(num_steps / 10)
 selfplay_swap_steps = selfplay_save_steps
@@ -77,9 +77,9 @@ ensure_dir("logs/")
 ensure_dir("models/")
 ensure_dir("plots/")
 exp_id = str(uuid.uuid1())
-log_dir = f"logs/{env_name}/"
-model_dir = f"models/{env_name}/"
-plot_dir = f"plots/{env_name}/"
+log_dir = f"/data/s3092593/mgai/logs/{env_name}/"
+model_dir = f"/data/s3092593/mgai/models/{env_name}/"
+plot_dir = f"/data/s3092593/mgai/plots/{env_name}/"
 ensure_dir(log_dir)
 ensure_dir(model_dir)
 ensure_dir(plot_dir)
@@ -109,6 +109,7 @@ class Memory(object):
         self.scripted = self.scripted.cuda()
 
     def insert(self, step, spatial_obs, non_spatial_obs, action, reward, mask, action_masks, scripted):
+        
         # spatial_obs.to(torch.device('cuda'))
         self.spatial_obs[step + 1].copy_(torch.from_numpy(spatial_obs).float())
         self.non_spatial_obs[step + 1].copy_(torch.from_numpy(np.expand_dims(non_spatial_obs, axis=1)).float())
@@ -116,6 +117,7 @@ class Memory(object):
         self.rewards[step].copy_(torch.from_numpy(np.expand_dims(reward, 1)).float())
         self.masks[step].copy_(mask)
         self.action_masks[step+1].copy_(torch.from_numpy(action_masks))
+        # print(scripted.size(), action.size())
         self.scripted[step] = scripted
 
     def compute_returns(self, next_value, gamma):
@@ -137,6 +139,7 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
     ppcg_wrapper: Optional[PPCGWrapper] = env.get_wrapper_with_type(PPCGWrapper)
 
     scripted_bot = MyScriptedBot(f'scripted{worker_id}')
+    scripted_bot.new_game(env.game, env.game.get_agent_team(next_opp))
 
     while True:
         command, data = remote.recv()
@@ -166,9 +169,11 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
                 tds = 0
                 tds_opp = 0
             proc = env.game.get_procedure()
+            # print(proc)
             action = None
-            if proc in scripted_procs and proc not in dont_remove_actions:
+            if proc.__class__ in scripted_procs or proc.__class__ in dont_remove_actions:
                 action = scripted_bot.act(env.game)
+                action = env.root_env._compute_action_idx(action)
             remote.send((spatial_obs, non_spatial_obs, action_mask, reward, tds_scored, tds_opp_scored, done, action))
 
         elif command == 'reset':
@@ -179,12 +184,14 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
             spatial_obs, non_spatial_obs, action_mask = env.reset()
             proc = env.game.get_procedure()
             action = None
-            if proc in scripted_procs and proc not in dont_remove_actions:
+            if proc.__class__ in scripted_procs or proc.__class__ in dont_remove_actions:
                 action = scripted_bot.act(env.game)
+                action = env.root_env._compute_action_idx(action)
             remote.send((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False, action))
 
         elif command == 'swap':
             next_opp = data
+            next_opp.ready()
         elif command == 'update_scripted':
             scripted_procs, dont_remove_actions = data
         elif command == 'close':
@@ -260,7 +267,7 @@ def main():
 
     # MODEL
     ac_agent = MimicBotXNet(spatial_shape=spatial_obs_space, non_spatial_inputs=non_spatial_obs_space,
-                            actions=action_space)
+                            actions=action_space).cuda()
 
     # OPTIMIZER
     optimizer = optim.RMSprop(ac_agent.parameters(), learning_rate)
@@ -302,12 +309,13 @@ def main():
     selfplay_models = 0
 
     # scripted actions
-    scripted_actions = [CoinTossFlip, CoinTossKickReceive, Setup, Ejection, Reroll, PlaceBall,
-                        Turn, MoveAction, BlockAction, PassAction, HandoffAction, BlitzAction,
+    always_not_scripted = [Setup, CoinTossKickReceive, CoinTossFlip, PlaceBall, Turn, BlockAction, Reroll, ]
+    scripted_actions = [Ejection,MoveAction, BloodLustBlockOrMove,
+                        PassAction, HandoffAction, BlitzAction,
                         FoulAction, ThrowBombAction, Block, Push, FollowUp, Apothecary, Interception,
-                        BloodLustBlockOrMove, EatThrall]
+                        EatThrall]
     last_scripted = None
-    dont_remove_actions = [CoinTossFlip, CoinTossKickReceive]
+    dont_remove_actions = []
     last_scripted_change = 0
 
     envs.update_scripted_actions((scripted_actions, dont_remove_actions))
@@ -316,9 +324,8 @@ def main():
         model_name = f"{exp_id}_selfplay_0.nn"
         model_path = os.path.join(model_dir, model_name)
         torch.save(ac_agent, model_path)
-        self_play_agent = torch.jit.optimize_for_inference(
-            torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
-                                                   scripted_actions=scripted_actions + dont_remove_actions)))
+        self_play_agent = make_agent_from_model(name=model_name, filename=model_path,
+                                                   scripted_actions=scripted_actions + dont_remove_actions)
         envs.swap(self_play_agent)
         selfplay_models += 1
 
@@ -342,8 +349,10 @@ def main():
                 Variable(memory.action_masks[step]))
 
             action_objects = (action[0] if not scripted_actions[count] else scripted_actions[count]
-                              for count, action in enumerate(actions.numpy()))
-            scripted = [scripted_action is None for scripted_action in scripted_actions]
+                              for count, action in enumerate(actions.detach().cpu().numpy()))
+            scripted = torch.BoolTensor([scripted_action is None for scripted_action in scripted_actions]).to(torch.device('cuda'))
+            scripted = scripted.reshape(-1, 1)
+            # print(scripted)
 
             spatial_obs, non_spatial_obs, action_masks, shaped_reward, tds_scored, tds_opp_scored, done, scripted_actions \
                 = envs.step(action_objects, difficulty=difficulty)
@@ -394,11 +403,11 @@ def main():
         non_spatial = Variable(memory.non_spatial_obs[:-1])
         non_spatial = non_spatial.view(-1, non_spatial.shape[-1])
 
-        actions = Variable(torch.LongTensor(memory.actions.view(-1, 1)))
+        actions = Variable(torch.cuda.LongTensor(memory.actions.view(-1, 1)))
         actions_mask = Variable(memory.action_masks[:-1])
 
         # Evaluate the actions taken
-        action_log_probs, values, dist_entropy = ac_agent.evaluate_actions(spatial, non_spatial, actions, actions_mask)
+        action_log_probs, values, dist_entropy = ac_agent.evaluate_actions(spatial, non_spatial, actions, actions_mask, memory.scripted.view(-1, 1))
 
         values = values.view(steps_per_update, num_processes, 1)
         action_log_probs = action_log_probs.view(steps_per_update, num_processes, 1)
@@ -453,10 +462,9 @@ def main():
                 model_name = f"{exp_id}_selfplay_{i}.nn"
                 model_path = os.path.join(model_dir, model_name)
                 print(f"Swapping opponent to {model_path}")
-                envs.swap(torch.jit.optimize_for_inference(
-                    torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                envs.swap(make_agent_from_model(name=model_name, filename=model_path,
                                                            scripted_actions=scripted_actions + [
-                                                               last_scripted] + dont_remove_actions))))
+                                                               last_scripted] + dont_remove_actions))
             else:
                 if all_steps >= last_scripted_change + max_scripted_actions_update_interval:
                     new_last_scripted = random.choice(scripted_actions)
@@ -479,10 +487,9 @@ def main():
                     model_name = f"{exp_id}_selfplay_{i}.nn"
                     model_path = os.path.join(model_dir, model_name)
                     print(f"Swapping opponent to {model_path}")
-                    envs.swap(torch.jit.optimize_for_inference(
-                        torch.jit.script(make_agent_from_model(name=model_name, filename=model_path,
+                    envs.swap(make_agent_from_model(name=model_name, filename=model_path,
                                                                scripted_actions=scripted_actions + [
-                                                                   last_scripted] + dont_remove_actions))))
+                                                                   last_scripted] + dont_remove_actions))
 
         # Self-play save
         if selfplay and all_steps >= selfplay_next_save:

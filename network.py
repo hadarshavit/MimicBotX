@@ -200,6 +200,8 @@ class MimicBotXNet(nn.Module):
         log_probs = F.log_softmax(policy, dim=1)
         probs = F.softmax(policy, dim=1)
         action_log_probs = log_probs.gather(1, actions)
-        log_probs = torch.where(log_probs[None, :] == float('-inf') or scripted, torch.tensor(0.), log_probs)
+        # print(action_log_probs.size(), actions.shape, scripted.shape)
+        action_log_probs = torch.where(scripted, torch.tensor(0., device='cuda'), action_log_probs)
+        log_probs = torch.where(log_probs[None, :] == float('-inf'), torch.tensor(0., device='cuda'), log_probs)
         dist_entropy = -(log_probs * probs).sum(-1).mean()
         return action_log_probs, value, dist_entropy

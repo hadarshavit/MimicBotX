@@ -21,7 +21,7 @@ class Saver:
         self.buffer.append(data)
 
     def dump(self):
-        np.save('data.npy', self.buffer)
+        np.save('/data/s3092593/mgai/data.npy', self.buffer)
 
 saver = Saver()
 
