@@ -12,6 +12,12 @@ from typing import List
 from botbowl.core.model import Agent, Action
 from botbowl.core.game import Game, InvalidActionError
 from botbowl.core.procedure import *
+import torch
+
+
+def _update_obs(array: np.ndarray):
+        return torch.unsqueeze(torch.from_numpy(array.copy()), dim=0)
+
 
 class Saver:
     def __init__(self):
@@ -110,7 +116,10 @@ class ProcBot(Agent):
         else:
             raise Exception("Unknown procedure")
 
-        saver.save((self.env.get_state(), action))
+        if not action.action_type in [ActionType.PLACE_PLAYER, ActionType.END_SETUP]:
+            spatial_obs, non_spatial_obs, action_mask = self.env.get_state()
+            # non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
+            saver.save((spatial_obs, non_spatial_obs, action_mask, self.env._compute_action_idx(action)))
 
         if action is None:
             assert action is not None
@@ -990,7 +999,7 @@ def main():
         random_wins_env = 0
         mcts_tds_env = 0
         random_tds_env = 0
-        for as_home in [True, False]:
+        for as_home in [True]:
             print("Playing as Home")
             mcts_wins = 0
             mcts_tds = 0
