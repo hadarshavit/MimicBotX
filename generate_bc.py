@@ -22,12 +22,17 @@ def _update_obs(array: np.ndarray):
 class Saver:
     def __init__(self):
         self.buffer = []
+        self.i = 0
 
     def save(self, data):
         self.buffer.append(data)
 
     def dump(self):
-        np.save('/data/s3092593/mgai/data.npy', self.buffer)
+        np.save(f'/local/s3092593/games500.npy', self.buffer)
+        self.i += 1
+    
+    def reset(self):
+        self.buffer = []
 
 saver = Saver()
 
@@ -117,9 +122,12 @@ class ProcBot(Agent):
             raise Exception("Unknown procedure")
 
         if not action.action_type in [ActionType.PLACE_PLAYER, ActionType.END_SETUP]:
+            self.env.game = game
             spatial_obs, non_spatial_obs, action_mask = self.env.get_state()
             # non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
-            saver.save((spatial_obs, non_spatial_obs, action_mask, self.env._compute_action_idx(action)))
+            saver.save((spatial_obs.astype(np.float32), non_spatial_obs.astype(np.float32), action_mask, self.env._compute_action_idx(action)))
+            # saver.dump()
+            # saver.reset()
 
         if action is None:
             assert action is not None
@@ -924,15 +932,15 @@ class MyScriptedBot(ProcBot):
         Called when a game ends.
         """
         winner = game.get_winning_team()
-        print("Casualties: ", game.num_casualties())
-        if winner is None:
-            print("It's a draw")
-        elif winner == self.my_team:
-            print("I ({}) won".format(self.name))
-            print(self.my_team.state.score, "-", self.opp_team.state.score)
-        else:
-            print("I ({}) lost".format(self.name))
-            print(self.my_team.state.score, "-", self.opp_team.state.score)
+        # print("Casualties: ", game.num_casualties())
+        # if winner is None:
+        #     print("It's a draw")
+        # elif winner == self.my_team:
+        #     print("I ({}) won".format(self.name))
+        #     print(self.my_team.state.score, "-", self.opp_team.state.score)
+        # else:
+        #     print("I ({}) lost".format(self.name))
+        #     print(self.my_team.state.score, "-", self.opp_team.state.score)
 
 
 def path_to_move_actions(game: botbowl.Game, player: botbowl.Player, path: Path, do_assertions=True) -> List[Action]:
@@ -989,8 +997,9 @@ def path_to_move_actions(game: botbowl.Game, player: botbowl.Player, path: Path,
         return actions
 
 def main():
+    saver.reset()
     for i in [11]:
-        print(f"-- Testing env {i} --")
+        # print(f"-- Testing env {i} --")
         # Load configurations, rules, arena and teams
         config = botbowl.load_config(f"gym-{i}")
         ruleset = botbowl.load_rule_set(config.ruleset)
@@ -1000,12 +1009,13 @@ def main():
         mcts_tds_env = 0
         random_tds_env = 0
         for as_home in [True]:
-            print("Playing as Home")
+            # print("Playing as Home")
             mcts_wins = 0
             mcts_tds = 0
             random_wins = 0
             random_tds = 0
-            for _ in range(30):
+            for j in range(1):
+                # print(j)
                 home = botbowl.load_team_by_filename("human", ruleset, board_size=i)
                 away = botbowl.load_team_by_filename("human", ruleset, board_size=i)
                 config.competition_mode = False
@@ -1019,10 +1029,10 @@ def main():
                 home_bot = bot_a if as_home else bot_b
                 away_bot = bot_b if as_home else bot_a
                 game = botbowl.Game(1, home, away, home_bot, away_bot, config, arena=arena, ruleset=ruleset)
-                print("Starting game")
+                # print("Starting game")
                 game.init()
-                print(f"{game.home_agent.name} score: {game.state.home_team.state.score}")
-                print(f"{game.away_agent.name} score: {game.state.away_team.state.score}")
+                # print(f"{game.home_agent.name} score: {game.state.home_team.state.score}")
+                # print(f"{game.away_agent.name} score: {game.state.away_team.state.score}")
                 # visits, min_depths, max_depths, avg_depths = np.mean(bot_a.stats, axis=0)
                 # print(f"MCTS Iterations: {visits}, Min Depth: {min_depths}, Max. Depth: {max_depths}, Avg. Depth: {avg_depths}")
                 if game.get_winner() == home_bot and as_home:
@@ -1037,21 +1047,22 @@ def main():
                 else:
                     random_tds += game.state.home_team.state.score
                     mcts_tds += game.state.away_team.state.score
-            print("--------------------------")
-            print(f"MCTS wins: {mcts_wins}")
-            print(f"Random wins: {random_wins}")
-            print(f"MCTS TDs: {mcts_tds}")
-            print(f"Random TDs: {random_tds}")
+            # print("--------------------------")
+            # print(f"MCTS wins: {mcts_wins}")
+            # print(f"Random wins: {random_wins}")
+            # print(f"MCTS TDs: {mcts_tds}")
+            # print(f"Random TDs: {random_tds}")
             mcts_wins_env += mcts_wins
             random_wins_env += random_wins
             mcts_tds_env += mcts_tds
             random_tds_env += random_tds
-        print(f"############ {i} ############")
-        print(f"MCTS wins: {mcts_wins_env}")
-        print(f"Random wins: {random_wins_env}")
-        print(f"MCTS TDs: {mcts_tds_env}")
-        print(f"Random TDs: {random_tds_env}")
-        saver.dump()
+        # print(f"############ {i} ############")
+        # print(f"MCTS wins: {mcts_wins_env}")
+        # print(f"Random wins: {random_wins_env}")
+        # print(f"MCTS TDs: {mcts_tds_env}")
+        # print(f"Random TDs: {random_tds_env}")
+        # # saver.dump()
+        return saver
 
 
 if __name__ == '__main__':

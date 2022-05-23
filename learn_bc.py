@@ -5,20 +5,29 @@ import network
 from botbowl.ai.env import BotBowlEnv, EnvConf
 import torch.nn.functional as F
 from timm.optim import create_optimizer_v2
+from timm.scheduler import create_scheduler
+from timm.utils import NativeScaler
+from a2c_agent import CNNPolicy
+import timm
+import os
+import generate_bc
+from concurrent.futures import ProcessPoolExecutor
+
+# executor = ProcessPoolExecutor(max_workers=1)
 
 
 class BCDataset(Dataset):
-    def __init__(self, file, spatial):
-        print('Loading...')
-        self.data = np.load(file, allow_pickle=True)
-        self.env = BotBowlEnv(EnvConf(size=11, pathfinding=True))
-        print('Dloader is ready', self.data.shape)
-        self.spatial = spatial
+    def __init__(self, train):
+        self.executor = ProcessPoolExecutor(max_workers=24)
+        self.futures = []
+
+        self.data = []
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
+        # print(self.files[idx])
         # print(self.data[idx])
         spatial_obs, non_spatial_obs, action_mask, act_id = self.data[idx]
         # if self.spatial:
@@ -27,7 +36,21 @@ class BCDataset(Dataset):
             # return torch.Tensor(non_spatial), actions
         # print(action_mask.shape, spatial_obs.shape, non_spatial_obs.shape, act_id)
         return torch.FloatTensor(spatial_obs),  torch.FloatTensor(non_spatial_obs), \
-               torch.LongTensor(action_mask),  torch.LongTensor([act_id])
+                torch.LongTensor(action_mask),  torch.LongTensor([act_id])
+    
+    def generate_data(self):
+        print('generating')
+        for _ in range(50):
+            self.futures.append(self.executor.submit(generate_bc.main))
+    
+    def collect_data(self):
+        print('collecting')
+        for f in self.futures:
+            self.data += f.result().buffer
+        self.futures = []
+        # if len(self.data) > 250_000:
+        self.data = self.data[-100_000:]
+        print(len(self.data))
 
 def main():
     env = env = BotBowlEnv(EnvConf(size=11, pathfinding=True))
@@ -37,50 +60,95 @@ def main():
     action_space = len(action_mask)
     del env, non_spat_obs, action_mask  # remove from scope to avoid confusion further down
     net = network.MimicBotXNet(spatial_shape=spatial_obs_space, non_spatial_inputs=non_spatial_obs_space,
-                               actions=action_space)
+                               actions=action_space, drop_rate=0.0, activation=timm.models.layers.activations.GELU, drop_path=0.0)
+    # net = CNNPolicy(spatial_shape=spatial_obs_space, non_spatial_inputs=non_spatial_obs_space, 
+                    # actions=action_space, hidden_nodes = 2048, kernels = [128, 128])
     net.cuda()
+    net.to(memory_format=torch.channels_last)
+
+    amp_autocast = torch.cuda.amp.autocast
+    loss_scaler = NativeScaler()
+    # lr_scheduler, num_epochs = create_scheduler(args, optimizer)
+    # start_epoch = 0
+    # lr_scheduler.step(start_epoch)
+    # data = np.load('/local/s3092593/data.npy', allow_pickle=True)
+    train_dataset = BCDataset(train=True)
+    train_dataset.generate_data()
+    train_dataset.collect_data()
+    # train_dataset.generate_data()
+    validation_dataset = BCDataset(train=False)
+    validation_dataset.generate_data()
+    validation_dataset.collect_data()
+    validation_dataset.data = validation_dataset.data[-50_000:]
+
+
+    # validation_dataset.generate_data()
+    train_loader = torch.utils.data.DataLoader(train_dataset, 
+                                                      batch_size=512, shuffle=False, num_workers=8)
+    validation_loader = torch.utils.data.DataLoader(validation_dataset, 
+                                                          batch_size=512, shuffle=False, num_workers=8)     
     
-    spatial_trainloader = torch.utils.data.DataLoader(BCDataset('/data/s3092593/mgai/data.npy', spatial=True), 
-                                                      batch_size=256, shuffle=False, num_workers=4)
-    # non_spatial_trainloader = torch.utils.data.DataLoader(BCDataset('/data/s3092593/mgai/data.npy', spatial=False), 
-                                                        #   batch_size=256, shuffle=False, num_workers=4)                                  
 
     criterion = torch.nn.CrossEntropyLoss()
     criterion = criterion.cuda()
-    optimizer = create_optimizer_v2(net, opt='lamb')
-    epochs = 5
+
+    optimizer = create_optimizer_v2(net.parameters(), 'fusedlamb', lr=0.0001)
+
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)
+
+    epochs = 500
 
     for epoch in range(epochs):
         running_loss = 0.0
-        for i, data in enumerate(spatial_trainloader, 0):
-            # print(data)
+        train_dataset.generate_data()
+        for i, data in enumerate(train_loader, 0):
             spatial_obs, non_spatial_obs, action_mask, act_id = data
-            # spatial_inputs, labels = spatial
-            # non_spatial_inputs, labels2 = non_spatial
             spatial_obs = spatial_obs.cuda()
             non_spatial_obs = non_spatial_obs.cuda()
-            action_mask = action_mask.cuda()
             labels = act_id.cuda().flatten()
-            # print(labels.shape)
-            # labels = F.one_hot(labels.flatten(), action_space)
-            # assert labels == labels2
-            # print(spatial_inputs.get_device())
+
+            spatial_obs = spatial_obs.contiguous(memory_format=torch.channels_last)
             optimizer.zero_grad()
-            # import pdb; pdb.set_trace()
-            outputs = net(spatial_obs, non_spatial_obs)[1]
-            outputs = F.softmax(outputs, dim=1)
-            # outputs = torch.argmax(outputs, dim=1)
-            # print(outputs.type(), labels.type())
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
 
-            running_loss += loss.item()
-            if i % 100 == 99:  # print every 100 mini-batches
-                print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 100:.3f}')
-                running_loss = 0.0
+            with amp_autocast():
+                outputs = net(spatial_obs, non_spatial_obs)[1]
+                loss = criterion(outputs, labels)
+                running_loss += loss
+                loss_scaler(loss, optimizer)
 
-    torch.save(net, '/data/s3092593/mgai/net_bc')
+            if i % 100 == 0:
+                print(f'Train [{epoch + 1}, {i + 1:5d}] loss: {running_loss/(i+1):.3f}')
+
+        print(f'Train [{epoch + 1}, {i + 1:5d}] loss: {running_loss/(i+1):.3f}')
+        
+        net.eval()
+        running_loss = 0
+        with torch.no_grad():
+            for i, data in enumerate(validation_loader, 0):
+                spatial_obs, non_spatial_obs, action_mask, act_id = data
+
+                spatial_obs = spatial_obs.cuda()
+                non_spatial_obs = non_spatial_obs.cuda()
+                labels = act_id.cuda().flatten()
+
+                spatial_obs = spatial_obs.contiguous(memory_format=torch.channels_last)
+                # non_spatial_obs = non_spatial_obs.contiguous(memory_format=torch.channels_last)
+                with amp_autocast():
+                    outputs = net(spatial_obs, non_spatial_obs)[1]
+                    loss = criterion(outputs, labels)
+                    running_loss += loss
+
+        print(f'Validate [{epoch + 1}, {i + 1:5d}] loss: {running_loss/(i+1):.3f}')
+        running_loss = 0
+        net.train()
+
+        torch.save(net, f'/data/s3092593/mgai/n2et{epoch}')
+        train_dataset.collect_data()
+
+        if scheduler:
+            scheduler.step()
+
+    # torch.save(net, '/data/s3092593/mgai/net_bc')
 
 if __name__ == '__main__':
     main()
