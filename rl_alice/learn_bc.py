@@ -18,9 +18,9 @@ from concurrent.futures import ProcessPoolExecutor
 
 class BCDataset(Dataset):
     def __init__(self, train):
-        self.executor = ProcessPoolExecutor(max_workers=15)
+        self.executor = ProcessPoolExecutor(max_workers=10)
         self.futures = []
-        self.n_samples = 50 if not train else 25
+
         self.data = []
 
     def __len__(self):
@@ -40,7 +40,7 @@ class BCDataset(Dataset):
     
     def generate_data(self):
         print('generating')
-        for _ in range(self.n_samples):
+        for _ in range(20):
             self.futures.append(self.executor.submit(generate_bc.main))
     
     def collect_data(self):
@@ -73,29 +73,34 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
     # start_epoch = 0
     # lr_scheduler.step(start_epoch)
     # data = np.load('/local/s3092593/data.npy', allow_pickle=True)
-    train_dataset = BCDataset(train=True)
-    train_dataset.generate_data()
-    train_dataset.collect_data()
+
+
+    # train_dataset = BCDataset(train=True)
     # train_dataset.generate_data()
-    validation_dataset = BCDataset(train=False)
-    validation_dataset.generate_data()
-    validation_dataset.collect_data()
-    validation_dataset.data = validation_dataset.data[-50_000:]
+    # train_dataset.collect_data()
+
+
+    # train_dataset.generate_data()
+
+    # validation_dataset = BCDataset(train=False)
+    # validation_dataset.generate_data()
+    # validation_dataset.collect_data()
+    # validation_dataset.data = validation_dataset.data[-50_000:]
 
 
     # validation_dataset.generate_data()
-    train_loader = torch.utils.data.DataLoader(train_dataset, 
-                                                      batch_size=512, shuffle=False, num_workers=1)
-    validation_loader = torch.utils.data.DataLoader(validation_dataset, 
-                                                          batch_size=512, shuffle=False, num_workers=1)     
+    # train_loader = torch.utils.data.DataLoader(train_dataset, 
+    #                                                   batch_size=512, shuffle=False, num_workers=8)
+    # validation_loader = torch.utils.data.DataLoader(validation_dataset, 
+    #                                                       batch_size=512, shuffle=False, num_workers=8)     
     
 
-    criterion = torch.nn.CrossEntropyLoss()
-    criterion = criterion.cuda()
+    # criterion = torch.nn.CrossEntropyLoss()
+    # criterion = criterion.cuda()
 
     optimizer = create_optimizer_v2(net.parameters(), optimizer, lr=lr)
 
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=300) if scheduler else None
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30) if scheduler else None
     best_loss = 10000
     best_epoch = 0
     for epoch in range(epochs):
@@ -106,7 +111,7 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
             spatial_obs = spatial_obs.cuda()
             non_spatial_obs = non_spatial_obs.cuda()
             labels = act_id.cuda().flatten()
-            non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
+
             spatial_obs = spatial_obs.contiguous(memory_format=torch.channels_last)
             optimizer.zero_grad()
 
@@ -132,7 +137,7 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
                 spatial_obs = spatial_obs.cuda()
                 non_spatial_obs = non_spatial_obs.cuda()
                 labels = act_id.cuda().flatten()
-                non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
+
                 spatial_obs = spatial_obs.contiguous(memory_format=torch.channels_last)
                 # non_spatial_obs = non_spatial_obs.contiguous(memory_format=torch.channels_last)
                 with amp_autocast():
@@ -146,7 +151,7 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
             best_epoch = epoch
             if torch.isnan(running_loss):
                     return 10000
-            torch.save(net, f'/data1/s3092593/mgai/net_good{epoch}_{save_id}')
+            torch.save(net, f'/data/s3092593/mgai/net_good{epoch}_{save_id}')
         running_loss = 0
         net.train()
 
@@ -164,6 +169,4 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
     # torch.save(net, '/data/s3092593/mgai/net_bc')
 
 if __name__ == '__main__':
-    torch.backends.cudnn.benchmark = True
-    main(activation=timm.models.layers.activations.GELU, block=network.NEXcepTionBlock, optimizer='fusedlamb', lr=2.5 * 1e-3,
-    scheduler=True, epochs=300, save_id=200)
+    main()
