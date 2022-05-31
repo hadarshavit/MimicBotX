@@ -18,7 +18,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 class BCDataset(Dataset):
     def __init__(self, train):
-        self.executor = ProcessPoolExecutor(max_workers=20)
+        self.executor = ProcessPoolExecutor(max_workers=10)
         self.futures = []
 
         self.data = []
@@ -73,29 +73,34 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
     # start_epoch = 0
     # lr_scheduler.step(start_epoch)
     # data = np.load('/local/s3092593/data.npy', allow_pickle=True)
-    train_dataset = BCDataset(train=True)
-    train_dataset.generate_data()
-    train_dataset.collect_data()
+
+
+    # train_dataset = BCDataset(train=True)
     # train_dataset.generate_data()
-    validation_dataset = BCDataset(train=False)
-    validation_dataset.generate_data()
-    validation_dataset.collect_data()
-    validation_dataset.data = validation_dataset.data[-50_000:]
+    # train_dataset.collect_data()
+
+
+    # train_dataset.generate_data()
+
+    # validation_dataset = BCDataset(train=False)
+    # validation_dataset.generate_data()
+    # validation_dataset.collect_data()
+    # validation_dataset.data = validation_dataset.data[-50_000:]
 
 
     # validation_dataset.generate_data()
-    train_loader = torch.utils.data.DataLoader(train_dataset, 
-                                                      batch_size=1024, shuffle=False, num_workers=4)
-    validation_loader = torch.utils.data.DataLoader(validation_dataset, 
-                                                          batch_size=1024, shuffle=False, num_workers=4)     
+    # train_loader = torch.utils.data.DataLoader(train_dataset, 
+    #                                                   batch_size=512, shuffle=False, num_workers=8)
+    # validation_loader = torch.utils.data.DataLoader(validation_dataset, 
+    #                                                       batch_size=512, shuffle=False, num_workers=8)     
     
 
-    criterion = torch.nn.CrossEntropyLoss()
-    criterion = criterion.cuda()
+    # criterion = torch.nn.CrossEntropyLoss()
+    # criterion = criterion.cuda()
 
     optimizer = create_optimizer_v2(net.parameters(), optimizer, lr=lr)
 
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=300) if scheduler else None
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30) if scheduler else None
     best_loss = 10000
     best_epoch = 0
     for epoch in range(epochs):
@@ -164,5 +169,4 @@ def main(activation, block, optimizer, lr, scheduler, epochs, save_id):
     # torch.save(net, '/data/s3092593/mgai/net_bc')
 
 if __name__ == '__main__':
-    main(activation=timm.models.layers.activations.GELU, block=network.NEXcepTionBlock, optimizer='adamp', lr=0.0011634967860706454,
-    scheduler=True, epochs=300, save_id=200)
+    main()

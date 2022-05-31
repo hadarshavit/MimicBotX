@@ -13,9 +13,9 @@ from a2c_env import a2c_scripted_actions
 from botbowl.ai.layers import *
 
 # Architecture
-model_name = '08d1a530-e079-11ec-ac3c-3cecef3aa7e8'
+model_name = '260d8284-9d44-11ec-b455-faffc23fefdb'
 env_name = f'botbowl-11'
-model_filename = f"/data/s3092593/{model_name}.nn"
+model_filename = f"models/{env_name}/{model_name}.nn"
 log_filename = f"logs/{env_name}/{env_name}.dat"
 
 
@@ -122,22 +122,25 @@ class A2CAgent(Agent):
 
         self.scripted_func = scripted_func
         self.action_queue = []
-        
+
         # MODEL
         self.policy = torch.load(filename)
         self.policy.cpu()
         self.policy.eval()
         self.end_setup = False
-        self.device = 0
 
     def new_game(self, game, team):
         pass
 
+    def ready(self):
+        pass
+
     @staticmethod
     def _update_obs(array: np.ndarray):
+        # return torch.from_numpy(array.copy())
         return torch.unsqueeze(torch.from_numpy(array.copy()), dim=0)
 
-    def act(self, game):
+    def act(self, game: botbowl.Game):
         if len(self.action_queue) > 0:
             return self.action_queue.pop(0)
 
@@ -145,18 +148,19 @@ class A2CAgent(Agent):
             scripted_action = self.scripted_func(game)
             if scripted_action is not None:
                 return scripted_action
-
+        # print(game.get_procedure())
         self.env.game = game
 
         spatial_obs, non_spatial_obs, action_mask = map(A2CAgent._update_obs, self.env.get_state())
+        # print(spatial_obs, non_spatial_obs, action_mask)
         # non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
-
-        _, actions = self.policy.act(
-            Variable(spatial_obs.float().to(device='cuda:1')),
-            Variable(non_spatial_obs.float().to(device='cuda:1')),
-            Variable(action_mask).to(device='cuda:1'))
-
-        action_idx = actions.cpu()[0]
+        with torch.no_grad():
+            _, actions = self.policy.act(
+                Variable(spatial_obs.float().to('cuda:0')),
+                Variable(non_spatial_obs.float().to('cuda:0')),
+                Variable(action_mask).to('cuda:0'))
+        actions = actions.detach().cpu()
+        action_idx = actions[0]
         action_objects = self.env._compute_action(action_idx)
 
         self.action_queue = action_objects

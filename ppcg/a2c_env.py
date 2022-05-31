@@ -78,6 +78,7 @@ def a2c_scripted_actions(game: Game):
 
     proc = game.get_procedure()
     proc_type = type(game.get_procedure())
+    # print(proc, proc_type)
     if proc_type is procedure.Block:
         # noinspection PyTypeChecker
         if proc.waiting_juggernaut:
@@ -95,9 +96,27 @@ def a2c_scripted_actions(game: Game):
         return MyScriptedBot.coin_toss_kick_receive(self=None, game=game)
     
     class Self:
-        def __init__(self, opp_team):
+        def __init__(self, opp_team, my_team):
             self.opp_team = opp_team
+            self.my_team = my_team
     if proc_type is procedure.PlaceBall:
-        return MyScriptedBot.place_ball(self=Self(opp_team), game=game)
+        return MyScriptedBot.place_ball(self=Self(opp_team, active_team), game=game)
 
+    # if proc_type is procedure.Reroll:
+    #     return MyScriptedBot.reroll(self=Self(opp_team, active_team), game=game)
+    
+    if proc_type is procedure.HighKick:
+        return MyScriptedBot.high_kick(self=Self(opp_team, active_team), game=game)
+    
+    if proc_type is procedure.Touchback:
+        return MyScriptedBot.touchback(self=Self(opp_team, active_team), game=game)
+
+    if proc_type is procedure.FollowUp:
+        return MyScriptedBot.follow_up(self=Self(opp_team, active_team), game=game)
+    
+    if proc_type is procedure.Apothecary:
+        return MyScriptedBot.apothecary(self=Self(opp_team, active_team), game=game)
+
+    if proc_type is procedure.Interception:
+        return MyScriptedBot.interception(self=Self(opp_team, active_team), game=game)
     return None

@@ -13,9 +13,9 @@ from a2c_env import a2c_scripted_actions
 from botbowl.ai.layers import *
 
 # Architecture
-model_name = '08d1a530-e079-11ec-ac3c-3cecef3aa7e8'
+model_name = '260d8284-9d44-11ec-b455-faffc23fefdb'
 env_name = f'botbowl-11'
-model_filename = f"/data/s3092593/{model_name}.nn"
+model_filename = f"/data/s3092593/08d1a530-e079-11ec-ac3c-3cecef3aa7e8.nn"
 log_filename = f"logs/{env_name}/{env_name}.dat"
 
 
@@ -122,13 +122,11 @@ class A2CAgent(Agent):
 
         self.scripted_func = scripted_func
         self.action_queue = []
-        
+
         # MODEL
-        self.policy = torch.load(filename)
-        self.policy.cpu()
+        self.policy = torch.load(filename,  map_location=torch.device('cpu'))
         self.policy.eval()
         self.end_setup = False
-        self.device = 0
 
     def new_game(self, game, team):
         pass
@@ -149,14 +147,14 @@ class A2CAgent(Agent):
         self.env.game = game
 
         spatial_obs, non_spatial_obs, action_mask = map(A2CAgent._update_obs, self.env.get_state())
-        # non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
+        #non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
 
         _, actions = self.policy.act(
-            Variable(spatial_obs.float().to(device='cuda:1')),
-            Variable(non_spatial_obs.float().to(device='cuda:1')),
-            Variable(action_mask).to(device='cuda:1'))
+            Variable(spatial_obs.float()),
+            Variable(non_spatial_obs.float()),
+            Variable(action_mask))
 
-        action_idx = actions.cpu()[0]
+        action_idx = actions[0]
         action_objects = self.env._compute_action(action_idx)
 
         self.action_queue = action_objects
@@ -196,11 +194,11 @@ def main():
     for i in range(n):
 
         if is_home:
-            away_agent = botbowl.make_bot('random')
+            away_agent = botbowl.make_bot('scripted')
             home_agent = botbowl.make_bot('my-a2c-bot')
         else:
             away_agent = botbowl.make_bot('my-a2c-bot')
-            home_agent = botbowl.make_bot("random")
+            home_agent = botbowl.make_bot("scripted")
         game = botbowl.Game(i, home, away, home_agent, away_agent, config, arena=arena, ruleset=ruleset)
         game.config.fast_mode = True
 
@@ -211,10 +209,15 @@ def main():
         winner = game.get_winner()
         if winner is None:
             draws += 1
+            print('draw')
         elif winner == home_agent and is_home:
             wins += 1
+            print('won')
         elif winner == away_agent and not is_home:
             wins += 1
+            print('won')
+        else:
+            print('lost')
 
         tds_home += game.get_agent_team(home_agent).state.score
         tds_away += game.get_agent_team(away_agent).state.score

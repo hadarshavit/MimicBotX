@@ -1,0 +1,7892 @@
+Configuration space object:
+  Hyperparameters:
+    activation, Type: Categorical, Choices: {relu, gelu, elu, celu}, Default: relu
+    block, Type: Categorical, Choices: {nexception, convnext}, Default: nexception
+    optimizer, Type: Categorical, Choices: {fusedlamb, adamw, nadam, adamp}, Default: fusedlamb
+    optimizer_lr, Type: UniformFloat, Range: [1e-06, 0.1], Default: 0.0003162278, on log-scale
+    scheduler, Type: Categorical, Choices: {True, False}, Default: True
+
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.0003162278,
+  'scheduler': True,
+})
+
+generating
+collecting
+36646
+generating
+collecting
+36130
+generating
+Train [1,     1] loss: 9.086
+Train [1,    72] loss: 3.389
+Validate [1,    71] loss: 2.345
+collecting
+35987
+generating
+Train [2,     1] loss: 2.261
+Train [2,    71] loss: 1.648
+Validate [2,    71] loss: 1.353
+collecting
+36078
+generating
+Train [3,     1] loss: 1.198
+Train [3,    71] loss: 1.246
+Validate [3,    71] loss: 1.200
+collecting
+36070
+generating
+Train [4,     1] loss: 1.309
+Train [4,    71] loss: 1.105
+Validate [4,    71] loss: 1.053
+collecting
+36727
+generating
+Train [5,     1] loss: 0.834
+Train [5,    72] loss: 0.954
+Validate [5,    71] loss: 0.973
+collecting
+36967
+generating
+Train [6,     1] loss: 0.940
+Train [6,    73] loss: 0.931
+Validate [6,    71] loss: 0.905
+collecting
+36613
+generating
+Train [7,     1] loss: 0.708
+Train [7,    72] loss: 0.852
+Validate [7,    71] loss: 0.855
+collecting
+36335
+generating
+Train [8,     1] loss: 0.690
+Train [8,    71] loss: 0.753
+Validate [8,    71] loss: 0.812
+collecting
+36017
+generating
+Train [9,     1] loss: 0.781
+Train [9,    71] loss: 0.775
+Validate [9,    71] loss: 0.768
+collecting
+35837
+generating
+Train [10,     1] loss: 0.590
+Train [10,    70] loss: 0.755
+Validate [10,    71] loss: 0.749
+collecting
+36776
+generating
+Train [11,     1] loss: 0.653
+Train [11,    72] loss: 0.687
+Validate [11,    71] loss: 0.722
+collecting
+36534
+generating
+Train [12,     1] loss: 0.553
+Train [12,    72] loss: 0.664
+Validate [12,    71] loss: 0.696
+collecting
+37379
+generating
+Train [13,     1] loss: 0.611
+Train [13,    74] loss: 0.665
+Validate [13,    71] loss: 0.670
+collecting
+35506
+generating
+Train [14,     1] loss: 0.754
+Train [14,    70] loss: 0.615
+Validate [14,    71] loss: 0.641
+collecting
+36232
+generating
+Train [15,     1] loss: 0.550
+Train [15,    71] loss: 0.605
+Validate [15,    71] loss: 0.634
+collecting
+35704
+generating
+Train [16,     1] loss: 0.606
+Train [16,    70] loss: 0.594
+Validate [16,    71] loss: 0.605
+collecting
+35703
+generating
+Train [17,     1] loss: 0.453
+Train [17,    70] loss: 0.585
+Validate [17,    71] loss: 0.594
+collecting
+35693
+generating
+Train [18,     1] loss: 0.416
+Train [18,    70] loss: 0.570
+Validate [18,    71] loss: 0.584
+collecting
+36661
+generating
+Train [19,     1] loss: 0.369
+Train [19,    72] loss: 0.519
+Validate [19,    71] loss: 0.571
+collecting
+36172
+generating
+Train [20,     1] loss: 0.605
+Train [20,    71] loss: 0.546
+Validate [20,    71] loss: 0.555
+collecting
+36500
+generating
+Train [21,     1] loss: 0.447
+Train [21,    72] loss: 0.522
+Validate [21,    71] loss: 0.552
+collecting
+36246
+generating
+Train [22,     1] loss: 0.497
+Train [22,    71] loss: 0.533
+Validate [22,    71] loss: 0.544
+collecting
+36022
+generating
+Train [23,     1] loss: 0.331
+Train [23,    71] loss: 0.490
+Validate [23,    71] loss: 0.529
+collecting
+36487
+generating
+Train [24,     1] loss: 0.401
+Train [24,    72] loss: 0.483
+Validate [24,    71] loss: 0.519
+collecting
+35165
+generating
+Train [25,     1] loss: 0.460
+Train [25,    69] loss: 0.512
+Validate [25,    71] loss: 0.515
+collecting
+35408
+generating
+Train [26,     1] loss: 0.492
+Train [26,    70] loss: 0.491
+Validate [26,    71] loss: 0.510
+collecting
+36439
+generating
+Train [27,     1] loss: 0.708
+Train [27,    72] loss: 0.494
+Validate [27,    71] loss: 0.506
+collecting
+36023
+generating
+Train [28,     1] loss: 0.514
+Train [28,    71] loss: 0.499
+Validate [28,    71] loss: 0.503
+collecting
+36800
+generating
+Train [29,     1] loss: 0.410
+Train [29,    72] loss: 0.474
+Validate [29,    71] loss: 0.501
+collecting
+36062
+generating
+Train [30,     1] loss: 0.528
+Train [30,    71] loss: 0.481
+Validate [30,    71] loss: 0.501
+collecting
+36272
+best_loss=tensor(35.5684, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'adamp',
+  'optimizer_lr': 0.01590833805771674,
+  'scheduler': True,
+})
+
+generating
+collecting
+35485
+generating
+collecting
+36894
+generating
+Train [1,     1] loss: 9.099
+Train [1,    70] loss: nan
+Validate [1,    73] loss: nan
+collecting
+36570
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'elu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.0952112378489457,
+  'scheduler': False,
+})
+
+generating
+collecting
+36848
+generating
+collecting
+35816
+generating
+Train [1,     1] loss: 9.074
+Train [1,    72] loss: nan
+Validate [1,    70] loss: nan
+collecting
+35495
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'elu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.0009898474514217909,
+  'scheduler': True,
+})
+
+generating
+collecting
+35138
+generating
+collecting
+35729
+generating
+Train [1,     1] loss: 9.040
+Train [1,    69] loss: 3.531
+Validate [1,    70] loss: 2.706
+collecting
+35563
+generating
+Train [2,     1] loss: 2.478
+Train [2,    70] loss: 1.884
+Validate [2,    70] loss: 1.489
+collecting
+36706
+generating
+Train [3,     1] loss: 1.703
+Train [3,    72] loss: 1.303
+Validate [3,    70] loss: 1.285
+collecting
+35989
+generating
+Train [4,     1] loss: 1.138
+Train [4,    71] loss: 1.112
+Validate [4,    70] loss: 1.097
+collecting
+36747
+generating
+Train [5,     1] loss: 0.940
+Train [5,    72] loss: 0.972
+Validate [5,    70] loss: 1.014
+collecting
+37177
+generating
+Train [6,     1] loss: 1.312
+Train [6,    73] loss: 0.935
+Validate [6,    70] loss: 0.928
+collecting
+35549
+generating
+Train [7,     1] loss: 0.803
+Train [7,    70] loss: 0.862
+Validate [7,    70] loss: 0.864
+collecting
+35972
+generating
+Train [8,     1] loss: 0.659
+Train [8,    71] loss: 0.790
+Validate [8,    70] loss: 0.886
+collecting
+35904
+generating
+Train [9,     1] loss: 0.687
+Train [9,    71] loss: 0.777
+Validate [9,    70] loss: 0.792
+collecting
+36102
+generating
+Train [10,     1] loss: 0.517
+Train [10,    71] loss: 0.778
+Validate [10,    70] loss: 0.875
+collecting
+36502
+generating
+Train [11,     1] loss: 0.809
+Train [11,    72] loss: 0.715
+Validate [11,    70] loss: 0.762
+collecting
+36498
+generating
+Train [12,     1] loss: 0.545
+Train [12,    72] loss: 0.712
+Validate [12,    70] loss: 0.720
+collecting
+36274
+generating
+Train [13,     1] loss: 0.659
+Train [13,    71] loss: 0.656
+Validate [13,    70] loss: 0.669
+collecting
+36139
+generating
+Train [14,     1] loss: 0.650
+Train [14,    71] loss: 0.636
+Validate [14,    70] loss: 0.676
+collecting
+36239
+generating
+Train [15,     1] loss: 0.634
+Train [15,    71] loss: 0.617
+Validate [15,    70] loss: 0.643
+collecting
+36457
+generating
+Train [16,     1] loss: 0.435
+Train [16,    72] loss: 0.605
+Validate [16,    70] loss: 0.634
+collecting
+37009
+generating
+Train [17,     1] loss: 0.648
+Train [17,    73] loss: 0.601
+Validate [17,    70] loss: 0.588
+collecting
+36542
+generating
+Train [18,     1] loss: 0.461
+Train [18,    72] loss: 0.539
+Validate [18,    70] loss: 0.569
+collecting
+35787
+generating
+Train [19,     1] loss: 0.448
+Train [19,    70] loss: 0.531
+Validate [19,    70] loss: 0.562
+collecting
+36115
+generating
+Train [20,     1] loss: 0.546
+Train [20,    71] loss: 0.536
+Validate [20,    70] loss: 0.527
+collecting
+36792
+generating
+Train [21,     1] loss: 0.364
+Train [21,    72] loss: 0.504
+Validate [21,    70] loss: 0.524
+collecting
+36077
+generating
+Train [22,     1] loss: 0.357
+Train [22,    71] loss: 0.478
+Validate [22,    70] loss: 0.508
+collecting
+36020
+generating
+Train [23,     1] loss: 0.369
+Train [23,    71] loss: 0.483
+Validate [23,    70] loss: 0.503
+collecting
+36326
+generating
+Train [24,     1] loss: 0.293
+Train [24,    71] loss: 0.480
+Validate [24,    70] loss: 0.488
+collecting
+36393
+generating
+Train [25,     1] loss: 0.462
+Train [25,    72] loss: 0.473
+Validate [25,    70] loss: 0.479
+collecting
+36457
+generating
+Train [26,     1] loss: 0.453
+Train [26,    72] loss: 0.467
+Validate [26,    70] loss: 0.470
+collecting
+36662
+generating
+Train [27,     1] loss: 0.304
+Train [27,    72] loss: 0.448
+Validate [27,    70] loss: 0.463
+collecting
+36520
+generating
+Train [28,     1] loss: 0.434
+Train [28,    72] loss: 0.444
+Validate [28,    70] loss: 0.460
+collecting
+35137
+generating
+Train [29,     1] loss: 0.401
+Train [29,    69] loss: 0.440
+Validate [29,    70] loss: 0.456
+collecting
+36261
+generating
+Train [30,     1] loss: 0.444
+Train [30,    71] loss: 0.454
+Validate [30,    70] loss: 0.456
+collecting
+36265
+best_loss=tensor(31.9242, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'nadam',
+  'optimizer_lr': 1.2759567513739941e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+34958
+generating
+collecting
+36695
+generating
+Train [1,     1] loss: 9.058
+Train [1,    69] loss: 8.837
+Validate [1,    72] loss: 8.627
+collecting
+36583
+generating
+Train [2,     1] loss: 8.500
+Train [2,    72] loss: 8.250
+Validate [2,    72] loss: 7.940
+collecting
+36285
+generating
+Train [3,     1] loss: 7.765
+Train [3,    71] loss: 7.627
+Validate [3,    72] loss: 7.308
+collecting
+35651
+generating
+Train [4,     1] loss: 7.237
+Train [4,    70] loss: 6.973
+Validate [4,    72] loss: 6.661
+collecting
+36012
+generating
+Train [5,     1] loss: 6.596
+Train [5,    71] loss: 6.363
+Validate [5,    72] loss: 6.122
+collecting
+36137
+generating
+Train [6,     1] loss: 5.945
+Train [6,    71] loss: 5.824
+Validate [6,    72] loss: 5.720
+collecting
+36514
+generating
+Train [7,     1] loss: 5.481
+Train [7,    72] loss: 5.478
+Validate [7,    72] loss: 5.453
+collecting
+35742
+generating
+Train [8,     1] loss: 5.288
+Train [8,    70] loss: 5.239
+Validate [8,    72] loss: 5.192
+collecting
+37624
+generating
+Train [9,     1] loss: 5.159
+Train [9,    74] loss: 5.012
+Validate [9,    72] loss: 5.029
+collecting
+37105
+generating
+Train [10,     1] loss: 4.739
+Train [10,    73] loss: 4.881
+Validate [10,    72] loss: 4.859
+collecting
+35745
+generating
+Train [11,     1] loss: 4.672
+Train [11,    70] loss: 4.725
+Validate [11,    72] loss: 4.766
+collecting
+36514
+generating
+Train [12,     1] loss: 4.597
+Train [12,    72] loss: 4.717
+Validate [12,    72] loss: 4.657
+collecting
+35977
+generating
+Train [13,     1] loss: 4.505
+Train [13,    71] loss: 4.590
+Validate [13,    72] loss: 4.621
+collecting
+35499
+generating
+Train [14,     1] loss: 4.412
+Train [14,    70] loss: 4.558
+Validate [14,    72] loss: 4.528
+collecting
+36083
+generating
+Train [15,     1] loss: 4.489
+Train [15,    71] loss: 4.453
+Validate [15,    72] loss: 4.531
+collecting
+36219
+generating
+Train [16,     1] loss: 4.649
+Train [16,    71] loss: 4.473
+Validate [16,    72] loss: 4.439
+collecting
+36592
+generating
+Train [17,     1] loss: 4.222
+Train [17,    72] loss: 4.395
+Validate [17,    72] loss: 4.397
+collecting
+35989
+generating
+Train [18,     1] loss: 4.237
+Train [18,    71] loss: 4.354
+Validate [18,    72] loss: 4.365
+collecting
+37295
+generating
+Train [19,     1] loss: 4.172
+Train [19,    73] loss: 4.325
+Validate [19,    72] loss: 4.353
+collecting
+35959
+generating
+Train [20,     1] loss: 4.409
+Train [20,    71] loss: 4.322
+Validate [20,    72] loss: 4.299
+collecting
+35872
+generating
+Train [21,     1] loss: 4.980
+Train [21,    71] loss: 4.338
+Validate [21,    72] loss: 4.325
+collecting
+36243
+generating
+Train [22,     1] loss: 3.968
+Train [22,    71] loss: 4.318
+Validate [22,    72] loss: 4.292
+collecting
+36591
+generating
+Train [23,     1] loss: 4.534
+Train [23,    72] loss: 4.277
+Validate [23,    72] loss: 4.262
+collecting
+35373
+generating
+Train [24,     1] loss: 3.950
+Train [24,    70] loss: 4.289
+Validate [24,    72] loss: 4.246
+collecting
+36097
+generating
+Train [25,     1] loss: 4.360
+Train [25,    71] loss: 4.250
+Validate [25,    72] loss: 4.268
+collecting
+36208
+generating
+Train [26,     1] loss: 4.206
+Train [26,    71] loss: 4.210
+Validate [26,    72] loss: 4.240
+collecting
+35826
+generating
+Train [27,     1] loss: 4.367
+Train [27,    70] loss: 4.237
+Validate [27,    72] loss: 4.228
+collecting
+36188
+generating
+Train [28,     1] loss: 4.125
+Train [28,    71] loss: 4.195
+Validate [28,    72] loss: 4.256
+collecting
+35937
+generating
+Train [29,     1] loss: 4.834
+Train [29,    71] loss: 4.237
+Validate [29,    72] loss: 4.252
+collecting
+36524
+generating
+Train [30,     1] loss: 4.081
+Train [30,    72] loss: 4.179
+Validate [30,    72] loss: 4.251
+collecting
+37462
+best_loss=tensor(304.4244, device='cuda:0'), best_epoch=26
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.0006758594365801515,
+  'scheduler': False,
+})
+
+generating
+collecting
+36624
+generating
+collecting
+36466
+generating
+Train [1,     1] loss: 9.057
+Train [1,    72] loss: 3.318
+Validate [1,    72] loss: 2.210
+collecting
+35578
+generating
+Train [2,     1] loss: 1.761
+Train [2,    70] loss: 1.606
+Validate [2,    72] loss: 1.630
+collecting
+36987
+generating
+Train [3,     1] loss: 1.435
+Train [3,    73] loss: 1.339
+Validate [3,    72] loss: 1.329
+collecting
+35485
+generating
+Train [4,     1] loss: 1.132
+Train [4,    70] loss: 1.211
+Validate [4,    72] loss: 1.155
+collecting
+36919
+generating
+Train [5,     1] loss: 1.307
+Train [5,    73] loss: 1.078
+Validate [5,    72] loss: 1.443
+collecting
+36055
+generating
+Train [6,     1] loss: 2.205
+Train [6,    71] loss: 0.991
+Validate [6,    72] loss: 1.078
+collecting
+36486
+generating
+Train [7,     1] loss: 0.750
+Train [7,    72] loss: 0.859
+Validate [7,    72] loss: 0.936
+collecting
+35682
+generating
+Train [8,     1] loss: 0.768
+Train [8,    70] loss: 0.856
+Validate [8,    72] loss: 0.880
+collecting
+36401
+generating
+Train [9,     1] loss: 0.756
+Train [9,    72] loss: 0.810
+Validate [9,    72] loss: 0.891
+collecting
+35980
+generating
+Train [10,     1] loss: 0.735
+Train [10,    71] loss: 0.794
+Validate [10,    72] loss: 0.802
+collecting
+36504
+generating
+Train [11,     1] loss: 0.629
+Train [11,    72] loss: 0.732
+Validate [11,    72] loss: 0.803
+collecting
+36207
+generating
+Train [12,     1] loss: 0.438
+Train [12,    71] loss: 0.722
+Validate [12,    72] loss: 0.767
+collecting
+36659
+generating
+Train [13,     1] loss: 0.727
+Train [13,    72] loss: 0.702
+Validate [13,    72] loss: 0.788
+collecting
+36328
+generating
+Train [14,     1] loss: 0.969
+Train [14,    71] loss: 0.707
+Validate [14,    72] loss: 0.707
+collecting
+36325
+generating
+Train [15,     1] loss: 0.639
+Train [15,    71] loss: 0.688
+Validate [15,    72] loss: 0.708
+collecting
+36633
+generating
+Train [16,     1] loss: 0.602
+Train [16,    72] loss: 0.685
+Validate [16,    72] loss: 0.682
+collecting
+35976
+generating
+Train [17,     1] loss: 0.692
+Train [17,    71] loss: 0.646
+Validate [17,    72] loss: 0.712
+collecting
+36754
+generating
+Train [18,     1] loss: 0.684
+Train [18,    72] loss: 0.649
+Validate [18,    72] loss: 0.687
+collecting
+35832
+generating
+Train [19,     1] loss: 0.514
+Train [19,    70] loss: 0.600
+Validate [19,    72] loss: 0.661
+collecting
+35568
+generating
+Train [20,     1] loss: 0.405
+Train [20,    70] loss: 0.624
+Validate [20,    72] loss: 0.688
+collecting
+36411
+generating
+Train [21,     1] loss: 0.463
+Train [21,    72] loss: 0.587
+Validate [21,    72] loss: 0.671
+collecting
+36182
+generating
+Train [22,     1] loss: 0.691
+Train [22,    71] loss: 0.595
+Validate [22,    72] loss: 0.630
+collecting
+36441
+generating
+Train [23,     1] loss: 0.635
+Train [23,    72] loss: 0.601
+Validate [23,    72] loss: 0.652
+collecting
+36532
+generating
+Train [24,     1] loss: 0.544
+Train [24,    72] loss: 0.573
+Validate [24,    72] loss: 0.627
+collecting
+36142
+generating
+Train [25,     1] loss: 0.437
+Train [25,    71] loss: 0.580
+Validate [25,    72] loss: 0.652
+collecting
+35465
+generating
+Train [26,     1] loss: 0.706
+Train [26,    70] loss: 0.585
+Validate [26,    72] loss: 0.604
+collecting
+37107
+generating
+Train [27,     1] loss: 0.474
+Train [27,    73] loss: 0.560
+Validate [27,    72] loss: 0.582
+collecting
+36008
+generating
+Train [28,     1] loss: 0.385
+Train [28,    71] loss: 0.552
+Validate [28,    72] loss: 0.581
+collecting
+36582
+generating
+Train [29,     1] loss: 0.396
+Train [29,    72] loss: 0.545
+Validate [29,    72] loss: 0.582
+collecting
+35507
+generating
+Train [30,     1] loss: 0.529
+Train [30,    70] loss: 0.543
+Validate [30,    72] loss: 0.617
+collecting
+36817
+best_loss=tensor(41.8638, device='cuda:0'), best_epoch=27
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.001158338852353937,
+  'scheduler': False,
+})
+
+generating
+collecting
+35934
+generating
+collecting
+36752
+generating
+Train [1,     1] loss: 9.060
+Train [1,    71] loss: 3.851
+Validate [1,    72] loss: 2.636
+collecting
+35835
+generating
+Train [2,     1] loss: 2.059
+Train [2,    70] loss: 2.268
+Validate [2,    72] loss: 1.861
+collecting
+36026
+generating
+Train [3,     1] loss: 1.924
+Train [3,    71] loss: 1.769
+Validate [3,    72] loss: 1.593
+collecting
+35602
+generating
+Train [4,     1] loss: 1.431
+Train [4,    70] loss: 1.387
+Validate [4,    72] loss: 1.170
+collecting
+36953
+generating
+Train [5,     1] loss: 1.141
+Train [5,    73] loss: 1.129
+Validate [5,    72] loss: 1.057
+collecting
+35612
+generating
+Train [6,     1] loss: 1.120
+Train [6,    70] loss: 0.985
+Validate [6,    72] loss: 0.906
+collecting
+35813
+generating
+Train [7,     1] loss: 0.889
+Train [7,    70] loss: 0.928
+Validate [7,    72] loss: 0.891
+collecting
+36006
+generating
+Train [8,     1] loss: 1.047
+Train [8,    71] loss: 0.902
+Validate [8,    72] loss: 0.802
+collecting
+35202
+generating
+Train [9,     1] loss: 0.981
+Train [9,    69] loss: 0.895
+Validate [9,    72] loss: 0.810
+collecting
+36165
+generating
+Train [10,     1] loss: 0.797
+Train [10,    71] loss: 0.775
+Validate [10,    72] loss: 0.726
+collecting
+36072
+generating
+Train [11,     1] loss: 0.518
+Train [11,    71] loss: 0.755
+Validate [11,    72] loss: 0.788
+collecting
+36338
+generating
+Train [12,     1] loss: 0.661
+Train [12,    71] loss: 0.735
+Validate [12,    72] loss: 0.729
+collecting
+37266
+generating
+Train [13,     1] loss: 0.624
+Train [13,    73] loss: 0.696
+Validate [13,    72] loss: 0.702
+collecting
+35877
+generating
+Train [14,     1] loss: 0.660
+Train [14,    71] loss: 0.672
+Validate [14,    72] loss: 0.719
+collecting
+36284
+generating
+Train [15,     1] loss: 0.753
+Train [15,    71] loss: 0.722
+Validate [15,    72] loss: 0.676
+collecting
+36235
+generating
+Train [16,     1] loss: 0.525
+Train [16,    71] loss: 0.669
+Validate [16,    72] loss: 0.659
+collecting
+35633
+generating
+Train [17,     1] loss: 0.657
+Train [17,    70] loss: 0.653
+Validate [17,    72] loss: 0.681
+collecting
+36006
+generating
+Train [18,     1] loss: 0.781
+Train [18,    71] loss: 0.657
+Validate [18,    72] loss: 0.661
+collecting
+35653
+generating
+Train [19,     1] loss: 0.602
+Train [19,    70] loss: 0.640
+Validate [19,    72] loss: 0.622
+collecting
+36582
+generating
+Train [20,     1] loss: 0.699
+Train [20,    72] loss: 0.607
+Validate [20,    72] loss: 0.602
+collecting
+36717
+generating
+Train [21,     1] loss: 0.600
+Train [21,    72] loss: 0.636
+Validate [21,    72] loss: 0.617
+collecting
+36265
+generating
+Train [22,     1] loss: 0.400
+Train [22,    71] loss: 0.609
+Validate [22,    72] loss: 0.626
+collecting
+35665
+generating
+Train [23,     1] loss: 0.616
+Train [23,    70] loss: 0.579
+Validate [23,    72] loss: 0.588
+collecting
+36445
+generating
+Train [24,     1] loss: 0.651
+Train [24,    72] loss: 0.601
+Validate [24,    72] loss: 0.561
+collecting
+36086
+generating
+Train [25,     1] loss: 0.665
+Train [25,    71] loss: 0.617
+Validate [25,    72] loss: 0.552
+collecting
+36882
+generating
+Train [26,     1] loss: 0.515
+Train [26,    73] loss: 0.576
+Validate [26,    72] loss: 0.622
+collecting
+36005
+generating
+Train [27,     1] loss: 0.606
+Train [27,    71] loss: 0.581
+Validate [27,    72] loss: 0.534
+collecting
+36180
+generating
+Train [28,     1] loss: 0.664
+Train [28,    71] loss: 0.556
+Validate [28,    72] loss: 0.534
+collecting
+36123
+generating
+Train [29,     1] loss: 0.505
+Train [29,    71] loss: 0.552
+Validate [29,    72] loss: 0.523
+collecting
+36515
+generating
+Train [30,     1] loss: 0.452
+Train [30,    72] loss: 0.528
+Validate [30,    72] loss: 0.531
+collecting
+36471
+best_loss=tensor(37.6499, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'celu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0003661801011143365,
+  'scheduler': False,
+})
+
+generating
+collecting
+35972
+generating
+collecting
+36094
+generating
+Train [1,     1] loss: 9.059
+Train [1,    71] loss: 3.250
+Validate [1,    71] loss: 2.281
+collecting
+36092
+generating
+Train [2,     1] loss: 2.021
+Train [2,    71] loss: 1.453
+Validate [2,    71] loss: 1.332
+collecting
+34974
+generating
+Train [3,     1] loss: 1.274
+Train [3,    69] loss: 1.176
+Validate [3,    71] loss: 1.201
+collecting
+36803
+generating
+Train [4,     1] loss: 0.960
+Train [4,    72] loss: 1.022
+Validate [4,    71] loss: 1.012
+collecting
+36364
+generating
+Train [5,     1] loss: 0.771
+Train [5,    72] loss: 0.954
+Validate [5,    71] loss: 0.929
+collecting
+36592
+generating
+Train [6,     1] loss: 0.614
+Train [6,    72] loss: 0.864
+Validate [6,    71] loss: 0.968
+collecting
+35632
+generating
+Train [7,     1] loss: 0.964
+Train [7,    70] loss: 0.864
+Validate [7,    71] loss: 0.883
+collecting
+36299
+generating
+Train [8,     1] loss: 0.752
+Train [8,    71] loss: 0.822
+Validate [8,    71] loss: 0.774
+collecting
+36700
+generating
+Train [9,     1] loss: 0.699
+Train [9,    72] loss: 0.761
+Validate [9,    71] loss: 0.759
+collecting
+36462
+generating
+Train [10,     1] loss: 0.623
+Train [10,    72] loss: 0.734
+Validate [10,    71] loss: 0.931
+collecting
+35619
+generating
+Train [11,     1] loss: 0.635
+Train [11,    70] loss: 0.703
+Validate [11,    71] loss: 0.732
+collecting
+36903
+generating
+Train [12,     1] loss: 0.645
+Train [12,    73] loss: 0.723
+Validate [12,    71] loss: 1.159
+collecting
+35640
+generating
+Train [13,     1] loss: 0.889
+Train [13,    70] loss: 0.683
+Validate [13,    71] loss: 0.820
+collecting
+36114
+generating
+Train [14,     1] loss: 0.704
+Train [14,    71] loss: 0.675
+Validate [14,    71] loss: 0.708
+collecting
+36556
+generating
+Train [15,     1] loss: 0.692
+Train [15,    72] loss: 0.641
+Validate [15,    71] loss: 0.756
+collecting
+36035
+generating
+Train [16,     1] loss: 0.844
+Train [16,    71] loss: 0.632
+Validate [16,    71] loss: 0.724
+collecting
+36466
+generating
+Train [17,     1] loss: 0.717
+Train [17,    72] loss: 0.629
+Validate [17,    71] loss: 0.687
+collecting
+35865
+generating
+Train [18,     1] loss: 0.543
+Train [18,    71] loss: 0.635
+Validate [18,    71] loss: 0.987
+collecting
+36716
+generating
+Train [19,     1] loss: 0.862
+Train [19,    72] loss: 0.613
+Validate [19,    71] loss: 0.642
+collecting
+36331
+generating
+Train [20,     1] loss: 0.616
+Train [20,    71] loss: 0.591
+Validate [20,    71] loss: 0.588
+collecting
+36440
+generating
+Train [21,     1] loss: 0.940
+Train [21,    72] loss: 0.579
+Validate [21,    71] loss: 0.922
+collecting
+36810
+generating
+Train [22,     1] loss: 0.678
+Train [22,    72] loss: 0.586
+Validate [22,    71] loss: 0.607
+collecting
+36468
+generating
+Train [23,     1] loss: 0.706
+Train [23,    72] loss: 0.556
+Validate [23,    71] loss: 0.646
+collecting
+35670
+generating
+Train [24,     1] loss: 0.707
+Train [24,    70] loss: 0.549
+Validate [24,    71] loss: 0.558
+collecting
+36312
+generating
+Train [25,     1] loss: 0.390
+Train [25,    71] loss: 0.545
+Validate [25,    71] loss: 0.576
+collecting
+36394
+generating
+Train [26,     1] loss: 0.655
+Train [26,    72] loss: 0.550
+Validate [26,    71] loss: 1.062
+collecting
+36488
+generating
+Train [27,     1] loss: 0.950
+Train [27,    72] loss: 0.600
+Validate [27,    71] loss: 0.588
+collecting
+36346
+generating
+Train [28,     1] loss: 0.548
+Train [28,    71] loss: 0.534
+Validate [28,    71] loss: 0.533
+collecting
+35624
+generating
+Train [29,     1] loss: 0.450
+Train [29,    70] loss: 0.554
+Validate [29,    71] loss: 0.534
+collecting
+35995
+generating
+Train [30,     1] loss: 0.435
+Train [30,    71] loss: 0.528
+Validate [30,    71] loss: 0.554
+collecting
+36066
+best_loss=tensor(37.8164, device='cuda:0'), best_epoch=27
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 4.734642505121848e-06,
+  'scheduler': False,
+})
+
+generating
+collecting
+36602
+generating
+collecting
+36961
+generating
+Train [1,     1] loss: 9.021
+Train [1,    72] loss: 8.017
+Validate [1,    73] loss: 7.166
+collecting
+35537
+generating
+Train [2,     1] loss: 6.775
+Train [2,    70] loss: 6.059
+Validate [2,    73] loss: 5.296
+collecting
+36183
+generating
+Train [3,     1] loss: 4.992
+Train [3,    71] loss: 4.886
+Validate [3,    73] loss: 4.692
+collecting
+35187
+generating
+Train [4,     1] loss: 4.926
+Train [4,    69] loss: 4.451
+Validate [4,    73] loss: 4.395
+collecting
+35677
+generating
+Train [5,     1] loss: 4.050
+Train [5,    70] loss: 4.192
+Validate [5,    73] loss: 4.126
+collecting
+36570
+generating
+Train [6,     1] loss: 3.719
+Train [6,    72] loss: 3.962
+Validate [6,    73] loss: 3.916
+collecting
+35269
+generating
+Train [7,     1] loss: 3.942
+Train [7,    69] loss: 3.805
+Validate [7,    73] loss: 3.745
+collecting
+36846
+generating
+Train [8,     1] loss: 3.434
+Train [8,    72] loss: 3.536
+Validate [8,    73] loss: 3.569
+collecting
+36084
+generating
+Train [9,     1] loss: 3.499
+Train [9,    71] loss: 3.360
+Validate [9,    73] loss: 3.400
+collecting
+36366
+generating
+Train [10,     1] loss: 3.688
+Train [10,    72] loss: 3.284
+Validate [10,    73] loss: 3.212
+collecting
+35784
+generating
+Train [11,     1] loss: 3.073
+Train [11,    70] loss: 3.083
+Validate [11,    73] loss: 3.124
+collecting
+36256
+generating
+Train [12,     1] loss: 2.766
+Train [12,    71] loss: 2.921
+Validate [12,    73] loss: 2.979
+collecting
+36593
+generating
+Train [13,     1] loss: 2.933
+Train [13,    72] loss: 2.971
+Validate [13,    73] loss: 2.870
+collecting
+36584
+generating
+Train [14,     1] loss: 2.194
+Train [14,    72] loss: 2.750
+Validate [14,    73] loss: 2.766
+collecting
+35672
+generating
+Train [15,     1] loss: 2.812
+Train [15,    70] loss: 2.688
+Validate [15,    73] loss: 2.692
+collecting
+36251
+generating
+Train [16,     1] loss: 3.002
+Train [16,    71] loss: 2.608
+Validate [16,    73] loss: 2.623
+collecting
+35452
+generating
+Train [17,     1] loss: 2.000
+Train [17,    70] loss: 2.592
+Validate [17,    73] loss: 2.545
+collecting
+35808
+generating
+Train [18,     1] loss: 2.556
+Train [18,    70] loss: 2.484
+Validate [18,    73] loss: 2.486
+collecting
+36334
+generating
+Train [19,     1] loss: 2.780
+Train [19,    71] loss: 2.495
+Validate [19,    73] loss: 2.390
+collecting
+35700
+generating
+Train [20,     1] loss: 2.696
+Train [20,    70] loss: 2.354
+Validate [20,    73] loss: 2.370
+collecting
+36805
+generating
+Train [21,     1] loss: 2.191
+Train [21,    72] loss: 2.383
+Validate [21,    73] loss: 2.304
+collecting
+35537
+generating
+Train [22,     1] loss: 1.783
+Train [22,    70] loss: 2.224
+Validate [22,    73] loss: 2.223
+collecting
+35621
+generating
+Train [23,     1] loss: 2.001
+Train [23,    70] loss: 2.138
+Validate [23,    73] loss: 2.172
+collecting
+37562
+generating
+Train [24,     1] loss: 2.175
+Train [24,    74] loss: 2.204
+Validate [24,    73] loss: 2.106
+collecting
+37532
+generating
+Train [25,     1] loss: 1.673
+Train [25,    74] loss: 2.099
+Validate [25,    73] loss: 2.044
+collecting
+35841
+generating
+Expected more than 1 value per channel when training, got input size torch.Size([1, 1024])
+Traceback (most recent call last):
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/smac/tae/execute_func.py", line 219, in run
+    rval = self._call_ta(self._ta, config, obj_kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/smac/tae/execute_func.py", line 319, in _call_ta
+    return obj(config, **obj_kwargs)
+  File "/home/s3092593/MimicBotX/smacify.py", line 40, in run
+    return learn_bc.main(activation=activation, block=block, optimizer=config['optimizer'], lr=config['optimizer_lr'],
+  File "/home/s3092593/MimicBotX/learn_bc.py", line 114, in main
+    outputs = net(spatial_obs, non_spatial_obs)[1]
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/s3092593/MimicBotX/network.py", line 329, in forward
+    non_spatial_processed = self._non_spatial_processing(non_spatial_input)
+  File "/home/s3092593/MimicBotX/network.py", line 289, in _non_spatial_processing
+    return self.non_spatial_processing(non_spatial_input)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 168, in forward
+    return F.batch_norm(
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/functional.py", line 2419, in batch_norm
+    _verify_batch_size(input.size())
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/functional.py", line 2387, in _verify_batch_size
+    raise ValueError("Expected more than 1 value per channel when training, got input size {}".format(size))
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 1024])
+Train [26,     1] loss: 1.998
+Configuration(values={
+  'activation': 'elu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 0.00045449640343412956,
+  'scheduler': True,
+})
+
+generating
+collecting
+36248
+generating
+collecting
+36220
+generating
+Train [1,     1] loss: 9.039
+Train [1,    71] loss: 3.256
+Validate [1,    71] loss: 2.079
+collecting
+36293
+generating
+Train [2,     1] loss: 1.936
+Train [2,    71] loss: 1.562
+Validate [2,    71] loss: 1.392
+collecting
+36468
+generating
+Train [3,     1] loss: 1.795
+Train [3,    72] loss: 1.279
+Validate [3,    71] loss: 1.388
+collecting
+36702
+generating
+Train [4,     1] loss: 1.315
+Train [4,    72] loss: 1.157
+Validate [4,    71] loss: 1.124
+collecting
+36153
+generating
+Train [5,     1] loss: 0.891
+Train [5,    71] loss: 1.026
+Validate [5,    71] loss: 1.157
+collecting
+35852
+generating
+Train [6,     1] loss: 0.767
+Train [6,    71] loss: 1.026
+Validate [6,    71] loss: 1.415
+collecting
+36055
+generating
+Train [7,     1] loss: 1.211
+Train [7,    71] loss: 1.032
+Validate [7,    71] loss: 0.995
+collecting
+36976
+generating
+Train [8,     1] loss: 0.861
+Train [8,    73] loss: 0.921
+Validate [8,    71] loss: 0.977
+collecting
+37160
+generating
+Train [9,     1] loss: 0.919
+Train [9,    73] loss: 0.918
+Validate [9,    71] loss: 0.915
+collecting
+36130
+generating
+Train [10,     1] loss: 0.944
+Train [10,    71] loss: 0.860
+Validate [10,    71] loss: 0.892
+collecting
+36686
+generating
+Train [11,     1] loss: 0.869
+Train [11,    72] loss: 0.832
+Validate [11,    71] loss: 0.872
+collecting
+36554
+generating
+Train [12,     1] loss: 0.616
+Train [12,    72] loss: 0.831
+Validate [12,    71] loss: 0.855
+collecting
+37673
+generating
+Train [13,     1] loss: 0.715
+Train [13,    74] loss: 0.778
+Validate [13,    71] loss: 0.840
+collecting
+35691
+generating
+Train [14,     1] loss: 0.572
+Train [14,    70] loss: 0.780
+Validate [14,    71] loss: 0.822
+collecting
+34834
+generating
+Train [15,     1] loss: 0.771
+Train [15,    69] loss: 0.756
+Validate [15,    71] loss: 0.786
+collecting
+35936
+generating
+Train [16,     1] loss: 0.562
+Train [16,    71] loss: 0.741
+Validate [16,    71] loss: 0.870
+collecting
+36181
+generating
+Train [17,     1] loss: 0.921
+Train [17,    71] loss: 0.722
+Validate [17,    71] loss: 0.776
+collecting
+35734
+generating
+Train [18,     1] loss: 0.547
+Train [18,    70] loss: 0.675
+Validate [18,    71] loss: 0.711
+collecting
+35633
+generating
+Train [19,     1] loss: 0.604
+Train [19,    70] loss: 0.687
+Validate [19,    71] loss: 0.708
+collecting
+36055
+generating
+Train [20,     1] loss: 0.626
+Train [20,    71] loss: 0.620
+Validate [20,    71] loss: 0.694
+collecting
+36071
+generating
+Train [21,     1] loss: 0.556
+Train [21,    71] loss: 0.673
+Validate [21,    71] loss: 0.684
+collecting
+37163
+generating
+Train [22,     1] loss: 0.415
+Train [22,    73] loss: 0.623
+Validate [22,    71] loss: 0.690
+collecting
+36407
+generating
+Train [23,     1] loss: 0.389
+Train [23,    72] loss: 0.632
+Validate [23,    71] loss: 0.667
+collecting
+36123
+generating
+Train [24,     1] loss: 0.593
+Train [24,    71] loss: 0.623
+Validate [24,    71] loss: 0.652
+collecting
+36804
+generating
+Train [25,     1] loss: 0.455
+Train [25,    72] loss: 0.613
+Validate [25,    71] loss: 0.627
+collecting
+35957
+generating
+Train [26,     1] loss: 0.434
+Train [26,    71] loss: 0.613
+Validate [26,    71] loss: 0.622
+collecting
+36308
+generating
+Train [27,     1] loss: 0.544
+Train [27,    71] loss: 0.578
+Validate [27,    71] loss: 0.612
+collecting
+36489
+generating
+Train [28,     1] loss: 0.635
+Train [28,    72] loss: 0.572
+Validate [28,    71] loss: 0.608
+collecting
+36984
+generating
+Train [29,     1] loss: 0.408
+Train [29,    73] loss: 0.563
+Validate [29,    71] loss: 0.606
+collecting
+35735
+generating
+Train [30,     1] loss: 0.627
+Train [30,    70] loss: 0.584
+Validate [30,    71] loss: 0.606
+collecting
+37765
+best_loss=tensor(43.0069, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'elu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 2.2255957459171216e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+35868
+generating
+collecting
+36038
+generating
+Train [1,     1] loss: 9.050
+Train [1,    71] loss: 8.274
+Validate [1,    71] loss: 7.884
+collecting
+35998
+generating
+Train [2,     1] loss: 7.506
+Train [2,    71] loss: 6.930
+Validate [2,    71] loss: 6.319
+collecting
+35661
+generating
+Train [3,     1] loss: 6.136
+Train [3,    70] loss: 5.880
+Validate [3,    71] loss: 5.428
+collecting
+35554
+generating
+Train [4,     1] loss: 5.346
+Train [4,    70] loss: 5.203
+Validate [4,    71] loss: 4.893
+collecting
+35742
+generating
+Train [5,     1] loss: 4.923
+Train [5,    70] loss: 4.734
+Validate [5,    71] loss: 4.543
+collecting
+36329
+generating
+Train [6,     1] loss: 4.259
+Train [6,    71] loss: 4.435
+Validate [6,    71] loss: 4.298
+collecting
+36143
+generating
+Train [7,     1] loss: 4.559
+Train [7,    71] loss: 4.198
+Validate [7,    71] loss: 4.110
+collecting
+36125
+generating
+Train [8,     1] loss: 4.161
+Train [8,    71] loss: 4.027
+Validate [8,    71] loss: 3.946
+collecting
+35833
+generating
+Train [9,     1] loss: 3.772
+Train [9,    70] loss: 3.879
+Validate [9,    71] loss: 3.805
+collecting
+37047
+generating
+Train [10,     1] loss: 3.569
+Train [10,    73] loss: 3.724
+Validate [10,    71] loss: 3.720
+collecting
+36555
+generating
+Train [11,     1] loss: 3.676
+Train [11,    72] loss: 3.684
+Validate [11,    71] loss: 3.575
+collecting
+35879
+generating
+Train [12,     1] loss: 3.313
+Train [12,    71] loss: 3.529
+Validate [12,    71] loss: 3.506
+collecting
+36163
+generating
+Train [13,     1] loss: 3.478
+Train [13,    71] loss: 3.468
+Validate [13,    71] loss: 3.426
+collecting
+35655
+generating
+Train [14,     1] loss: 3.439
+Train [14,    70] loss: 3.385
+Validate [14,    71] loss: 3.387
+collecting
+36069
+generating
+Train [15,     1] loss: 3.201
+Train [15,    71] loss: 3.370
+Validate [15,    71] loss: 3.296
+collecting
+35928
+generating
+Train [16,     1] loss: 2.994
+Train [16,    71] loss: 3.314
+Validate [16,    71] loss: 3.244
+collecting
+36937
+generating
+Train [17,     1] loss: 2.971
+Train [17,    73] loss: 3.231
+Validate [17,    71] loss: 3.217
+collecting
+36121
+generating
+Train [18,     1] loss: 3.236
+Train [18,    71] loss: 3.170
+Validate [18,    71] loss: 3.184
+collecting
+36104
+generating
+Train [19,     1] loss: 3.191
+Train [19,    71] loss: 3.164
+Validate [19,    71] loss: 3.150
+collecting
+36158
+generating
+Train [20,     1] loss: 3.219
+Train [20,    71] loss: 3.119
+Validate [20,    71] loss: 3.123
+collecting
+36057
+generating
+Train [21,     1] loss: 3.014
+Train [21,    71] loss: 3.127
+Validate [21,    71] loss: 3.089
+collecting
+37047
+generating
+Train [22,     1] loss: 2.914
+Train [22,    73] loss: 3.129
+Validate [22,    71] loss: 3.084
+collecting
+35590
+generating
+Train [23,     1] loss: 2.345
+Train [23,    70] loss: 3.221
+Validate [23,    71] loss: 3.053
+collecting
+36532
+generating
+Train [24,     1] loss: 2.757
+Train [24,    72] loss: 3.083
+Validate [24,    71] loss: 3.041
+collecting
+36726
+generating
+Train [25,     1] loss: 2.893
+Train [25,    72] loss: 3.033
+Validate [25,    71] loss: 3.054
+collecting
+36855
+generating
+Train [26,     1] loss: 3.260
+Train [26,    72] loss: 3.017
+Validate [26,    71] loss: 3.043
+collecting
+36158
+generating
+Train [27,     1] loss: 2.794
+Train [27,    71] loss: 3.001
+Validate [27,    71] loss: 3.036
+collecting
+36385
+generating
+Train [28,     1] loss: 2.545
+Train [28,    72] loss: 3.098
+Validate [28,    71] loss: 3.026
+collecting
+35311
+generating
+Train [29,     1] loss: 2.776
+Train [29,    69] loss: 3.163
+Validate [29,    71] loss: 3.010
+collecting
+35966
+generating
+Train [30,     1] loss: 2.928
+Train [30,    71] loss: 3.064
+Validate [30,    71] loss: 3.029
+collecting
+35663
+best_loss=tensor(213.7161, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.06542674019992085,
+  'scheduler': False,
+})
+
+generating
+collecting
+36048
+generating
+collecting
+36603
+generating
+Train [1,     1] loss: 9.048
+Train [1,    71] loss: nan
+Validate [1,    72] loss: nan
+collecting
+36409
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'elu',
+  'block': 'convnext',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 4.068939345812429e-06,
+  'scheduler': False,
+})
+
+generating
+collecting
+35699
+generating
+collecting
+36102
+generating
+Train [1,     1] loss: 9.087
+Train [1,    70] loss: 7.947
+Validate [1,    71] loss: 7.188
+collecting
+35241
+generating
+Train [2,     1] loss: 6.856
+Train [2,    69] loss: 6.115
+Validate [2,    71] loss: 5.448
+collecting
+36552
+generating
+Train [3,     1] loss: 5.512
+Train [3,    72] loss: 4.823
+Validate [3,    71] loss: 4.498
+collecting
+36641
+generating
+Train [4,     1] loss: 4.661
+Train [4,    72] loss: 4.141
+Validate [4,    71] loss: 4.035
+collecting
+36252
+generating
+Train [5,     1] loss: 3.868
+Train [5,    71] loss: 3.734
+Validate [5,    71] loss: 3.754
+collecting
+36881
+generating
+Train [6,     1] loss: 3.527
+Train [6,    73] loss: 3.608
+Validate [6,    71] loss: 3.544
+collecting
+35678
+generating
+Train [7,     1] loss: 3.542
+Train [7,    70] loss: 3.301
+Validate [7,    71] loss: 3.374
+collecting
+35511
+generating
+Train [8,     1] loss: 2.990
+Train [8,    70] loss: 3.190
+Validate [8,    71] loss: 3.215
+collecting
+36097
+generating
+Train [9,     1] loss: 2.792
+Train [9,    71] loss: 3.083
+Validate [9,    71] loss: 3.123
+collecting
+35862
+generating
+Train [10,     1] loss: 2.805
+Train [10,    71] loss: 2.986
+Validate [10,    71] loss: 3.057
+collecting
+36684
+generating
+Train [11,     1] loss: 2.403
+Train [11,    72] loss: 2.880
+Validate [11,    71] loss: 2.967
+collecting
+35240
+generating
+Train [12,     1] loss: 2.613
+Train [12,    69] loss: 2.785
+Validate [12,    71] loss: 2.878
+collecting
+36195
+generating
+Train [13,     1] loss: 2.374
+Train [13,    71] loss: 2.758
+Validate [13,    71] loss: 2.827
+collecting
+36392
+generating
+Train [14,     1] loss: 2.459
+Train [14,    72] loss: 2.665
+Validate [14,    71] loss: 2.760
+collecting
+36296
+generating
+Train [15,     1] loss: 3.002
+Train [15,    71] loss: 2.616
+Validate [15,    71] loss: 2.709
+collecting
+35842
+generating
+Train [16,     1] loss: 2.648
+Train [16,    71] loss: 2.655
+Validate [16,    71] loss: 2.804
+collecting
+36294
+generating
+Train [17,     1] loss: 2.701
+Train [17,    71] loss: 2.585
+Validate [17,    71] loss: 2.613
+collecting
+37349
+generating
+Train [18,     1] loss: 2.419
+Train [18,    73] loss: 2.516
+Validate [18,    71] loss: 2.559
+collecting
+36228
+generating
+Train [19,     1] loss: 2.053
+Train [19,    71] loss: 2.447
+Validate [19,    71] loss: 2.544
+collecting
+35581
+generating
+Train [20,     1] loss: 3.075
+Train [20,    70] loss: 2.566
+Validate [20,    71] loss: 2.486
+collecting
+36461
+generating
+Train [21,     1] loss: 2.835
+Train [21,    72] loss: 2.336
+Validate [21,    71] loss: 2.471
+collecting
+36132
+generating
+Train [22,     1] loss: 2.385
+Train [22,    71] loss: 2.257
+Validate [22,    71] loss: 2.420
+collecting
+35077
+generating
+Train [23,     1] loss: 1.872
+Train [23,    69] loss: 2.297
+Validate [23,    71] loss: 2.387
+collecting
+36910
+generating
+Train [24,     1] loss: 2.042
+Train [24,    73] loss: 2.234
+Validate [24,    71] loss: 2.342
+collecting
+36869
+generating
+Train [25,     1] loss: 1.552
+Train [25,    73] loss: 2.208
+Validate [25,    71] loss: 2.339
+collecting
+36223
+generating
+Train [26,     1] loss: 1.468
+Train [26,    71] loss: 2.188
+Validate [26,    71] loss: 2.276
+collecting
+36558
+generating
+Train [27,     1] loss: 1.875
+Train [27,    72] loss: 2.137
+Validate [27,    71] loss: 2.248
+collecting
+36828
+generating
+Train [28,     1] loss: 2.187
+Train [28,    72] loss: 2.172
+Validate [28,    71] loss: 2.205
+collecting
+35144
+generating
+Train [29,     1] loss: 1.780
+Train [29,    69] loss: 2.061
+Validate [29,    71] loss: 2.193
+collecting
+36213
+generating
+Train [30,     1] loss: 2.176
+Train [30,    71] loss: 2.135
+Validate [30,    71] loss: 2.147
+collecting
+36107
+best_loss=tensor(152.4354, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'elu',
+  'block': 'convnext',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.00038607379013837233,
+  'scheduler': False,
+})
+
+generating
+collecting
+36300
+generating
+collecting
+36936
+generating
+Train [1,     1] loss: 9.040
+Train [1,    71] loss: 3.326
+Validate [1,    73] loss: 2.214
+collecting
+36362
+generating
+Train [2,     1] loss: 1.689
+Train [2,    72] loss: 1.670
+Validate [2,    73] loss: 1.491
+collecting
+36496
+generating
+Train [3,     1] loss: 1.574
+Train [3,    72] loss: 1.299
+Validate [3,    73] loss: 1.277
+collecting
+36722
+generating
+Train [4,     1] loss: 1.089
+Train [4,    72] loss: 1.129
+Validate [4,    73] loss: 1.212
+collecting
+36223
+generating
+Train [5,     1] loss: 0.945
+Train [5,    71] loss: 1.098
+Validate [5,    73] loss: 1.166
+collecting
+35823
+generating
+Train [6,     1] loss: 1.034
+Train [6,    70] loss: 1.019
+Validate [6,    73] loss: 1.110
+collecting
+38039
+generating
+Train [7,     1] loss: 0.847
+Train [7,    75] loss: 0.991
+Validate [7,    73] loss: 1.073
+collecting
+36364
+generating
+Train [8,     1] loss: 0.946
+Train [8,    72] loss: 0.960
+Validate [8,    73] loss: 1.126
+collecting
+35809
+generating
+Train [9,     1] loss: 0.969
+Train [9,    70] loss: 0.912
+Validate [9,    73] loss: 1.054
+collecting
+36787
+generating
+Train [10,     1] loss: 0.822
+Train [10,    72] loss: 0.963
+Validate [10,    73] loss: 1.009
+collecting
+35525
+generating
+Train [11,     1] loss: 1.003
+Train [11,    70] loss: 0.880
+Validate [11,    73] loss: 1.243
+collecting
+36429
+generating
+Train [12,     1] loss: 0.834
+Train [12,    72] loss: 0.866
+Validate [12,    73] loss: 0.932
+collecting
+36721
+generating
+Train [13,     1] loss: 0.909
+Train [13,    72] loss: 0.836
+Validate [13,    73] loss: 0.919
+collecting
+36285
+generating
+Train [14,     1] loss: 0.583
+Train [14,    71] loss: 0.850
+Validate [14,    73] loss: 0.990
+collecting
+35741
+generating
+Train [15,     1] loss: 0.626
+Train [15,    70] loss: 0.824
+Validate [15,    73] loss: 0.850
+collecting
+35834
+generating
+Train [16,     1] loss: 0.745
+Train [16,    70] loss: 0.779
+Validate [16,    73] loss: 0.878
+collecting
+36300
+generating
+Train [17,     1] loss: 0.579
+Train [17,    71] loss: 0.734
+Validate [17,    73] loss: 1.030
+collecting
+36587
+generating
+Train [18,     1] loss: 0.808
+Train [18,    72] loss: 0.781
+Validate [18,    73] loss: 0.807
+collecting
+36005
+generating
+Train [19,     1] loss: 0.612
+Train [19,    71] loss: 0.762
+Validate [19,    73] loss: 0.912
+collecting
+35752
+generating
+Train [20,     1] loss: 0.598
+Train [20,    70] loss: 0.723
+Validate [20,    73] loss: 0.760
+collecting
+35956
+generating
+Train [21,     1] loss: 0.629
+Train [21,    71] loss: 0.711
+Validate [21,    73] loss: 0.836
+collecting
+36425
+generating
+Train [22,     1] loss: 0.779
+Train [22,    72] loss: 0.722
+Validate [22,    73] loss: 0.757
+collecting
+37117
+generating
+Train [23,     1] loss: 0.567
+Train [23,    73] loss: 0.702
+Validate [23,    73] loss: 0.735
+collecting
+35481
+generating
+Train [24,     1] loss: 0.679
+Train [24,    70] loss: 0.695
+Validate [24,    73] loss: 0.704
+collecting
+37066
+generating
+Train [25,     1] loss: 0.536
+Train [25,    73] loss: 0.680
+Validate [25,    73] loss: 0.695
+collecting
+36009
+generating
+Train [26,     1] loss: 0.660
+Train [26,    71] loss: 0.652
+Validate [26,    73] loss: 0.761
+collecting
+36212
+generating
+Train [27,     1] loss: 0.752
+Train [27,    71] loss: 0.679
+Validate [27,    73] loss: 0.700
+collecting
+36542
+generating
+Train [28,     1] loss: 0.632
+Train [28,    72] loss: 0.629
+Validate [28,    73] loss: 0.727
+collecting
+36909
+generating
+Train [29,     1] loss: 0.397
+Train [29,    73] loss: 0.621
+Validate [29,    73] loss: 0.693
+collecting
+35712
+generating
+Train [30,     1] loss: 0.532
+Train [30,    70] loss: 0.642
+Validate [30,    73] loss: 0.673
+collecting
+36924
+best_loss=tensor(49.1110, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'nexception',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.0020032908384222644,
+  'scheduler': True,
+})
+
+generating
+collecting
+36793
+generating
+collecting
+36596
+generating
+Train [1,     1] loss: 9.059
+Train [1,    72] loss: 3.865
+Validate [1,    72] loss: 2.562
+collecting
+35836
+generating
+Train [2,     1] loss: 2.317
+Train [2,    70] loss: 2.167
+Validate [2,    72] loss: 2.129
+collecting
+36594
+generating
+Train [3,     1] loss: 1.666
+Train [3,    72] loss: 1.752
+Validate [3,    72] loss: 1.685
+collecting
+35302
+generating
+Train [4,     1] loss: 1.581
+Train [4,    69] loss: 1.442
+Validate [4,    72] loss: 1.284
+collecting
+36749
+generating
+Train [5,     1] loss: 1.209
+Train [5,    72] loss: 1.234
+Validate [5,    72] loss: 1.269
+collecting
+36342
+generating
+Train [6,     1] loss: 0.764
+Train [6,    71] loss: 1.078
+Validate [6,    72] loss: 1.061
+collecting
+36835
+generating
+Train [7,     1] loss: 1.186
+Train [7,    72] loss: 1.025
+Validate [7,    72] loss: 0.968
+collecting
+36163
+generating
+Train [8,     1] loss: 0.684
+Train [8,    71] loss: 0.929
+Validate [8,    72] loss: 0.907
+collecting
+36336
+generating
+Train [9,     1] loss: 1.189
+Train [9,    71] loss: 0.866
+Validate [9,    72] loss: 0.857
+collecting
+36230
+generating
+Train [10,     1] loss: 0.782
+Train [10,    71] loss: 0.846
+Validate [10,    72] loss: 0.818
+collecting
+36036
+generating
+Train [11,     1] loss: 0.664
+Train [11,    71] loss: 0.781
+Validate [11,    72] loss: 0.814
+collecting
+36975
+generating
+Train [12,     1] loss: 0.670
+Train [12,    73] loss: 0.770
+Validate [12,    72] loss: 0.791
+collecting
+36463
+generating
+Train [13,     1] loss: 0.608
+Train [13,    72] loss: 0.727
+Validate [13,    72] loss: 0.721
+collecting
+35534
+generating
+Train [14,     1] loss: 0.707
+Train [14,    70] loss: 0.679
+Validate [14,    72] loss: 0.698
+collecting
+35991
+generating
+Train [15,     1] loss: 0.743
+Train [15,    71] loss: 0.671
+Validate [15,    72] loss: 0.660
+collecting
+35682
+generating
+Train [16,     1] loss: 0.693
+Train [16,    70] loss: 0.642
+Validate [16,    72] loss: 0.627
+collecting
+36283
+generating
+Train [17,     1] loss: 0.497
+Train [17,    71] loss: 0.621
+Validate [17,    72] loss: 0.621
+collecting
+35653
+generating
+Train [18,     1] loss: 0.630
+Train [18,    70] loss: 0.593
+Validate [18,    72] loss: 0.585
+collecting
+37101
+generating
+Train [19,     1] loss: 0.547
+Train [19,    73] loss: 0.543
+Validate [19,    72] loss: 0.559
+collecting
+36244
+generating
+Train [20,     1] loss: 0.494
+Train [20,    71] loss: 0.544
+Validate [20,    72] loss: 0.541
+collecting
+35979
+generating
+Train [21,     1] loss: 0.472
+Train [21,    71] loss: 0.514
+Validate [21,    72] loss: 0.519
+collecting
+35392
+generating
+Train [22,     1] loss: 0.383
+Train [22,    70] loss: 0.515
+Validate [22,    72] loss: 0.515
+collecting
+37251
+generating
+Train [23,     1] loss: 0.516
+Train [23,    73] loss: 0.497
+Validate [23,    72] loss: 0.496
+collecting
+36592
+generating
+Train [24,     1] loss: 0.699
+Train [24,    72] loss: 0.508
+Validate [24,    72] loss: 0.488
+collecting
+36702
+generating
+Train [25,     1] loss: 0.463
+Train [25,    72] loss: 0.492
+Validate [25,    72] loss: 0.477
+collecting
+36116
+generating
+Train [26,     1] loss: 0.645
+Train [26,    71] loss: 0.445
+Validate [26,    72] loss: 0.468
+collecting
+36686
+generating
+Train [27,     1] loss: 0.436
+Train [27,    72] loss: 0.456
+Validate [27,    72] loss: 0.464
+collecting
+35464
+generating
+Train [28,     1] loss: 0.338
+Train [28,    70] loss: 0.460
+Validate [28,    72] loss: 0.459
+collecting
+36784
+generating
+Train [29,     1] loss: 0.361
+Train [29,    72] loss: 0.441
+Validate [29,    72] loss: 0.456
+collecting
+36342
+generating
+Train [30,     1] loss: 0.377
+Train [30,    71] loss: 0.456
+Validate [30,    72] loss: 0.455
+collecting
+37301
+best_loss=tensor(32.7716, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.00400291471981836,
+  'scheduler': True,
+})
+
+generating
+collecting
+36777
+generating
+collecting
+37181
+generating
+Train [1,     1] loss: 9.007
+Train [1,    72] loss: nan
+Validate [1,    73] loss: nan
+collecting
+36186
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 3.9323689057465215e-06,
+  'scheduler': False,
+})
+
+generating
+collecting
+35302
+generating
+collecting
+36798
+generating
+Train [1,     1] loss: 9.060
+Train [1,    69] loss: 8.241
+Validate [1,    72] loss: 7.683
+collecting
+36143
+generating
+Train [2,     1] loss: 7.194
+Train [2,    71] loss: 6.479
+Validate [2,    72] loss: 5.663
+collecting
+35083
+generating
+Train [3,     1] loss: 5.564
+Train [3,    69] loss: 5.229
+Validate [3,    72] loss: 4.754
+collecting
+35732
+generating
+Train [4,     1] loss: 4.595
+Train [4,    70] loss: 4.568
+Validate [4,    72] loss: 4.309
+collecting
+36357
+generating
+Train [5,     1] loss: 4.355
+Train [5,    72] loss: 4.179
+Validate [5,    72] loss: 3.986
+collecting
+36572
+generating
+Train [6,     1] loss: 3.633
+Train [6,    72] loss: 3.923
+Validate [6,    72] loss: 3.783
+collecting
+36584
+generating
+Train [7,     1] loss: 3.743
+Train [7,    72] loss: 3.678
+Validate [7,    72] loss: 3.563
+collecting
+36915
+generating
+Train [8,     1] loss: 3.432
+Train [8,    73] loss: 3.532
+Validate [8,    72] loss: 3.394
+collecting
+35740
+generating
+Train [9,     1] loss: 3.054
+Train [9,    70] loss: 3.375
+Validate [9,    72] loss: 3.228
+collecting
+35659
+generating
+Train [10,     1] loss: 2.987
+Train [10,    70] loss: 3.279
+Validate [10,    72] loss: 3.103
+collecting
+36303
+generating
+Train [11,     1] loss: 3.211
+Train [11,    71] loss: 3.122
+Validate [11,    72] loss: 3.012
+collecting
+35327
+generating
+Train [12,     1] loss: 2.651
+Train [12,    69] loss: 2.983
+Validate [12,    72] loss: 2.890
+collecting
+35292
+generating
+Train [13,     1] loss: 2.910
+Train [13,    69] loss: 2.889
+Validate [13,    72] loss: 2.793
+collecting
+36026
+generating
+Train [14,     1] loss: 2.255
+Train [14,    71] loss: 2.851
+Validate [14,    72] loss: 2.726
+collecting
+35841
+generating
+Expected more than 1 value per channel when training, got input size torch.Size([1, 8, 1, 1])
+Traceback (most recent call last):
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/smac/tae/execute_func.py", line 219, in run
+    rval = self._call_ta(self._ta, config, obj_kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/smac/tae/execute_func.py", line 319, in _call_ta
+    return obj(config, **obj_kwargs)
+  File "/home/s3092593/MimicBotX/smacify.py", line 40, in run
+    return learn_bc.main(activation=activation, block=block, optimizer=config['optimizer'], lr=config['optimizer_lr'],
+  File "/home/s3092593/MimicBotX/learn_bc.py", line 114, in main
+    outputs = net(spatial_obs, non_spatial_obs)[1]
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/s3092593/MimicBotX/network.py", line 328, in forward
+    spatial_processed = self._spatial_processing(spatial_input)
+  File "/home/s3092593/MimicBotX/network.py", line 286, in _spatial_processing
+    return self.spatial_processing(spatial_input)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/s3092593/MimicBotX/network.py", line 197, in forward
+    x = self.block_end(x)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/timm/models/layers/squeeze_excite.py", line 47, in forward
+    x_se = self.act(self.bn(x_se))
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 168, in forward
+    return F.batch_norm(
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/functional.py", line 2419, in batch_norm
+    _verify_batch_size(input.size())
+  File "/data/s3092593/myanaconda/lib/python3.9/site-packages/torch/nn/functional.py", line 2387, in _verify_batch_size
+    raise ValueError("Expected more than 1 value per channel when training, got input size {}".format(size))
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 8, 1, 1])
+Train [15,     1] loss: 2.980
+Configuration(values={
+  'activation': 'elu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 3.2025579430705037e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+36308
+generating
+collecting
+36103
+generating
+Train [1,     1] loss: 8.997
+Train [1,    71] loss: 7.986
+Validate [1,    71] loss: 7.343
+collecting
+36363
+generating
+Train [2,     1] loss: 7.259
+Train [2,    72] loss: 6.258
+Validate [2,    71] loss: 5.490
+collecting
+34872
+generating
+Train [3,     1] loss: 5.446
+Train [3,    69] loss: 5.163
+Validate [3,    71] loss: 4.743
+collecting
+35476
+generating
+Train [4,     1] loss: 4.631
+Train [4,    70] loss: 4.502
+Validate [4,    71] loss: 4.320
+collecting
+36874
+generating
+Train [5,     1] loss: 4.083
+Train [5,    73] loss: 4.149
+Validate [5,    71] loss: 4.061
+collecting
+35503
+generating
+Train [6,     1] loss: 3.952
+Train [6,    70] loss: 3.964
+Validate [6,    71] loss: 3.832
+collecting
+36146
+generating
+Train [7,     1] loss: 4.263
+Train [7,    71] loss: 3.764
+Validate [7,    71] loss: 3.633
+collecting
+35770
+generating
+Train [8,     1] loss: 3.506
+Train [8,    70] loss: 3.521
+Validate [8,    71] loss: 3.516
+collecting
+36549
+generating
+Train [9,     1] loss: 3.984
+Train [9,    72] loss: 3.449
+Validate [9,    71] loss: 3.357
+collecting
+36701
+generating
+Train [10,     1] loss: 3.462
+Train [10,    72] loss: 3.419
+Validate [10,    71] loss: 3.239
+collecting
+36423
+generating
+Train [11,     1] loss: 2.648
+Train [11,    72] loss: 3.220
+Validate [11,    71] loss: 3.117
+collecting
+37299
+generating
+Train [12,     1] loss: 3.490
+Train [12,    73] loss: 3.105
+Validate [12,    71] loss: 3.058
+collecting
+35660
+generating
+Train [13,     1] loss: 3.038
+Train [13,    70] loss: 3.069
+Validate [13,    71] loss: 2.986
+collecting
+36993
+generating
+Train [14,     1] loss: 2.920
+Train [14,    73] loss: 2.893
+Validate [14,    71] loss: 2.932
+collecting
+35996
+generating
+Train [15,     1] loss: 3.027
+Train [15,    71] loss: 2.864
+Validate [15,    71] loss: 2.870
+collecting
+35708
+generating
+Train [16,     1] loss: 3.053
+Train [16,    70] loss: 2.955
+Validate [16,    71] loss: 2.814
+collecting
+35960
+generating
+Train [17,     1] loss: 2.784
+Train [17,    71] loss: 2.842
+Validate [17,    71] loss: 2.779
+collecting
+36596
+generating
+Train [18,     1] loss: 2.353
+Train [18,    72] loss: 2.738
+Validate [18,    71] loss: 2.750
+collecting
+35730
+generating
+Train [19,     1] loss: 2.667
+Train [19,    70] loss: 2.794
+Validate [19,    71] loss: 2.718
+collecting
+37352
+generating
+Train [20,     1] loss: 2.535
+Train [20,    73] loss: 2.746
+Validate [20,    71] loss: 2.690
+collecting
+36771
+generating
+Train [21,     1] loss: 2.486
+Train [21,    72] loss: 2.681
+Validate [21,    71] loss: 2.674
+collecting
+35914
+generating
+Train [22,     1] loss: 2.036
+Train [22,    71] loss: 2.720
+Validate [22,    71] loss: 2.662
+collecting
+36932
+generating
+Train [23,     1] loss: 2.555
+Train [23,    73] loss: 2.713
+Validate [23,    71] loss: 2.655
+collecting
+36091
+generating
+Train [24,     1] loss: 2.148
+Train [24,    71] loss: 2.668
+Validate [24,    71] loss: 2.624
+collecting
+35588
+generating
+Train [25,     1] loss: 2.116
+Train [25,    70] loss: 2.707
+Validate [25,    71] loss: 2.624
+collecting
+36031
+generating
+Train [26,     1] loss: 2.196
+Train [26,    71] loss: 2.652
+Validate [26,    71] loss: 2.618
+collecting
+35975
+generating
+Train [27,     1] loss: 2.614
+Train [27,    71] loss: 2.713
+Validate [27,    71] loss: 2.615
+collecting
+36027
+generating
+Train [28,     1] loss: 2.422
+Train [28,    71] loss: 2.710
+Validate [28,    71] loss: 2.604
+collecting
+36457
+generating
+Train [29,     1] loss: 2.945
+Train [29,    72] loss: 2.647
+Validate [29,    71] loss: 2.597
+collecting
+36322
+generating
+Train [30,     1] loss: 2.133
+Train [30,    71] loss: 2.659
+Validate [30,    71] loss: 2.606
+collecting
+35644
+best_loss=tensor(184.3957, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.000512877415137233,
+  'scheduler': True,
+})
+
+generating
+collecting
+36411
+generating
+collecting
+35760
+generating
+Train [1,     1] loss: 9.061
+Train [1,    72] loss: 3.116
+Validate [1,    70] loss: 2.115
+collecting
+36829
+generating
+Train [2,     1] loss: 1.901
+Train [2,    72] loss: 1.498
+Validate [2,    70] loss: 1.263
+collecting
+36322
+generating
+Train [3,     1] loss: 1.345
+Train [3,    71] loss: 1.181
+Validate [3,    70] loss: 1.174
+collecting
+36845
+generating
+Train [4,     1] loss: 0.840
+Train [4,    72] loss: 1.085
+Validate [4,    70] loss: 1.032
+collecting
+36337
+generating
+Train [5,     1] loss: 1.038
+Train [5,    71] loss: 1.008
+Validate [5,    70] loss: 1.051
+collecting
+36644
+generating
+Train [6,     1] loss: 0.846
+Train [6,    72] loss: 0.943
+Validate [6,    70] loss: 1.095
+collecting
+36025
+generating
+Train [7,     1] loss: 1.099
+Train [7,    71] loss: 0.881
+Validate [7,    70] loss: 0.858
+collecting
+35786
+generating
+Train [8,     1] loss: 0.988
+Train [8,    70] loss: 0.833
+Validate [8,    70] loss: 1.073
+collecting
+35499
+generating
+Train [9,     1] loss: 0.878
+Train [9,    70] loss: 0.775
+Validate [9,    70] loss: 0.866
+collecting
+36241
+generating
+Train [10,     1] loss: 0.902
+Train [10,    71] loss: 0.765
+Validate [10,    70] loss: 0.732
+collecting
+36288
+generating
+Train [11,     1] loss: 0.599
+Train [11,    71] loss: 0.697
+Validate [11,    70] loss: 0.715
+collecting
+35520
+generating
+Train [12,     1] loss: 1.039
+Train [12,    70] loss: 0.686
+Validate [12,    70] loss: 0.755
+collecting
+36464
+generating
+Train [13,     1] loss: 0.556
+Train [13,    72] loss: 0.659
+Validate [13,    70] loss: 0.862
+collecting
+36531
+generating
+Train [14,     1] loss: 0.795
+Train [14,    72] loss: 0.664
+Validate [14,    70] loss: 0.683
+collecting
+35247
+generating
+Train [15,     1] loss: 0.734
+Train [15,    69] loss: 0.615
+Validate [15,    70] loss: 0.614
+collecting
+36210
+generating
+Train [16,     1] loss: 0.600
+Train [16,    71] loss: 0.587
+Validate [16,    70] loss: 0.601
+collecting
+36269
+generating
+Train [17,     1] loss: 0.431
+Train [17,    71] loss: 0.601
+Validate [17,    70] loss: 0.574
+collecting
+35242
+generating
+Train [18,     1] loss: 0.519
+Train [18,    69] loss: 0.570
+Validate [18,    70] loss: 0.569
+collecting
+35632
+generating
+Train [19,     1] loss: 0.503
+Train [19,    70] loss: 0.574
+Validate [19,    70] loss: 0.569
+collecting
+35898
+generating
+Train [20,     1] loss: 0.460
+Train [20,    71] loss: 0.542
+Validate [20,    70] loss: 0.579
+collecting
+37132
+generating
+Train [21,     1] loss: 0.608
+Train [21,    73] loss: 0.512
+Validate [21,    70] loss: 0.533
+collecting
+36238
+generating
+Train [22,     1] loss: 0.450
+Train [22,    71] loss: 0.498
+Validate [22,    70] loss: 0.526
+collecting
+35993
+generating
+Train [23,     1] loss: 0.402
+Train [23,    71] loss: 0.513
+Validate [23,    70] loss: 0.521
+collecting
+35515
+generating
+Train [24,     1] loss: 0.567
+Train [24,    70] loss: 0.517
+Validate [24,    70] loss: 0.509
+collecting
+36369
+generating
+Train [25,     1] loss: 0.446
+Train [25,    72] loss: 0.493
+Validate [25,    70] loss: 0.501
+collecting
+36323
+generating
+Train [26,     1] loss: 0.486
+Train [26,    71] loss: 0.482
+Validate [26,    70] loss: 0.496
+collecting
+35520
+generating
+Train [27,     1] loss: 0.616
+Train [27,    70] loss: 0.502
+Validate [27,    70] loss: 0.491
+collecting
+36398
+generating
+Train [28,     1] loss: 0.340
+Train [28,    72] loss: 0.491
+Validate [28,    70] loss: 0.488
+collecting
+35613
+generating
+Train [29,     1] loss: 0.341
+Train [29,    70] loss: 0.466
+Validate [29,    70] loss: 0.486
+collecting
+35781
+generating
+Train [30,     1] loss: 0.360
+Train [30,    70] loss: 0.477
+Validate [30,    70] loss: 0.485
+collecting
+36092
+best_loss=tensor(33.9716, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.0005059649058181902,
+  'scheduler': False,
+})
+
+generating
+collecting
+36014
+generating
+collecting
+36025
+generating
+Train [1,     1] loss: 9.013
+Train [1,    71] loss: 3.262
+Validate [1,    71] loss: 2.354
+collecting
+36265
+generating
+Train [2,     1] loss: 1.602
+Train [2,    71] loss: 1.524
+Validate [2,    71] loss: 1.399
+collecting
+37323
+generating
+Train [3,     1] loss: 1.939
+Train [3,    73] loss: 1.191
+Validate [3,    71] loss: 1.105
+collecting
+35220
+generating
+Train [4,     1] loss: 0.943
+Train [4,    69] loss: 1.058
+Validate [4,    71] loss: 1.007
+collecting
+35067
+generating
+Train [5,     1] loss: 1.252
+Train [5,    69] loss: 1.026
+Validate [5,    71] loss: 0.950
+collecting
+36867
+generating
+Train [6,     1] loss: 0.862
+Train [6,    73] loss: 0.895
+Validate [6,    71] loss: 0.855
+collecting
+36595
+generating
+Train [7,     1] loss: 0.842
+Train [7,    72] loss: 0.859
+Validate [7,    71] loss: 0.835
+collecting
+35494
+generating
+Train [8,     1] loss: 0.722
+Train [8,    70] loss: 0.799
+Validate [8,    71] loss: 0.774
+collecting
+36095
+generating
+Train [9,     1] loss: 0.565
+Train [9,    71] loss: 0.752
+Validate [9,    71] loss: 0.745
+collecting
+34935
+generating
+Train [10,     1] loss: 0.825
+Train [10,    69] loss: 0.753
+Validate [10,    71] loss: 0.751
+collecting
+35767
+generating
+Train [11,     1] loss: 0.744
+Train [11,    70] loss: 0.697
+Validate [11,    71] loss: 0.721
+collecting
+36905
+generating
+Train [12,     1] loss: 0.616
+Train [12,    73] loss: 0.679
+Validate [12,    71] loss: 0.710
+collecting
+36058
+generating
+Train [13,     1] loss: 0.861
+Train [13,    71] loss: 0.666
+Validate [13,    71] loss: 0.677
+collecting
+36613
+generating
+Train [14,     1] loss: 0.535
+Train [14,    72] loss: 0.660
+Validate [14,    71] loss: 0.688
+collecting
+36016
+generating
+Train [15,     1] loss: 0.447
+Train [15,    71] loss: 0.666
+Validate [15,    71] loss: 0.659
+collecting
+36882
+generating
+Train [16,     1] loss: 0.594
+Train [16,    73] loss: 0.603
+Validate [16,    71] loss: 0.644
+collecting
+36573
+generating
+Train [17,     1] loss: 0.531
+Train [17,    72] loss: 0.641
+Validate [17,    71] loss: 0.635
+collecting
+36781
+generating
+Train [18,     1] loss: 0.643
+Train [18,    72] loss: 0.612
+Validate [18,    71] loss: 0.622
+collecting
+36813
+generating
+Train [19,     1] loss: 0.556
+Train [19,    72] loss: 0.616
+Validate [19,    71] loss: 0.640
+collecting
+37915
+generating
+Train [20,     1] loss: 0.729
+Train [20,    75] loss: 0.557
+Validate [20,    71] loss: 0.625
+collecting
+36387
+generating
+Train [21,     1] loss: 0.410
+Train [21,    72] loss: 0.595
+Validate [21,    71] loss: 0.622
+collecting
+36296
+generating
+Train [22,     1] loss: 0.455
+Train [22,    71] loss: 0.561
+Validate [22,    71] loss: 0.597
+collecting
+35784
+generating
+Train [23,     1] loss: 0.578
+Train [23,    70] loss: 0.584
+Validate [23,    71] loss: 0.592
+collecting
+36472
+generating
+Train [24,     1] loss: 0.538
+Train [24,    72] loss: 0.572
+Validate [24,    71] loss: 0.584
+collecting
+35950
+generating
+Train [25,     1] loss: 0.570
+Train [25,    71] loss: 0.547
+Validate [25,    71] loss: 0.568
+collecting
+37027
+generating
+Train [26,     1] loss: 0.454
+Train [26,    73] loss: 0.536
+Validate [26,    71] loss: 0.555
+collecting
+36053
+generating
+Train [27,     1] loss: 0.565
+Train [27,    71] loss: 0.538
+Validate [27,    71] loss: 0.550
+collecting
+36590
+generating
+Train [28,     1] loss: 0.622
+Train [28,    72] loss: 0.543
+Validate [28,    71] loss: 0.540
+collecting
+36042
+generating
+Train [29,     1] loss: 0.440
+Train [29,    71] loss: 0.540
+Validate [29,    71] loss: 0.529
+collecting
+36411
+generating
+Train [30,     1] loss: 0.434
+Train [30,    72] loss: 0.525
+Validate [30,    71] loss: 0.515
+collecting
+36111
+best_loss=tensor(36.5486, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.00047671426405100707,
+  'scheduler': False,
+})
+
+generating
+collecting
+35938
+generating
+collecting
+37139
+generating
+Train [1,     1] loss: 9.033
+Train [1,    71] loss: 3.311
+Validate [1,    73] loss: 2.478
+collecting
+36072
+generating
+Train [2,     1] loss: 2.252
+Train [2,    71] loss: 1.591
+Validate [2,    73] loss: 1.399
+collecting
+35751
+generating
+Train [3,     1] loss: 1.168
+Train [3,    70] loss: 1.194
+Validate [3,    73] loss: 1.188
+collecting
+36864
+generating
+Train [4,     1] loss: 1.130
+Train [4,    72] loss: 1.042
+Validate [4,    73] loss: 0.987
+collecting
+36096
+generating
+Train [5,     1] loss: 0.965
+Train [5,    71] loss: 0.963
+Validate [5,    73] loss: 0.922
+collecting
+36288
+generating
+Train [6,     1] loss: 0.845
+Train [6,    71] loss: 0.912
+Validate [6,    73] loss: 0.864
+collecting
+36338
+generating
+Train [7,     1] loss: 0.771
+Train [7,    71] loss: 0.856
+Validate [7,    73] loss: 0.822
+collecting
+35378
+generating
+Train [8,     1] loss: 0.818
+Train [8,    70] loss: 0.812
+Validate [8,    73] loss: 0.767
+collecting
+35916
+generating
+Train [9,     1] loss: 0.883
+Train [9,    71] loss: 0.761
+Validate [9,    73] loss: 0.794
+collecting
+36490
+generating
+Train [10,     1] loss: 0.794
+Train [10,    72] loss: 0.729
+Validate [10,    73] loss: 0.761
+collecting
+36218
+generating
+Train [11,     1] loss: 0.423
+Train [11,    71] loss: 0.685
+Validate [11,    73] loss: 0.711
+collecting
+35852
+generating
+Train [12,     1] loss: 0.651
+Train [12,    71] loss: 0.694
+Validate [12,    73] loss: 0.743
+collecting
+35895
+generating
+Train [13,     1] loss: 0.600
+Train [13,    71] loss: 0.692
+Validate [13,    73] loss: 0.663
+collecting
+36290
+generating
+Train [14,     1] loss: 0.498
+Train [14,    71] loss: 0.669
+Validate [14,    73] loss: 0.654
+collecting
+36534
+generating
+Train [15,     1] loss: 0.720
+Train [15,    72] loss: 0.648
+Validate [15,    73] loss: 0.661
+collecting
+35933
+generating
+Train [16,     1] loss: 0.658
+Train [16,    71] loss: 0.637
+Validate [16,    73] loss: 0.678
+collecting
+36256
+generating
+Train [17,     1] loss: 0.615
+Train [17,    71] loss: 0.636
+Validate [17,    73] loss: 0.616
+collecting
+35510
+generating
+Train [18,     1] loss: 0.605
+Train [18,    70] loss: 0.644
+Validate [18,    73] loss: 0.596
+collecting
+34673
+generating
+Train [19,     1] loss: 0.620
+Train [19,    68] loss: 0.612
+Validate [19,    73] loss: 0.591
+collecting
+36011
+generating
+Train [20,     1] loss: 0.603
+Train [20,    71] loss: 0.611
+Validate [20,    73] loss: 0.609
+collecting
+36125
+generating
+Train [21,     1] loss: 0.638
+Train [21,    71] loss: 0.585
+Validate [21,    73] loss: 0.599
+collecting
+36559
+generating
+Train [22,     1] loss: 0.596
+Train [22,    72] loss: 0.567
+Validate [22,    73] loss: 0.561
+collecting
+36169
+generating
+Train [23,     1] loss: 0.517
+Train [23,    71] loss: 0.605
+Validate [23,    73] loss: 0.549
+collecting
+36275
+generating
+Train [24,     1] loss: 0.543
+Train [24,    71] loss: 0.564
+Validate [24,    73] loss: 0.578
+collecting
+36008
+generating
+Train [25,     1] loss: 0.464
+Train [25,    71] loss: 0.547
+Validate [25,    73] loss: 0.546
+collecting
+37292
+generating
+Train [26,     1] loss: 0.490
+Train [26,    73] loss: 0.552
+Validate [26,    73] loss: 0.549
+collecting
+35728
+generating
+Train [27,     1] loss: 0.493
+Train [27,    70] loss: 0.531
+Validate [27,    73] loss: 0.530
+collecting
+35711
+generating
+Train [28,     1] loss: 0.565
+Train [28,    70] loss: 0.524
+Validate [28,    73] loss: 0.527
+collecting
+36198
+generating
+Train [29,     1] loss: 0.653
+Train [29,    71] loss: 0.539
+Validate [29,    73] loss: 0.533
+collecting
+35798
+generating
+Train [30,     1] loss: 0.484
+Train [30,    70] loss: 0.534
+Validate [30,    73] loss: 0.547
+collecting
+36614
+best_loss=tensor(38.4639, device='cuda:0'), best_epoch=27
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0011397131388315683,
+  'scheduler': True,
+})
+
+generating
+collecting
+36559
+generating
+collecting
+36087
+generating
+Train [1,     1] loss: 9.044
+Train [1,    72] loss: 3.368
+Validate [1,    71] loss: 2.735
+collecting
+36022
+generating
+Train [2,     1] loss: 1.913
+Train [2,    71] loss: 1.534
+Validate [2,    71] loss: 1.798
+collecting
+36349
+generating
+Train [3,     1] loss: 1.487
+Train [3,    71] loss: 1.205
+Validate [3,    71] loss: 1.154
+collecting
+36339
+generating
+Train [4,     1] loss: 0.889
+Train [4,    71] loss: 1.046
+Validate [4,    71] loss: 1.031
+collecting
+36570
+generating
+Train [5,     1] loss: 0.936
+Train [5,    72] loss: 0.979
+Validate [5,    71] loss: 1.546
+collecting
+36530
+generating
+Train [6,     1] loss: 1.294
+Train [6,    72] loss: 0.893
+Validate [6,    71] loss: 1.185
+collecting
+35939
+generating
+Train [7,     1] loss: 0.893
+Train [7,    71] loss: 0.792
+Validate [7,    71] loss: 0.970
+collecting
+36650
+generating
+Train [8,     1] loss: 0.701
+Train [8,    72] loss: 0.777
+Validate [8,    71] loss: 0.919
+collecting
+35871
+generating
+Train [9,     1] loss: 0.970
+Train [9,    71] loss: 0.747
+Validate [9,    71] loss: 8.058
+collecting
+35833
+generating
+Train [10,     1] loss: 5.083
+Train [10,    70] loss: 1.079
+Validate [10,    71] loss: 0.918
+collecting
+36629
+generating
+Train [11,     1] loss: 0.715
+Train [11,    72] loss: 0.756
+Validate [11,    71] loss: 0.763
+collecting
+36410
+generating
+Train [12,     1] loss: 0.494
+Train [12,    72] loss: 0.688
+Validate [12,    71] loss: 1.423
+collecting
+36421
+generating
+Train [13,     1] loss: 1.734
+Train [13,    72] loss: 0.699
+Validate [13,    71] loss: 1.758
+collecting
+36693
+generating
+Train [14,     1] loss: 0.946
+Train [14,    72] loss: 0.658
+Validate [14,    71] loss: 0.645
+collecting
+36565
+generating
+Train [15,     1] loss: 0.578
+Train [15,    72] loss: 0.621
+Validate [15,    71] loss: 0.692
+collecting
+36417
+generating
+Train [16,     1] loss: 0.532
+Train [16,    72] loss: 0.580
+Validate [16,    71] loss: 0.668
+collecting
+36525
+generating
+Train [17,     1] loss: 0.608
+Train [17,    72] loss: 0.572
+Validate [17,    71] loss: 0.597
+collecting
+36179
+generating
+Train [18,     1] loss: 0.569
+Train [18,    71] loss: 0.562
+Validate [18,    71] loss: 0.542
+collecting
+37446
+generating
+Train [19,     1] loss: 0.527
+Train [19,    74] loss: 0.506
+Validate [19,    71] loss: 0.527
+collecting
+36977
+generating
+Train [20,     1] loss: 0.428
+Train [20,    73] loss: 0.495
+Validate [20,    71] loss: 0.518
+collecting
+35944
+generating
+Train [21,     1] loss: 0.536
+Train [21,    71] loss: 0.485
+Validate [21,    71] loss: 0.500
+collecting
+36237
+generating
+Train [22,     1] loss: 0.654
+Train [22,    71] loss: 0.497
+Validate [22,    71] loss: 0.483
+collecting
+36199
+generating
+Train [23,     1] loss: 0.401
+Train [23,    71] loss: 0.461
+Validate [23,    71] loss: 0.473
+collecting
+36992
+generating
+Train [24,     1] loss: 0.579
+Train [24,    73] loss: 0.471
+Validate [24,    71] loss: 0.469
+collecting
+36175
+generating
+Train [25,     1] loss: 0.304
+Train [25,    71] loss: 0.462
+Validate [25,    71] loss: 0.452
+collecting
+36117
+generating
+Train [26,     1] loss: 0.509
+Train [26,    71] loss: 0.451
+Validate [26,    71] loss: 0.445
+collecting
+36211
+generating
+Train [27,     1] loss: 0.310
+Train [27,    71] loss: 0.432
+Validate [27,    71] loss: 0.439
+collecting
+35645
+generating
+Train [28,     1] loss: 0.440
+Train [28,    70] loss: 0.451
+Validate [28,    71] loss: 0.436
+collecting
+36393
+generating
+Train [29,     1] loss: 0.390
+Train [29,    72] loss: 0.430
+Validate [29,    71] loss: 0.434
+collecting
+36664
+generating
+Train [30,     1] loss: 0.382
+Train [30,    72] loss: 0.432
+Validate [30,    71] loss: 0.433
+collecting
+36033
+best_loss=tensor(30.7475, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.000862338859563625,
+  'scheduler': True,
+})
+
+generating
+collecting
+36310
+generating
+collecting
+36877
+generating
+Train [1,     1] loss: 9.105
+Train [1,    71] loss: 3.096
+Validate [1,    73] loss: 2.082
+collecting
+35985
+generating
+Train [2,     1] loss: 1.487
+Train [2,    71] loss: 1.375
+Validate [2,    73] loss: 1.612
+collecting
+36562
+generating
+Train [3,     1] loss: 1.573
+Train [3,    72] loss: 1.172
+Validate [3,    73] loss: 1.151
+collecting
+36510
+generating
+Train [4,     1] loss: 0.747
+Train [4,    72] loss: 1.050
+Validate [4,    73] loss: 1.156
+collecting
+35657
+generating
+Train [5,     1] loss: 1.228
+Train [5,    70] loss: 0.958
+Validate [5,    73] loss: 0.932
+collecting
+36698
+generating
+Train [6,     1] loss: 0.888
+Train [6,    72] loss: 0.820
+Validate [6,    73] loss: 0.928
+collecting
+35872
+generating
+Train [7,     1] loss: 0.868
+Train [7,    71] loss: 0.819
+Validate [7,    73] loss: 1.116
+collecting
+36431
+generating
+Train [8,     1] loss: 1.756
+Train [8,    72] loss: 0.820
+Validate [8,    73] loss: 0.829
+collecting
+36359
+generating
+Train [9,     1] loss: 0.622
+Train [9,    72] loss: 0.707
+Validate [9,    73] loss: 0.706
+collecting
+36369
+generating
+Train [10,     1] loss: 0.870
+Train [10,    72] loss: 0.674
+Validate [10,    73] loss: 17.233
+collecting
+35895
+generating
+Train [11,     1] loss: 1.725
+Train [11,    71] loss: 0.762
+Validate [11,    73] loss: 1.349
+collecting
+36515
+generating
+Train [12,     1] loss: 0.970
+Train [12,    72] loss: 0.654
+Validate [12,    73] loss: 0.643
+collecting
+36809
+generating
+Train [13,     1] loss: 0.562
+Train [13,    72] loss: 0.604
+Validate [13,    73] loss: 0.606
+collecting
+36737
+generating
+Train [14,     1] loss: 0.374
+Train [14,    72] loss: 0.568
+Validate [14,    73] loss: 0.593
+collecting
+35339
+generating
+Train [15,     1] loss: 0.459
+Train [15,    70] loss: 0.560
+Validate [15,    73] loss: 0.925
+collecting
+35895
+generating
+Train [16,     1] loss: 0.585
+Train [16,    71] loss: 0.564
+Validate [16,    73] loss: 0.590
+collecting
+36115
+generating
+Train [17,     1] loss: 0.534
+Train [17,    71] loss: 0.540
+Validate [17,    73] loss: 0.529
+collecting
+36403
+generating
+Train [18,     1] loss: 0.572
+Train [18,    72] loss: 0.535
+Validate [18,    73] loss: 1.017
+collecting
+36566
+generating
+Train [19,     1] loss: 0.522
+Train [19,    72] loss: 0.504
+Validate [19,    73] loss: 0.519
+collecting
+36332
+generating
+Train [20,     1] loss: 0.507
+Train [20,    71] loss: 0.494
+Validate [20,    73] loss: 0.491
+collecting
+36797
+generating
+Train [21,     1] loss: 0.379
+Train [21,    72] loss: 0.489
+Validate [21,    73] loss: 0.474
+collecting
+36320
+generating
+Train [22,     1] loss: 0.576
+Train [22,    71] loss: 0.464
+Validate [22,    73] loss: 0.454
+collecting
+35780
+generating
+Train [23,     1] loss: 0.431
+Train [23,    70] loss: 0.461
+Validate [23,    73] loss: 0.450
+collecting
+36300
+generating
+Train [24,     1] loss: 0.350
+Train [24,    71] loss: 0.475
+Validate [24,    73] loss: 0.443
+collecting
+35612
+generating
+Train [25,     1] loss: 0.339
+Train [25,    70] loss: 0.441
+Validate [25,    73] loss: 0.434
+collecting
+37090
+generating
+Train [26,     1] loss: 0.407
+Train [26,    73] loss: 0.430
+Validate [26,    73] loss: 0.428
+collecting
+37173
+generating
+Train [27,     1] loss: 0.394
+Train [27,    73] loss: 0.435
+Validate [27,    73] loss: 0.423
+collecting
+36390
+generating
+Train [28,     1] loss: 0.427
+Train [28,    72] loss: 0.427
+Validate [28,    73] loss: 0.421
+collecting
+35693
+generating
+Train [29,     1] loss: 0.301
+Train [29,    70] loss: 0.433
+Validate [29,    73] loss: 0.418
+collecting
+35842
+generating
+Train [30,     1] loss: 0.385
+Train [30,    71] loss: 0.510
+Validate [30,    73] loss: 0.434
+collecting
+36014
+best_loss=tensor(30.4880, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0011634967860706454,
+  'scheduler': True,
+})
+
+generating
+collecting
+36178
+generating
+collecting
+36265
+generating
+Train [1,     1] loss: 9.040
+Train [1,    71] loss: 3.548
+Validate [1,    71] loss: 2.579
+collecting
+36577
+generating
+Train [2,     1] loss: 1.818
+Train [2,    72] loss: 1.544
+Validate [2,    71] loss: 1.394
+collecting
+36660
+generating
+Train [3,     1] loss: 1.076
+Train [3,    72] loss: 1.198
+Validate [3,    71] loss: 1.102
+collecting
+35795
+generating
+Train [4,     1] loss: 1.082
+Train [4,    70] loss: 1.049
+Validate [4,    71] loss: 1.037
+collecting
+35608
+generating
+Train [5,     1] loss: 0.848
+Train [5,    70] loss: 0.979
+Validate [5,    71] loss: 0.991
+collecting
+35598
+generating
+Train [6,     1] loss: 0.974
+Train [6,    70] loss: 0.886
+Validate [6,    71] loss: 0.840
+collecting
+36948
+generating
+Train [7,     1] loss: 0.817
+Train [7,    73] loss: 0.836
+Validate [7,    71] loss: 1.389
+collecting
+36126
+generating
+Train [8,     1] loss: 1.103
+Train [8,    71] loss: 0.820
+Validate [8,    71] loss: 1.028
+collecting
+37171
+generating
+Train [9,     1] loss: 0.927
+Train [9,    73] loss: 0.737
+Validate [9,    71] loss: 0.717
+collecting
+35968
+generating
+Train [10,     1] loss: 0.641
+Train [10,    71] loss: 0.698
+Validate [10,    71] loss: 0.813
+collecting
+36413
+generating
+Train [11,     1] loss: 0.567
+Train [11,    72] loss: 0.673
+Validate [11,    71] loss: 0.749
+collecting
+36662
+generating
+Train [12,     1] loss: 0.641
+Train [12,    72] loss: 0.638
+Validate [12,    71] loss: 0.658
+collecting
+36246
+generating
+Train [13,     1] loss: 0.527
+Train [13,    71] loss: 0.611
+Validate [13,    71] loss: 0.604
+collecting
+37338
+generating
+Train [14,     1] loss: 0.391
+Train [14,    73] loss: 0.565
+Validate [14,    71] loss: 0.607
+collecting
+36410
+generating
+Train [15,     1] loss: 0.718
+Train [15,    72] loss: 0.590
+Validate [15,    71] loss: 2.258
+collecting
+36389
+generating
+Train [16,     1] loss: 0.901
+Train [16,    72] loss: 0.606
+Validate [16,    71] loss: 0.819
+collecting
+36496
+generating
+Train [17,     1] loss: 0.579
+Train [17,    72] loss: 0.563
+Validate [17,    71] loss: 2.032
+collecting
+37471
+generating
+Train [18,     1] loss: 1.280
+Train [18,    74] loss: 0.529
+Validate [18,    71] loss: 0.530
+collecting
+36776
+generating
+Train [19,     1] loss: 0.476
+Train [19,    72] loss: 0.513
+Validate [19,    71] loss: 0.516
+collecting
+36685
+generating
+Train [20,     1] loss: 0.447
+Train [20,    72] loss: 0.505
+Validate [20,    71] loss: 0.491
+collecting
+36997
+generating
+Train [21,     1] loss: 0.574
+Train [21,    73] loss: 0.463
+Validate [21,    71] loss: 0.479
+collecting
+36552
+generating
+Train [22,     1] loss: 0.279
+Train [22,    72] loss: 0.456
+Validate [22,    71] loss: 0.468
+collecting
+36579
+generating
+Train [23,     1] loss: 0.562
+Train [23,    72] loss: 0.469
+Validate [23,    71] loss: 0.477
+collecting
+36686
+generating
+Train [24,     1] loss: 0.499
+Train [24,    72] loss: 0.433
+Validate [24,    71] loss: 0.444
+collecting
+36344
+generating
+Train [25,     1] loss: 0.362
+Train [25,    71] loss: 0.456
+Validate [25,    71] loss: 0.435
+collecting
+36004
+generating
+Train [26,     1] loss: 0.398
+Train [26,    71] loss: 0.438
+Validate [26,    71] loss: 0.427
+collecting
+36705
+generating
+Train [27,     1] loss: 0.451
+Train [27,    72] loss: 0.417
+Validate [27,    71] loss: 0.424
+collecting
+36518
+generating
+Train [28,     1] loss: 0.431
+Train [28,    72] loss: 0.420
+Validate [28,    71] loss: 0.419
+collecting
+37069
+generating
+Train [29,     1] loss: 0.352
+Train [29,    73] loss: 0.403
+Validate [29,    71] loss: 0.418
+collecting
+36228
+generating
+Train [30,     1] loss: 0.423
+Train [30,    71] loss: 0.442
+Validate [30,    71] loss: 0.417
+collecting
+35865
+best_loss=tensor(29.6330, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0005456651503646212,
+  'scheduler': True,
+})
+
+generating
+collecting
+35882
+generating
+collecting
+36456
+generating
+Train [1,     1] loss: 9.041
+Train [1,    71] loss: 3.085
+Validate [1,    72] loss: 2.758
+collecting
+36819
+generating
+Train [2,     1] loss: 2.204
+Train [2,    72] loss: 1.434
+Validate [2,    72] loss: 1.372
+collecting
+36079
+generating
+Train [3,     1] loss: 1.154
+Train [3,    71] loss: 1.185
+Validate [3,    72] loss: 1.254
+collecting
+36108
+generating
+Train [4,     1] loss: 1.076
+Train [4,    71] loss: 0.991
+Validate [4,    72] loss: 1.983
+collecting
+35973
+generating
+Train [5,     1] loss: 1.677
+Train [5,    71] loss: 0.939
+Validate [5,    72] loss: 2.506
+collecting
+36553
+generating
+Train [6,     1] loss: 1.536
+Train [6,    72] loss: 0.887
+Validate [6,    72] loss: 0.933
+collecting
+34384
+generating
+Train [7,     1] loss: 0.837
+Train [7,    68] loss: 0.788
+Validate [7,    72] loss: 0.986
+collecting
+35109
+generating
+Train [8,     1] loss: 0.748
+Train [8,    69] loss: 0.764
+Validate [8,    72] loss: 0.797
+collecting
+36988
+generating
+Train [9,     1] loss: 0.789
+Train [9,    73] loss: 0.704
+Validate [9,    72] loss: 0.799
+collecting
+35471
+generating
+Train [10,     1] loss: 0.892
+Train [10,    70] loss: 0.696
+Validate [10,    72] loss: 0.736
+collecting
+35502
+generating
+Train [11,     1] loss: 0.582
+Train [11,    70] loss: 0.650
+Validate [11,    72] loss: 0.777
+collecting
+36638
+generating
+Train [12,     1] loss: 0.579
+Train [12,    72] loss: 0.658
+Validate [12,    72] loss: 0.699
+collecting
+36550
+generating
+Train [13,     1] loss: 0.840
+Train [13,    72] loss: 0.613
+Validate [13,    72] loss: 0.757
+collecting
+36605
+generating
+Train [14,     1] loss: 0.712
+Train [14,    72] loss: 0.594
+Validate [14,    72] loss: 0.648
+collecting
+36264
+generating
+Train [15,     1] loss: 0.525
+Train [15,    71] loss: 0.588
+Validate [15,    72] loss: 0.615
+collecting
+36073
+generating
+Train [16,     1] loss: 0.726
+Train [16,    71] loss: 0.553
+Validate [16,    72] loss: 0.601
+collecting
+36067
+generating
+Train [17,     1] loss: 0.401
+Train [17,    71] loss: 0.553
+Validate [17,    72] loss: 0.585
+collecting
+35727
+generating
+Train [18,     1] loss: 0.552
+Train [18,    70] loss: 0.571
+Validate [18,    72] loss: 0.561
+collecting
+36032
+generating
+Train [19,     1] loss: 0.403
+Train [19,    71] loss: 0.513
+Validate [19,    72] loss: 0.577
+collecting
+35559
+generating
+Train [20,     1] loss: 0.614
+Train [20,    70] loss: 0.513
+Validate [20,    72] loss: 0.523
+collecting
+35646
+generating
+Train [21,     1] loss: 0.530
+Train [21,    70] loss: 0.492
+Validate [21,    72] loss: 0.528
+collecting
+35523
+generating
+Train [22,     1] loss: 0.294
+Train [22,    70] loss: 0.487
+Validate [22,    72] loss: 0.509
+collecting
+35380
+generating
+Train [23,     1] loss: 0.443
+Train [23,    70] loss: 0.498
+Validate [23,    72] loss: 0.503
+collecting
+35824
+generating
+Train [24,     1] loss: 0.430
+Train [24,    70] loss: 0.481
+Validate [24,    72] loss: 0.484
+collecting
+35483
+generating
+Train [25,     1] loss: 0.345
+Train [25,    70] loss: 0.463
+Validate [25,    72] loss: 0.483
+collecting
+36150
+generating
+Train [26,     1] loss: 0.458
+Train [26,    71] loss: 0.440
+Validate [26,    72] loss: 0.473
+collecting
+36265
+generating
+Train [27,     1] loss: 0.529
+Train [27,    71] loss: 0.453
+Validate [27,    72] loss: 0.469
+collecting
+36576
+generating
+Train [28,     1] loss: 0.297
+Train [28,    72] loss: 0.436
+Validate [28,    72] loss: 0.464
+collecting
+36234
+generating
+Train [29,     1] loss: 0.337
+Train [29,    71] loss: 0.447
+Validate [29,    72] loss: 0.463
+collecting
+36170
+generating
+Train [30,     1] loss: 0.304
+Train [30,    71] loss: 0.433
+Validate [30,    72] loss: 0.463
+collecting
+36510
+best_loss=tensor(33.3274, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 2.3378397544324353e-05,
+  'scheduler': False,
+})
+
+generating
+collecting
+35419
+generating
+collecting
+36176
+generating
+Train [1,     1] loss: 9.060
+Train [1,    70] loss: 5.397
+Validate [1,    71] loss: 4.171
+collecting
+35531
+generating
+Train [2,     1] loss: 3.381
+Train [2,    70] loss: 3.496
+Validate [2,    71] loss: 3.163
+collecting
+36643
+generating
+Train [3,     1] loss: 2.692
+Train [3,    72] loss: 2.919
+Validate [3,    71] loss: 2.820
+collecting
+36538
+generating
+Train [4,     1] loss: 2.525
+Train [4,    72] loss: 2.530
+Validate [4,    71] loss: 2.524
+collecting
+37054
+generating
+Train [5,     1] loss: 2.057
+Train [5,    73] loss: 2.377
+Validate [5,    71] loss: 2.288
+collecting
+36528
+generating
+Train [6,     1] loss: 2.296
+Train [6,    72] loss: 2.091
+Validate [6,    71] loss: 2.035
+collecting
+36022
+generating
+Train [7,     1] loss: 2.092
+Train [7,    71] loss: 1.807
+Validate [7,    71] loss: 1.755
+collecting
+36900
+generating
+Train [8,     1] loss: 1.204
+Train [8,    73] loss: 1.568
+Validate [8,    71] loss: 1.581
+collecting
+35913
+generating
+Train [9,     1] loss: 1.065
+Train [9,    71] loss: 1.406
+Validate [9,    71] loss: 1.485
+collecting
+36451
+generating
+Train [10,     1] loss: 1.634
+Train [10,    72] loss: 1.308
+Validate [10,    71] loss: 1.355
+collecting
+36944
+generating
+Train [11,     1] loss: 1.052
+Train [11,    73] loss: 1.262
+Validate [11,    71] loss: 1.290
+collecting
+36088
+generating
+Train [12,     1] loss: 1.197
+Train [12,    71] loss: 1.209
+Validate [12,    71] loss: 1.207
+collecting
+36320
+generating
+Train [13,     1] loss: 1.746
+Train [13,    71] loss: 1.097
+Validate [13,    71] loss: 1.153
+collecting
+36364
+generating
+Train [14,     1] loss: 0.751
+Train [14,    72] loss: 1.032
+Validate [14,    71] loss: 1.094
+collecting
+37352
+generating
+Train [15,     1] loss: 0.911
+Train [15,    73] loss: 1.000
+Validate [15,    71] loss: 1.074
+collecting
+36372
+generating
+Train [16,     1] loss: 0.653
+Train [16,    72] loss: 0.955
+Validate [16,    71] loss: 1.059
+collecting
+36036
+generating
+Train [17,     1] loss: 0.860
+Train [17,    71] loss: 0.958
+Validate [17,    71] loss: 1.018
+collecting
+36679
+generating
+Train [18,     1] loss: 0.786
+Train [18,    72] loss: 0.921
+Validate [18,    71] loss: 0.970
+collecting
+36417
+generating
+Train [19,     1] loss: 0.871
+Train [19,    72] loss: 0.926
+Validate [19,    71] loss: 0.976
+collecting
+36325
+generating
+Train [20,     1] loss: 0.721
+Train [20,    71] loss: 0.917
+Validate [20,    71] loss: 0.936
+collecting
+36226
+generating
+Train [21,     1] loss: 0.782
+Train [21,    71] loss: 0.891
+Validate [21,    71] loss: 0.932
+collecting
+35776
+generating
+Train [22,     1] loss: 0.870
+Train [22,    70] loss: 0.849
+Validate [22,    71] loss: 0.924
+collecting
+35602
+generating
+Train [23,     1] loss: 0.907
+Train [23,    70] loss: 0.845
+Validate [23,    71] loss: 0.889
+collecting
+36875
+generating
+Train [24,     1] loss: 0.821
+Train [24,    73] loss: 0.831
+Validate [24,    71] loss: 0.915
+collecting
+35176
+generating
+Train [25,     1] loss: 0.737
+Train [25,    69] loss: 0.831
+Validate [25,    71] loss: 0.881
+collecting
+35836
+generating
+Train [26,     1] loss: 0.714
+Train [26,    70] loss: 0.810
+Validate [26,    71] loss: 0.878
+collecting
+36649
+generating
+Train [27,     1] loss: 0.645
+Train [27,    72] loss: 0.821
+Validate [27,    71] loss: 0.857
+collecting
+36464
+generating
+Train [28,     1] loss: 0.855
+Train [28,    72] loss: 0.838
+Validate [28,    71] loss: 0.829
+collecting
+36652
+generating
+Train [29,     1] loss: 0.698
+Train [29,    72] loss: 0.803
+Validate [29,    71] loss: 0.819
+collecting
+36283
+generating
+Train [30,     1] loss: 0.992
+Train [30,    71] loss: 0.778
+Validate [30,    71] loss: 0.823
+collecting
+35901
+best_loss=tensor(58.1377, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'elu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.00036269574035498946,
+  'scheduler': False,
+})
+
+generating
+collecting
+36598
+generating
+collecting
+36041
+generating
+Train [1,     1] loss: 9.031
+Train [1,    72] loss: 3.261
+Validate [1,    71] loss: 2.102
+collecting
+36583
+generating
+Train [2,     1] loss: 1.955
+Train [2,    72] loss: 1.504
+Validate [2,    71] loss: 1.309
+collecting
+36338
+generating
+Train [3,     1] loss: 1.323
+Train [3,    71] loss: 1.187
+Validate [3,    71] loss: 1.120
+collecting
+35473
+generating
+Train [4,     1] loss: 0.963
+Train [4,    70] loss: 1.019
+Validate [4,    71] loss: 1.018
+collecting
+37316
+generating
+Train [5,     1] loss: 1.113
+Train [5,    73] loss: 0.950
+Validate [5,    71] loss: 0.869
+collecting
+36175
+generating
+Train [6,     1] loss: 0.902
+Train [6,    71] loss: 0.860
+Validate [6,    71] loss: 0.945
+collecting
+36363
+generating
+Train [7,     1] loss: 1.004
+Train [7,    72] loss: 0.826
+Validate [7,    71] loss: 0.794
+collecting
+36058
+generating
+Train [8,     1] loss: 0.825
+Train [8,    71] loss: 0.818
+Validate [8,    71] loss: 0.778
+collecting
+35930
+generating
+Train [9,     1] loss: 0.854
+Train [9,    71] loss: 0.750
+Validate [9,    71] loss: 0.871
+collecting
+35791
+generating
+Train [10,     1] loss: 0.815
+Train [10,    70] loss: 0.772
+Validate [10,    71] loss: 0.709
+collecting
+36303
+generating
+Train [11,     1] loss: 0.860
+Train [11,    71] loss: 0.739
+Validate [11,    71] loss: 0.779
+collecting
+36259
+generating
+Train [12,     1] loss: 0.942
+Train [12,    71] loss: 0.715
+Validate [12,    71] loss: 0.679
+collecting
+35473
+generating
+Train [13,     1] loss: 0.742
+Train [13,    70] loss: 0.667
+Validate [13,    71] loss: 0.982
+collecting
+36864
+generating
+Train [14,     1] loss: 0.573
+Train [14,    72] loss: 0.666
+Validate [14,    71] loss: 0.655
+collecting
+37509
+generating
+Train [15,     1] loss: 0.772
+Train [15,    74] loss: 0.651
+Validate [15,    71] loss: 0.761
+collecting
+35836
+generating
+Train [16,     1] loss: 0.722
+Train [16,    70] loss: 0.623
+Validate [16,    71] loss: 0.629
+collecting
+35928
+generating
+Train [17,     1] loss: 0.652
+Train [17,    71] loss: 0.638
+Validate [17,    71] loss: 0.720
+collecting
+36073
+generating
+Train [18,     1] loss: 0.696
+Train [18,    71] loss: 0.605
+Validate [18,    71] loss: 0.606
+collecting
+35557
+generating
+Train [19,     1] loss: 0.448
+Train [19,    70] loss: 0.591
+Validate [19,    71] loss: 0.784
+collecting
+35338
+generating
+Train [20,     1] loss: 0.541
+Train [20,    70] loss: 0.604
+Validate [20,    71] loss: 0.559
+collecting
+36087
+generating
+Train [21,     1] loss: 0.515
+Train [21,    71] loss: 0.604
+Validate [21,    71] loss: 0.620
+collecting
+36400
+generating
+Train [22,     1] loss: 0.582
+Train [22,    72] loss: 0.558
+Validate [22,    71] loss: 1.281
+collecting
+36686
+generating
+Train [23,     1] loss: 1.036
+Train [23,    72] loss: 0.575
+Validate [23,    71] loss: 0.571
+collecting
+35519
+generating
+Train [24,     1] loss: 0.655
+Train [24,    70] loss: 0.551
+Validate [24,    71] loss: 0.714
+collecting
+36779
+generating
+Train [25,     1] loss: 0.525
+Train [25,    72] loss: 0.555
+Validate [25,    71] loss: 0.575
+collecting
+36038
+generating
+Train [26,     1] loss: 0.587
+Train [26,    71] loss: 0.521
+Validate [26,    71] loss: 0.538
+collecting
+35991
+generating
+Train [27,     1] loss: 0.609
+Train [27,    71] loss: 0.543
+Validate [27,    71] loss: 0.597
+collecting
+36717
+generating
+Train [28,     1] loss: 0.578
+Train [28,    72] loss: 0.525
+Validate [28,    71] loss: 0.520
+collecting
+36462
+generating
+Train [29,     1] loss: 0.572
+Train [29,    72] loss: 0.528
+Validate [29,    71] loss: 0.560
+collecting
+37226
+generating
+Train [30,     1] loss: 0.473
+Train [30,    73] loss: 0.526
+Validate [30,    71] loss: 0.547
+collecting
+36159
+best_loss=tensor(36.9421, device='cuda:0'), best_epoch=27
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'nadam',
+  'optimizer_lr': 1.1492895090498373e-05,
+  'scheduler': True,
+})
+
+generating
+collecting
+36151
+generating
+collecting
+36952
+generating
+Train [1,     1] loss: 9.076
+Train [1,    71] loss: 6.815
+Validate [1,    73] loss: 5.074
+collecting
+36509
+generating
+Train [2,     1] loss: 4.901
+Train [2,    72] loss: 4.602
+Validate [2,    73] loss: 4.198
+collecting
+35735
+generating
+Train [3,     1] loss: 4.152
+Train [3,    70] loss: 3.945
+Validate [3,    73] loss: 3.704
+collecting
+36529
+generating
+Train [4,     1] loss: 3.697
+Train [4,    72] loss: 3.471
+Validate [4,    73] loss: 3.304
+collecting
+36450
+generating
+Train [5,     1] loss: 3.558
+Train [5,    72] loss: 3.137
+Validate [5,    73] loss: 2.981
+collecting
+35838
+generating
+Train [6,     1] loss: 3.560
+Train [6,    70] loss: 2.892
+Validate [6,    73] loss: 2.749
+collecting
+35533
+generating
+Train [7,     1] loss: 2.919
+Train [7,    70] loss: 2.645
+Validate [7,    73] loss: 2.577
+collecting
+35026
+generating
+Train [8,     1] loss: 2.608
+Train [8,    69] loss: 2.557
+Validate [8,    73] loss: 2.474
+collecting
+36099
+generating
+Train [9,     1] loss: 2.543
+Train [9,    71] loss: 2.409
+Validate [9,    73] loss: 2.302
+collecting
+36033
+generating
+Train [10,     1] loss: 2.225
+Train [10,    71] loss: 2.302
+Validate [10,    73] loss: 2.154
+collecting
+35382
+generating
+Train [11,     1] loss: 2.180
+Train [11,    70] loss: 2.209
+Validate [11,    73] loss: 2.088
+collecting
+36415
+generating
+Train [12,     1] loss: 1.899
+Train [12,    72] loss: 2.017
+Validate [12,    73] loss: 1.978
+collecting
+36218
+generating
+Train [13,     1] loss: 1.828
+Train [13,    71] loss: 1.941
+Validate [13,    73] loss: 1.802
+collecting
+36250
+generating
+Train [14,     1] loss: 1.594
+Train [14,    71] loss: 1.799
+Validate [14,    73] loss: 1.733
+collecting
+36810
+generating
+Train [15,     1] loss: 1.646
+Train [15,    72] loss: 1.748
+Validate [15,    73] loss: 1.658
+collecting
+36222
+generating
+Train [16,     1] loss: 1.723
+Train [16,    71] loss: 1.661
+Validate [16,    73] loss: 1.605
+collecting
+35819
+generating
+Train [17,     1] loss: 1.424
+Train [17,    70] loss: 1.647
+Validate [17,    73] loss: 1.556
+collecting
+36301
+generating
+Train [18,     1] loss: 1.329
+Train [18,    71] loss: 1.594
+Validate [18,    73] loss: 1.512
+collecting
+36034
+generating
+Train [19,     1] loss: 1.253
+Train [19,    71] loss: 1.477
+Validate [19,    73] loss: 1.472
+collecting
+36967
+generating
+Train [20,     1] loss: 1.164
+Train [20,    73] loss: 1.473
+Validate [20,    73] loss: 1.456
+collecting
+34536
+generating
+Train [21,     1] loss: 1.449
+Train [21,    68] loss: 1.541
+Validate [21,    73] loss: 1.426
+collecting
+37312
+generating
+Train [22,     1] loss: 1.515
+Train [22,    73] loss: 1.410
+Validate [22,    73] loss: 1.415
+collecting
+36101
+generating
+Train [23,     1] loss: 1.907
+Train [23,    71] loss: 1.489
+Validate [23,    73] loss: 1.387
+collecting
+35548
+generating
+Train [24,     1] loss: 1.063
+Train [24,    70] loss: 1.490
+Validate [24,    73] loss: 1.395
+collecting
+36687
+generating
+Train [25,     1] loss: 1.244
+Train [25,    72] loss: 1.391
+Validate [25,    73] loss: 1.377
+collecting
+36679
+generating
+Train [26,     1] loss: 1.110
+Train [26,    72] loss: 1.404
+Validate [26,    73] loss: 1.360
+collecting
+35318
+generating
+Train [27,     1] loss: 1.368
+Train [27,    69] loss: 1.463
+Validate [27,    73] loss: 1.359
+collecting
+36971
+generating
+Train [28,     1] loss: 0.891
+Train [28,    73] loss: 1.430
+Validate [28,    73] loss: 1.373
+collecting
+36138
+generating
+Train [29,     1] loss: 1.609
+Train [29,    71] loss: 1.433
+Validate [29,    73] loss: 1.360
+collecting
+35634
+generating
+Train [30,     1] loss: 1.926
+Train [30,    70] loss: 1.478
+Validate [30,    73] loss: 1.366
+collecting
+35949
+best_loss=tensor(99.1864, device='cuda:0'), best_epoch=26
+Configuration(values={
+  'activation': 'elu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.0027428385143012037,
+  'scheduler': True,
+})
+
+generating
+collecting
+36247
+generating
+collecting
+36000
+generating
+Train [1,     1] loss: 9.050
+Train [1,    71] loss: 5.032
+Validate [1,    71] loss: 3.473
+collecting
+37706
+generating
+Train [2,     1] loss: 3.244
+Train [2,    74] loss: 2.578
+Validate [2,    71] loss: 2.822
+collecting
+36612
+generating
+Train [3,     1] loss: 2.288
+Train [3,    72] loss: 2.115
+Validate [3,    71] loss: 4.201
+collecting
+35170
+generating
+Train [4,     1] loss: 1.798
+Train [4,    69] loss: 1.842
+Validate [4,    71] loss: 1.970
+collecting
+36207
+generating
+Train [5,     1] loss: 1.761
+Train [5,    71] loss: 1.577
+Validate [5,    71] loss: 1.599
+collecting
+35977
+generating
+Train [6,     1] loss: 1.699
+Train [6,    71] loss: 1.429
+Validate [6,    71] loss: 1.402
+collecting
+36542
+generating
+Train [7,     1] loss: 1.874
+Train [7,    72] loss: 1.311
+Validate [7,    71] loss: 1.224
+collecting
+36076
+generating
+Train [8,     1] loss: 1.209
+Train [8,    71] loss: 1.188
+Validate [8,    71] loss: 1.130
+collecting
+36305
+generating
+Train [9,     1] loss: 1.157
+Train [9,    71] loss: 1.108
+Validate [9,    71] loss: 1.023
+collecting
+35361
+generating
+Train [10,     1] loss: 1.015
+Train [10,    70] loss: 1.037
+Validate [10,    71] loss: 1.494
+collecting
+37128
+generating
+Train [11,     1] loss: 1.202
+Train [11,    73] loss: 1.017
+Validate [11,    71] loss: 1.040
+collecting
+36396
+generating
+Train [12,     1] loss: 0.846
+Train [12,    72] loss: 0.926
+Validate [12,    71] loss: 1.031
+collecting
+36443
+generating
+Train [13,     1] loss: 0.965
+Train [13,    72] loss: 0.855
+Validate [13,    71] loss: 0.887
+collecting
+36156
+generating
+Train [14,     1] loss: 0.756
+Train [14,    71] loss: 0.840
+Validate [14,    71] loss: 0.769
+collecting
+36694
+generating
+Train [15,     1] loss: 0.705
+Train [15,    72] loss: 0.772
+Validate [15,    71] loss: 0.820
+collecting
+36282
+generating
+Train [16,     1] loss: 0.754
+Train [16,    71] loss: 0.770
+Validate [16,    71] loss: 0.790
+collecting
+36738
+generating
+Train [17,     1] loss: 1.180
+Train [17,    72] loss: 0.737
+Validate [17,    71] loss: 0.690
+collecting
+36253
+generating
+Train [18,     1] loss: 0.591
+Train [18,    71] loss: 0.662
+Validate [18,    71] loss: 0.672
+collecting
+37482
+generating
+Train [19,     1] loss: 0.623
+Train [19,    74] loss: 0.667
+Validate [19,    71] loss: 0.741
+collecting
+36942
+generating
+Train [20,     1] loss: 0.538
+Train [20,    73] loss: 0.650
+Validate [20,    71] loss: 0.628
+collecting
+36886
+generating
+Train [21,     1] loss: 0.626
+Train [21,    73] loss: 0.657
+Validate [21,    71] loss: 0.652
+collecting
+36525
+generating
+Train [22,     1] loss: 0.550
+Train [22,    72] loss: 0.669
+Validate [22,    71] loss: 0.610
+collecting
+36165
+generating
+Train [23,     1] loss: 0.607
+Train [23,    71] loss: 0.626
+Validate [23,    71] loss: 0.586
+collecting
+35673
+generating
+Train [24,     1] loss: 0.512
+Train [24,    70] loss: 0.602
+Validate [24,    71] loss: 0.574
+collecting
+36617
+generating
+Train [25,     1] loss: 0.566
+Train [25,    72] loss: 0.569
+Validate [25,    71] loss: 0.567
+collecting
+35666
+generating
+Train [26,     1] loss: 0.633
+Train [26,    70] loss: 0.594
+Validate [26,    71] loss: 0.556
+collecting
+35670
+generating
+Train [27,     1] loss: 0.570
+Train [27,    70] loss: 0.593
+Validate [27,    71] loss: 0.556
+collecting
+35395
+generating
+Train [28,     1] loss: 0.463
+Train [28,    70] loss: 0.549
+Validate [28,    71] loss: 0.547
+collecting
+35617
+generating
+Train [29,     1] loss: 0.476
+Train [29,    70] loss: 0.563
+Validate [29,    71] loss: 0.544
+collecting
+36288
+generating
+Train [30,     1] loss: 0.503
+Train [30,    71] loss: 0.534
+Validate [30,    71] loss: 0.543
+collecting
+36753
+best_loss=tensor(38.5468, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0007505351675909151,
+  'scheduler': True,
+})
+
+generating
+collecting
+35618
+generating
+collecting
+36867
+generating
+Train [1,     1] loss: 9.113
+Train [1,    70] loss: 3.126
+Validate [1,    73] loss: 2.892
+collecting
+36381
+generating
+Train [2,     1] loss: 2.344
+Train [2,    72] loss: 1.426
+Validate [2,    73] loss: 3.082
+collecting
+36514
+generating
+Train [3,     1] loss: 2.306
+Train [3,    72] loss: 1.162
+Validate [3,    73] loss: 1.178
+collecting
+36660
+generating
+Train [4,     1] loss: 1.196
+Train [4,    72] loss: 0.995
+Validate [4,    73] loss: 0.969
+collecting
+35911
+generating
+Train [5,     1] loss: 1.094
+Train [5,    71] loss: 0.953
+Validate [5,    73] loss: 1.390
+collecting
+35493
+generating
+Train [6,     1] loss: 1.201
+Train [6,    70] loss: 0.868
+Validate [6,    73] loss: 1.000
+collecting
+36352
+generating
+Train [7,     1] loss: 1.181
+Train [7,    71] loss: 0.776
+Validate [7,    73] loss: 0.811
+collecting
+36349
+generating
+Train [8,     1] loss: 0.577
+Train [8,    71] loss: 0.752
+Validate [8,    73] loss: 0.749
+collecting
+36187
+generating
+Train [9,     1] loss: 0.747
+Train [9,    71] loss: 0.709
+Validate [9,    73] loss: 0.718
+collecting
+35665
+generating
+Train [10,     1] loss: 0.618
+Train [10,    70] loss: 0.665
+Validate [10,    73] loss: 0.723
+collecting
+37251
+generating
+Train [11,     1] loss: 0.643
+Train [11,    73] loss: 0.648
+Validate [11,    73] loss: 0.704
+collecting
+36636
+generating
+Train [12,     1] loss: 0.672
+Train [12,    72] loss: 0.629
+Validate [12,    73] loss: 0.646
+collecting
+36919
+generating
+Train [13,     1] loss: 0.711
+Train [13,    73] loss: 0.606
+Validate [13,    73] loss: 0.623
+collecting
+36121
+generating
+Train [14,     1] loss: 0.492
+Train [14,    71] loss: 0.603
+Validate [14,    73] loss: 0.614
+collecting
+36075
+generating
+Train [15,     1] loss: 0.574
+Train [15,    71] loss: 0.585
+Validate [15,    73] loss: 0.600
+collecting
+36878
+generating
+Train [16,     1] loss: 0.680
+Train [16,    73] loss: 0.531
+Validate [16,    73] loss: 1.775
+collecting
+35987
+generating
+Train [17,     1] loss: 1.446
+Train [17,    71] loss: 0.603
+Validate [17,    73] loss: 0.571
+collecting
+35877
+generating
+Train [18,     1] loss: 0.602
+Train [18,    71] loss: 0.549
+Validate [18,    73] loss: 0.651
+collecting
+36457
+generating
+Train [19,     1] loss: 0.488
+Train [19,    72] loss: 0.503
+Validate [19,    73] loss: 0.563
+collecting
+36380
+generating
+Train [20,     1] loss: 0.440
+Train [20,    72] loss: 0.490
+Validate [20,    73] loss: 0.887
+collecting
+36329
+generating
+Train [21,     1] loss: 0.434
+Train [21,    71] loss: 0.479
+Validate [21,    73] loss: 0.505
+collecting
+37334
+generating
+Train [22,     1] loss: 0.452
+Train [22,    73] loss: 0.465
+Validate [22,    73] loss: 0.483
+collecting
+36659
+generating
+Train [23,     1] loss: 0.549
+Train [23,    72] loss: 0.455
+Validate [23,    73] loss: 0.484
+collecting
+37114
+generating
+Train [24,     1] loss: 0.330
+Train [24,    73] loss: 0.449
+Validate [24,    73] loss: 0.473
+collecting
+36065
+generating
+Train [25,     1] loss: 0.379
+Train [25,    71] loss: 0.452
+Validate [25,    73] loss: 0.457
+collecting
+36437
+generating
+Train [26,     1] loss: 0.345
+Train [26,    72] loss: 0.426
+Validate [26,    73] loss: 0.449
+collecting
+36556
+generating
+Train [27,     1] loss: 0.293
+Train [27,    72] loss: 0.433
+Validate [27,    73] loss: 0.443
+collecting
+35785
+generating
+Train [28,     1] loss: 0.338
+Train [28,    70] loss: 0.452
+Validate [28,    73] loss: 0.441
+collecting
+36079
+generating
+Train [29,     1] loss: 0.384
+Train [29,    71] loss: 0.444
+Validate [29,    73] loss: 0.440
+collecting
+36350
+generating
+Train [30,     1] loss: 0.257
+Train [30,    71] loss: 0.428
+Validate [30,    73] loss: 0.439
+collecting
+36614
+best_loss=tensor(32.0722, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.0033250688836226373,
+  'scheduler': True,
+})
+
+generating
+collecting
+36154
+generating
+collecting
+36484
+generating
+Train [1,     1] loss: 8.979
+Train [1,    71] loss: 4.978
+Validate [1,    72] loss: 3.151
+collecting
+36412
+generating
+Train [2,     1] loss: 2.689
+Train [2,    72] loss: 2.598
+Validate [2,    72] loss: 2.215
+collecting
+35846
+generating
+Train [3,     1] loss: 2.273
+Train [3,    71] loss: 1.954
+Validate [3,    72] loss: 1.748
+collecting
+36039
+generating
+Train [4,     1] loss: 1.336
+Train [4,    71] loss: 1.604
+Validate [4,    72] loss: 1.572
+collecting
+36640
+generating
+Train [5,     1] loss: 1.547
+Train [5,    72] loss: 1.467
+Validate [5,    72] loss: 1.639
+collecting
+36766
+generating
+Train [6,     1] loss: 1.703
+Train [6,    72] loss: 1.297
+Validate [6,    72] loss: 1.189
+collecting
+35850
+generating
+Train [7,     1] loss: 0.932
+Train [7,    71] loss: 1.135
+Validate [7,    72] loss: 1.041
+collecting
+35584
+generating
+Train [8,     1] loss: 0.837
+Train [8,    70] loss: 0.957
+Validate [8,    72] loss: 0.969
+collecting
+37755
+generating
+Train [9,     1] loss: 0.970
+Train [9,    74] loss: 0.901
+Validate [9,    72] loss: 0.881
+collecting
+35612
+generating
+Train [10,     1] loss: 0.702
+Train [10,    70] loss: 0.849
+Validate [10,    72] loss: 0.929
+collecting
+35500
+generating
+Train [11,     1] loss: 0.741
+Train [11,    70] loss: 0.833
+Validate [11,    72] loss: 0.801
+collecting
+35946
+generating
+Train [12,     1] loss: 0.775
+Train [12,    71] loss: 0.865
+Validate [12,    72] loss: 0.773
+collecting
+36229
+generating
+Train [13,     1] loss: 0.631
+Train [13,    71] loss: 0.780
+Validate [13,    72] loss: 0.751
+collecting
+36456
+generating
+Train [14,     1] loss: 0.662
+Train [14,    72] loss: 0.726
+Validate [14,    72] loss: 0.704
+collecting
+36340
+generating
+Train [15,     1] loss: 0.482
+Train [15,    71] loss: 0.745
+Validate [15,    72] loss: 0.677
+collecting
+36571
+generating
+Train [16,     1] loss: 0.530
+Train [16,    72] loss: 0.651
+Validate [16,    72] loss: 0.652
+collecting
+36278
+generating
+Train [17,     1] loss: 1.021
+Train [17,    71] loss: 0.647
+Validate [17,    72] loss: 0.621
+collecting
+35555
+generating
+Train [18,     1] loss: 0.643
+Train [18,    70] loss: 0.629
+Validate [18,    72] loss: 0.614
+collecting
+36022
+generating
+Train [19,     1] loss: 0.529
+Train [19,    71] loss: 0.602
+Validate [19,    72] loss: 0.600
+collecting
+36658
+generating
+Train [20,     1] loss: 0.562
+Train [20,    72] loss: 0.569
+Validate [20,    72] loss: 0.560
+collecting
+36814
+generating
+Train [21,     1] loss: 0.470
+Train [21,    72] loss: 0.570
+Validate [21,    72] loss: 0.552
+collecting
+35356
+generating
+Train [22,     1] loss: 0.581
+Train [22,    70] loss: 0.532
+Validate [22,    72] loss: 0.525
+collecting
+35457
+generating
+Train [23,     1] loss: 0.513
+Train [23,    70] loss: 0.539
+Validate [23,    72] loss: 0.512
+collecting
+36216
+generating
+Train [24,     1] loss: 0.515
+Train [24,    71] loss: 0.522
+Validate [24,    72] loss: 0.502
+collecting
+35304
+generating
+Train [25,     1] loss: 0.412
+Train [25,    69] loss: 0.510
+Validate [25,    72] loss: 0.494
+collecting
+35511
+generating
+Train [26,     1] loss: 0.418
+Train [26,    70] loss: 0.491
+Validate [26,    72] loss: 0.485
+collecting
+35713
+generating
+Train [27,     1] loss: 0.368
+Train [27,    70] loss: 0.501
+Validate [27,    72] loss: 0.479
+collecting
+35909
+generating
+Train [28,     1] loss: 0.405
+Train [28,    71] loss: 0.504
+Validate [28,    72] loss: 0.476
+collecting
+36416
+generating
+Train [29,     1] loss: 0.274
+Train [29,    72] loss: 0.480
+Validate [29,    72] loss: 0.473
+collecting
+36124
+generating
+Train [30,     1] loss: 0.469
+Train [30,    71] loss: 0.476
+Validate [30,    72] loss: 0.472
+collecting
+36398
+best_loss=tensor(33.9572, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'convnext',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 4.749586406867592e-06,
+  'scheduler': False,
+})
+
+generating
+collecting
+35597
+generating
+collecting
+36032
+generating
+Train [1,     1] loss: 9.077
+Train [1,    70] loss: 7.756
+Validate [1,    71] loss: 6.774
+collecting
+36159
+generating
+Train [2,     1] loss: 6.635
+Train [2,    71] loss: 5.632
+Validate [2,    71] loss: 4.898
+collecting
+36656
+generating
+Train [3,     1] loss: 4.672
+Train [3,    72] loss: 4.384
+Validate [3,    71] loss: 4.124
+collecting
+36471
+generating
+Train [4,     1] loss: 4.146
+Train [4,    72] loss: 3.869
+Validate [4,    71] loss: 3.736
+collecting
+36016
+generating
+Train [5,     1] loss: 3.139
+Train [5,    71] loss: 3.521
+Validate [5,    71] loss: 3.464
+collecting
+36774
+generating
+Train [6,     1] loss: 3.456
+Train [6,    72] loss: 3.300
+Validate [6,    71] loss: 3.261
+collecting
+35063
+generating
+Train [7,     1] loss: 3.425
+Train [7,    69] loss: 3.161
+Validate [7,    71] loss: 3.107
+collecting
+35654
+generating
+Train [8,     1] loss: 3.693
+Train [8,    70] loss: 3.025
+Validate [8,    71] loss: 2.973
+collecting
+36412
+generating
+Train [9,     1] loss: 2.636
+Train [9,    72] loss: 2.911
+Validate [9,    71] loss: 2.889
+collecting
+35937
+generating
+Train [10,     1] loss: 2.379
+Train [10,    71] loss: 2.870
+Validate [10,    71] loss: 2.809
+collecting
+35825
+generating
+Train [11,     1] loss: 2.208
+Train [11,    70] loss: 2.718
+Validate [11,    71] loss: 2.749
+collecting
+36017
+generating
+Train [12,     1] loss: 3.377
+Train [12,    71] loss: 2.737
+Validate [12,    71] loss: 2.671
+collecting
+36638
+generating
+Train [13,     1] loss: 2.369
+Train [13,    72] loss: 2.571
+Validate [13,    71] loss: 2.615
+collecting
+36386
+generating
+Train [14,     1] loss: 1.787
+Train [14,    72] loss: 2.645
+Validate [14,    71] loss: 2.578
+collecting
+35865
+generating
+Train [15,     1] loss: 2.671
+Train [15,    71] loss: 2.486
+Validate [15,    71] loss: 2.511
+collecting
+36112
+generating
+Train [16,     1] loss: 2.412
+Train [16,    71] loss: 2.443
+Validate [16,    71] loss: 2.466
+collecting
+36035
+generating
+Train [17,     1] loss: 2.077
+Train [17,    71] loss: 2.395
+Validate [17,    71] loss: 2.404
+collecting
+36213
+generating
+Train [18,     1] loss: 1.957
+Train [18,    71] loss: 2.313
+Validate [18,    71] loss: 2.368
+collecting
+35459
+generating
+Train [19,     1] loss: 2.213
+Train [19,    70] loss: 2.372
+Validate [19,    71] loss: 2.326
+collecting
+35269
+generating
+Train [20,     1] loss: 1.935
+Train [20,    69] loss: 2.315
+Validate [20,    71] loss: 2.303
+collecting
+36360
+generating
+Train [21,     1] loss: 2.030
+Train [21,    72] loss: 2.257
+Validate [21,    71] loss: 2.264
+collecting
+36079
+generating
+Train [22,     1] loss: 1.976
+Train [22,    71] loss: 2.241
+Validate [22,    71] loss: 2.219
+collecting
+36625
+generating
+Train [23,     1] loss: 1.717
+Train [23,    72] loss: 2.167
+Validate [23,    71] loss: 2.179
+collecting
+36670
+generating
+Train [24,     1] loss: 2.257
+Train [24,    72] loss: 2.169
+Validate [24,    71] loss: 2.139
+collecting
+36831
+generating
+Train [25,     1] loss: 2.217
+Train [25,    72] loss: 2.107
+Validate [25,    71] loss: 2.108
+collecting
+37038
+generating
+Train [26,     1] loss: 1.364
+Train [26,    73] loss: 2.024
+Validate [26,    71] loss: 2.079
+collecting
+36269
+generating
+Train [27,     1] loss: 2.711
+Train [27,    71] loss: 2.060
+Validate [27,    71] loss: 2.032
+collecting
+35812
+generating
+Train [28,     1] loss: 1.992
+Train [28,    70] loss: 1.963
+Validate [28,    71] loss: 2.006
+collecting
+35838
+generating
+Train [29,     1] loss: 1.647
+Train [29,    70] loss: 1.898
+Validate [29,    71] loss: 1.957
+collecting
+36824
+generating
+Train [30,     1] loss: 2.191
+Train [30,    72] loss: 1.886
+Validate [30,    71] loss: 1.955
+collecting
+35751
+best_loss=tensor(138.8292, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 7.505495669302642e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+36537
+generating
+collecting
+36418
+generating
+Train [1,     1] loss: 9.047
+Train [1,    72] loss: 6.958
+Validate [1,    72] loss: 5.452
+collecting
+36695
+generating
+Train [2,     1] loss: 5.165
+Train [2,    72] loss: 4.604
+Validate [2,    72] loss: 4.207
+collecting
+35935
+generating
+Train [3,     1] loss: 3.922
+Train [3,    71] loss: 3.918
+Validate [3,    72] loss: 3.727
+collecting
+35265
+generating
+Train [4,     1] loss: 3.647
+Train [4,    69] loss: 3.524
+Validate [4,    72] loss: 3.447
+collecting
+36578
+generating
+Train [5,     1] loss: 3.339
+Train [5,    72] loss: 3.245
+Validate [5,    72] loss: 3.167
+collecting
+36511
+generating
+Train [6,     1] loss: 3.507
+Train [6,    72] loss: 3.048
+Validate [6,    72] loss: 2.994
+collecting
+36143
+generating
+Train [7,     1] loss: 2.697
+Train [7,    71] loss: 2.896
+Validate [7,    72] loss: 2.869
+collecting
+35836
+generating
+Train [8,     1] loss: 2.392
+Train [8,    70] loss: 2.778
+Validate [8,    72] loss: 2.749
+collecting
+36585
+generating
+Train [9,     1] loss: 2.310
+Train [9,    72] loss: 2.695
+Validate [9,    72] loss: 2.657
+collecting
+36048
+generating
+Train [10,     1] loss: 1.995
+Train [10,    71] loss: 2.609
+Validate [10,    72] loss: 2.579
+collecting
+35846
+generating
+Train [11,     1] loss: 2.227
+Train [11,    71] loss: 2.501
+Validate [11,    72] loss: 2.530
+collecting
+36284
+generating
+Train [12,     1] loss: 2.887
+Train [12,    71] loss: 2.337
+Validate [12,    72] loss: 2.436
+collecting
+36256
+generating
+Train [13,     1] loss: 2.066
+Train [13,    71] loss: 2.397
+Validate [13,    72] loss: 2.379
+collecting
+36354
+generating
+Train [14,     1] loss: 2.354
+Train [14,    72] loss: 2.455
+Validate [14,    72] loss: 2.419
+collecting
+36491
+generating
+Train [15,     1] loss: 1.864
+Train [15,    72] loss: 2.246
+Validate [15,    72] loss: 2.279
+collecting
+36797
+generating
+Train [16,     1] loss: 1.747
+Train [16,    72] loss: 2.145
+Validate [16,    72] loss: 2.188
+collecting
+35565
+generating
+Train [17,     1] loss: 2.202
+Train [17,    70] loss: 2.152
+Validate [17,    72] loss: 2.158
+collecting
+36249
+generating
+Train [18,     1] loss: 1.696
+Train [18,    71] loss: 2.138
+Validate [18,    72] loss: 2.124
+collecting
+36130
+generating
+Train [19,     1] loss: 1.942
+Train [19,    71] loss: 1.986
+Validate [19,    72] loss: 2.084
+collecting
+35837
+generating
+Train [20,     1] loss: 2.416
+Train [20,    70] loss: 2.015
+Validate [20,    72] loss: 2.060
+collecting
+36499
+generating
+Train [21,     1] loss: 1.974
+Train [21,    72] loss: 2.010
+Validate [21,    72] loss: 2.039
+collecting
+36481
+generating
+Train [22,     1] loss: 1.327
+Train [22,    72] loss: 1.941
+Validate [22,    72] loss: 2.023
+collecting
+35863
+generating
+Train [23,     1] loss: 1.363
+Train [23,    71] loss: 1.969
+Validate [23,    72] loss: 1.990
+collecting
+36965
+generating
+Train [24,     1] loss: 1.937
+Train [24,    73] loss: 1.979
+Validate [24,    72] loss: 1.996
+collecting
+36232
+generating
+Train [25,     1] loss: 2.009
+Train [25,    71] loss: 1.964
+Validate [25,    72] loss: 1.966
+collecting
+35437
+generating
+Train [26,     1] loss: 1.525
+Train [26,    70] loss: 1.903
+Validate [26,    72] loss: 1.959
+collecting
+36425
+generating
+Train [27,     1] loss: 1.527
+Train [27,    72] loss: 1.965
+Validate [27,    72] loss: 1.952
+collecting
+35415
+generating
+Train [28,     1] loss: 1.995
+Train [28,    70] loss: 1.931
+Validate [28,    72] loss: 1.951
+collecting
+35365
+generating
+Train [29,     1] loss: 1.915
+Train [29,    70] loss: 1.896
+Validate [29,    72] loss: 1.962
+collecting
+36299
+generating
+Train [30,     1] loss: 1.952
+Train [30,    71] loss: 1.938
+Validate [30,    72] loss: 1.947
+collecting
+36583
+best_loss=tensor(140.1556, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0007546570805977458,
+  'scheduler': True,
+})
+
+generating
+collecting
+36176
+generating
+collecting
+36772
+generating
+Train [1,     1] loss: 9.083
+Train [1,    71] loss: 3.070
+Validate [1,    72] loss: 2.211
+collecting
+34840
+generating
+Train [2,     1] loss: 1.229
+Train [2,    69] loss: 1.381
+Validate [2,    72] loss: 1.783
+collecting
+35459
+generating
+Train [3,     1] loss: 1.483
+Train [3,    70] loss: 1.172
+Validate [3,    72] loss: 1.210
+collecting
+36493
+generating
+Train [4,     1] loss: 1.095
+Train [4,    72] loss: 1.028
+Validate [4,    72] loss: 1.268
+collecting
+36108
+generating
+Train [5,     1] loss: 1.074
+Train [5,    71] loss: 0.905
+Validate [5,    72] loss: 0.986
+collecting
+36531
+generating
+Train [6,     1] loss: 0.877
+Train [6,    72] loss: 0.871
+Validate [6,    72] loss: 0.844
+collecting
+35584
+generating
+Train [7,     1] loss: 0.888
+Train [7,    70] loss: 0.792
+Validate [7,    72] loss: 1.615
+collecting
+37138
+generating
+Train [8,     1] loss: 1.462
+Train [8,    73] loss: 0.787
+Validate [8,    72] loss: 0.768
+collecting
+35884
+generating
+Train [9,     1] loss: 0.704
+Train [9,    71] loss: 0.745
+Validate [9,    72] loss: 1.003
+collecting
+36249
+generating
+Train [10,     1] loss: 0.872
+Train [10,    71] loss: 0.729
+Validate [10,    72] loss: 0.682
+collecting
+36111
+generating
+Train [11,     1] loss: 0.970
+Train [11,    71] loss: 0.651
+Validate [11,    72] loss: 0.641
+collecting
+35987
+generating
+Train [12,     1] loss: 0.674
+Train [12,    71] loss: 0.631
+Validate [12,    72] loss: 0.674
+collecting
+35289
+generating
+Train [13,     1] loss: 0.679
+Train [13,    69] loss: 0.624
+Validate [13,    72] loss: 0.612
+collecting
+36207
+generating
+Train [14,     1] loss: 0.492
+Train [14,    71] loss: 0.595
+Validate [14,    72] loss: 0.571
+collecting
+36361
+generating
+Train [15,     1] loss: 0.538
+Train [15,    72] loss: 0.591
+Validate [15,    72] loss: 0.565
+collecting
+38280
+generating
+Train [16,     1] loss: 0.506
+Train [16,    75] loss: 0.555
+Validate [16,    72] loss: 0.580
+collecting
+36975
+generating
+Train [17,     1] loss: 0.412
+Train [17,    73] loss: 0.528
+Validate [17,    72] loss: 0.623
+collecting
+36532
+generating
+Train [18,     1] loss: 0.504
+Train [18,    72] loss: 0.514
+Validate [18,    72] loss: 0.511
+collecting
+35803
+generating
+Train [19,     1] loss: 0.486
+Train [19,    70] loss: 0.502
+Validate [19,    72] loss: 0.493
+collecting
+36237
+generating
+Train [20,     1] loss: 0.488
+Train [20,    71] loss: 0.476
+Validate [20,    72] loss: 0.488
+collecting
+36270
+generating
+Train [21,     1] loss: 0.456
+Train [21,    71] loss: 0.474
+Validate [21,    72] loss: 0.472
+collecting
+37155
+generating
+Train [22,     1] loss: 0.461
+Train [22,    73] loss: 0.446
+Validate [22,    72] loss: 0.461
+collecting
+35343
+generating
+Train [23,     1] loss: 0.280
+Train [23,    70] loss: 0.470
+Validate [23,    72] loss: 0.621
+collecting
+36010
+generating
+Train [24,     1] loss: 0.430
+Train [24,    71] loss: 0.463
+Validate [24,    72] loss: 0.446
+collecting
+36698
+generating
+Train [25,     1] loss: 0.735
+Train [25,    72] loss: 0.449
+Validate [25,    72] loss: 0.436
+collecting
+37336
+generating
+Train [26,     1] loss: 0.345
+Train [26,    73] loss: 0.427
+Validate [26,    72] loss: 0.426
+collecting
+36844
+generating
+Train [27,     1] loss: 0.458
+Train [27,    72] loss: 0.414
+Validate [27,    72] loss: 0.423
+collecting
+35345
+generating
+Train [28,     1] loss: 0.437
+Train [28,    70] loss: 0.439
+Validate [28,    72] loss: 0.421
+collecting
+36881
+generating
+Train [29,     1] loss: 0.486
+Train [29,    73] loss: 0.422
+Validate [29,    72] loss: 0.418
+collecting
+35642
+generating
+Train [30,     1] loss: 0.357
+Train [30,    70] loss: 0.422
+Validate [30,    72] loss: 0.417
+collecting
+36862
+best_loss=tensor(29.9935, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 2.3996679703849782e-05,
+  'scheduler': False,
+})
+
+generating
+collecting
+36962
+generating
+collecting
+36095
+generating
+Train [1,     1] loss: 9.051
+Train [1,    73] loss: 5.665
+Validate [1,    71] loss: 4.435
+collecting
+36005
+generating
+Train [2,     1] loss: 3.719
+Train [2,    71] loss: 3.655
+Validate [2,    71] loss: 3.381
+collecting
+36378
+generating
+Train [3,     1] loss: 3.099
+Train [3,    72] loss: 2.965
+Validate [3,    71] loss: 2.860
+collecting
+36971
+generating
+Train [4,     1] loss: 3.087
+Train [4,    73] loss: 2.628
+Validate [4,    71] loss: 2.584
+collecting
+35719
+generating
+Train [5,     1] loss: 2.406
+Train [5,    70] loss: 2.275
+Validate [5,    71] loss: 2.134
+collecting
+36438
+generating
+Train [6,     1] loss: 1.789
+Train [6,    72] loss: 1.920
+Validate [6,    71] loss: 1.913
+collecting
+37548
+generating
+Train [7,     1] loss: 3.296
+Train [7,    74] loss: 1.688
+Validate [7,    71] loss: 1.646
+collecting
+36468
+generating
+Train [8,     1] loss: 1.327
+Train [8,    72] loss: 1.441
+Validate [8,    71] loss: 1.475
+collecting
+37089
+generating
+Train [9,     1] loss: 0.992
+Train [9,    73] loss: 1.332
+Validate [9,    71] loss: 1.334
+collecting
+36282
+generating
+Train [10,     1] loss: 1.529
+Train [10,    71] loss: 1.258
+Validate [10,    71] loss: 1.220
+collecting
+36234
+generating
+Train [11,     1] loss: 1.077
+Train [11,    71] loss: 1.161
+Validate [11,    71] loss: 1.130
+collecting
+36305
+generating
+Train [12,     1] loss: 1.265
+Train [12,    71] loss: 1.083
+Validate [12,    71] loss: 1.086
+collecting
+36236
+generating
+Train [13,     1] loss: 0.850
+Train [13,    71] loss: 1.054
+Validate [13,    71] loss: 1.040
+collecting
+35796
+generating
+Train [14,     1] loss: 0.992
+Train [14,    70] loss: 1.011
+Validate [14,    71] loss: 1.005
+collecting
+35885
+generating
+Train [15,     1] loss: 0.981
+Train [15,    71] loss: 0.993
+Validate [15,    71] loss: 0.979
+collecting
+36625
+generating
+Train [16,     1] loss: 0.881
+Train [16,    72] loss: 0.944
+Validate [16,    71] loss: 0.970
+collecting
+37248
+generating
+Train [17,     1] loss: 0.807
+Train [17,    73] loss: 0.933
+Validate [17,    71] loss: 0.934
+collecting
+36685
+generating
+Train [18,     1] loss: 0.667
+Train [18,    72] loss: 0.893
+Validate [18,    71] loss: 0.916
+collecting
+36407
+generating
+Train [19,     1] loss: 0.791
+Train [19,    72] loss: 0.849
+Validate [19,    71] loss: 0.895
+collecting
+35996
+generating
+Train [20,     1] loss: 0.917
+Train [20,    71] loss: 0.872
+Validate [20,    71] loss: 0.903
+collecting
+36124
+generating
+Train [21,     1] loss: 0.865
+Train [21,    71] loss: 0.852
+Validate [21,    71] loss: 0.883
+collecting
+36587
+generating
+Train [22,     1] loss: 0.957
+Train [22,    72] loss: 0.845
+Validate [22,    71] loss: 0.853
+collecting
+36560
+generating
+Train [23,     1] loss: 0.670
+Train [23,    72] loss: 0.800
+Validate [23,    71] loss: 0.839
+collecting
+35474
+generating
+Train [24,     1] loss: 0.829
+Train [24,    70] loss: 0.784
+Validate [24,    71] loss: 0.824
+collecting
+36227
+generating
+Train [25,     1] loss: 0.882
+Train [25,    71] loss: 0.802
+Validate [25,    71] loss: 0.813
+collecting
+36751
+generating
+Train [26,     1] loss: 0.913
+Train [26,    72] loss: 0.806
+Validate [26,    71] loss: 0.814
+collecting
+36207
+generating
+Train [27,     1] loss: 0.840
+Train [27,    71] loss: 0.771
+Validate [27,    71] loss: 0.794
+collecting
+37020
+generating
+Train [28,     1] loss: 0.658
+Train [28,    73] loss: 0.766
+Validate [28,    71] loss: 0.829
+collecting
+35998
+generating
+Train [29,     1] loss: 0.862
+Train [29,    71] loss: 0.748
+Validate [29,    71] loss: 0.814
+collecting
+36648
+generating
+Train [30,     1] loss: 0.712
+Train [30,    72] loss: 0.758
+Validate [30,    71] loss: 0.768
+collecting
+36552
+best_loss=tensor(54.5425, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0005305798974148991,
+  'scheduler': True,
+})
+
+generating
+collecting
+36760
+generating
+collecting
+36746
+generating
+Train [1,     1] loss: 9.063
+Train [1,    72] loss: 3.162
+Validate [1,    72] loss: 2.159
+collecting
+36851
+generating
+Train [2,     1] loss: 1.857
+Train [2,    72] loss: 1.409
+Validate [2,    72] loss: 1.209
+collecting
+36213
+generating
+Train [3,     1] loss: 1.208
+Train [3,    71] loss: 1.138
+Validate [3,    72] loss: 1.339
+collecting
+35559
+generating
+Train [4,     1] loss: 1.017
+Train [4,    70] loss: 1.018
+Validate [4,    72] loss: 1.126
+collecting
+36429
+generating
+Train [5,     1] loss: 1.029
+Train [5,    72] loss: 0.901
+Validate [5,    72] loss: 1.185
+collecting
+36384
+generating
+Train [6,     1] loss: 0.903
+Train [6,    72] loss: 0.865
+Validate [6,    72] loss: 1.435
+collecting
+36159
+generating
+Train [7,     1] loss: 1.325
+Train [7,    71] loss: 0.818
+Validate [7,    72] loss: 0.931
+collecting
+36773
+generating
+Train [8,     1] loss: 0.589
+Train [8,    72] loss: 0.758
+Validate [8,    72] loss: 0.743
+collecting
+36447
+generating
+Train [9,     1] loss: 0.590
+Train [9,    72] loss: 0.713
+Validate [9,    72] loss: 0.827
+collecting
+35924
+generating
+Train [10,     1] loss: 0.799
+Train [10,    71] loss: 0.692
+Validate [10,    72] loss: 0.904
+collecting
+35835
+generating
+Train [11,     1] loss: 0.771
+Train [11,    70] loss: 0.663
+Validate [11,    72] loss: 0.672
+collecting
+37114
+generating
+Train [12,     1] loss: 0.977
+Train [12,    73] loss: 0.643
+Validate [12,    72] loss: 0.677
+collecting
+35389
+generating
+Train [13,     1] loss: 0.475
+Train [13,    70] loss: 0.634
+Validate [13,    72] loss: 1.344
+collecting
+37220
+generating
+Train [14,     1] loss: 0.866
+Train [14,    73] loss: 0.605
+Validate [14,    72] loss: 0.599
+collecting
+36851
+generating
+Train [15,     1] loss: 0.344
+Train [15,    72] loss: 0.582
+Validate [15,    72] loss: 0.595
+collecting
+36565
+generating
+Train [16,     1] loss: 0.606
+Train [16,    72] loss: 0.540
+Validate [16,    72] loss: 0.570
+collecting
+35974
+generating
+Train [17,     1] loss: 0.801
+Train [17,    71] loss: 0.577
+Validate [17,    72] loss: 0.686
+collecting
+35779
+generating
+Train [18,     1] loss: 0.610
+Train [18,    70] loss: 0.549
+Validate [18,    72] loss: 0.527
+collecting
+36630
+generating
+Train [19,     1] loss: 0.464
+Train [19,    72] loss: 0.514
+Validate [19,    72] loss: 0.513
+collecting
+35873
+generating
+Train [20,     1] loss: 0.561
+Train [20,    71] loss: 0.511
+Validate [20,    72] loss: 0.610
+collecting
+36512
+generating
+Train [21,     1] loss: 0.422
+Train [21,    72] loss: 0.483
+Validate [21,    72] loss: 0.506
+collecting
+36598
+generating
+Train [22,     1] loss: 0.500
+Train [22,    72] loss: 0.501
+Validate [22,    72] loss: 0.481
+collecting
+35564
+generating
+Train [23,     1] loss: 0.370
+Train [23,    70] loss: 0.476
+Validate [23,    72] loss: 0.479
+collecting
+35785
+generating
+Train [24,     1] loss: 0.439
+Train [24,    70] loss: 0.482
+Validate [24,    72] loss: 0.473
+collecting
+35642
+generating
+Train [25,     1] loss: 0.438
+Train [25,    70] loss: 0.457
+Validate [25,    72] loss: 0.456
+collecting
+35730
+generating
+Train [26,     1] loss: 0.477
+Train [26,    70] loss: 0.442
+Validate [26,    72] loss: 0.453
+collecting
+35310
+generating
+Train [27,     1] loss: 0.471
+Train [27,    69] loss: 0.462
+Validate [27,    72] loss: 0.447
+collecting
+35964
+generating
+Train [28,     1] loss: 0.370
+Train [28,    71] loss: 0.436
+Validate [28,    72] loss: 0.444
+collecting
+35868
+generating
+Train [29,     1] loss: 0.600
+Train [29,    71] loss: 0.480
+Validate [29,    72] loss: 0.442
+collecting
+35819
+generating
+Train [30,     1] loss: 0.453
+Train [30,    70] loss: 0.447
+Illegal position: {'x': 8, 'y': 15} HANDOFF
+Validate [30,    72] loss: 0.442
+collecting
+36157
+best_loss=tensor(31.8064, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'celu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 9.593900057790012e-05,
+  'scheduler': False,
+})
+
+generating
+collecting
+35616
+generating
+collecting
+36048
+generating
+Train [1,     1] loss: 9.066
+Train [1,    70] loss: 3.886
+Validate [1,    71] loss: 3.092
+collecting
+35673
+generating
+Train [2,     1] loss: 3.061
+Train [2,    70] loss: 2.411
+Validate [2,    71] loss: 2.133
+collecting
+35745
+generating
+Train [3,     1] loss: 1.594
+Train [3,    70] loss: 1.645
+Validate [3,    71] loss: 1.597
+collecting
+36223
+generating
+Train [4,     1] loss: 1.692
+Train [4,    71] loss: 1.369
+Validate [4,    71] loss: 1.353
+collecting
+35711
+generating
+Train [5,     1] loss: 1.259
+Train [5,    70] loss: 1.192
+Validate [5,    71] loss: 1.244
+collecting
+35898
+generating
+Train [6,     1] loss: 0.868
+Train [6,    71] loss: 1.125
+Validate [6,    71] loss: 1.193
+collecting
+35609
+generating
+Train [7,     1] loss: 0.942
+Train [7,    70] loss: 1.062
+Validate [7,    71] loss: 1.106
+collecting
+36010
+generating
+Train [8,     1] loss: 0.875
+Train [8,    71] loss: 1.008
+Validate [8,    71] loss: 1.053
+collecting
+35982
+generating
+Train [9,     1] loss: 0.932
+Train [9,    71] loss: 0.987
+Validate [9,    71] loss: 1.006
+collecting
+36519
+generating
+Train [10,     1] loss: 1.173
+Train [10,    72] loss: 0.945
+Validate [10,    71] loss: 0.986
+collecting
+36278
+generating
+Train [11,     1] loss: 0.748
+Train [11,    71] loss: 0.977
+Validate [11,    71] loss: 0.947
+collecting
+36787
+generating
+Train [12,     1] loss: 0.992
+Train [12,    72] loss: 0.895
+Validate [12,    71] loss: 0.941
+collecting
+36384
+generating
+Train [13,     1] loss: 0.804
+Train [13,    72] loss: 0.878
+Validate [13,    71] loss: 1.019
+collecting
+35897
+generating
+Train [14,     1] loss: 1.018
+Train [14,    71] loss: 0.851
+Validate [14,    71] loss: 0.912
+collecting
+35319
+generating
+Train [15,     1] loss: 0.745
+Train [15,    69] loss: 0.895
+Validate [15,    71] loss: 0.926
+collecting
+35377
+generating
+Train [16,     1] loss: 0.697
+Train [16,    70] loss: 0.840
+Validate [16,    71] loss: 0.864
+collecting
+36060
+generating
+Train [17,     1] loss: 0.640
+Train [17,    71] loss: 0.775
+Validate [17,    71] loss: 0.858
+collecting
+36397
+generating
+Train [18,     1] loss: 0.741
+Train [18,    72] loss: 0.795
+Validate [18,    71] loss: 0.863
+collecting
+35796
+generating
+Train [19,     1] loss: 0.653
+Train [19,    70] loss: 0.813
+Validate [19,    71] loss: 0.848
+collecting
+35890
+generating
+Train [20,     1] loss: 0.649
+Train [20,    71] loss: 0.750
+Validate [20,    71] loss: 0.842
+collecting
+36500
+generating
+Train [21,     1] loss: 0.724
+Train [21,    72] loss: 0.775
+Validate [21,    71] loss: 0.834
+collecting
+35586
+generating
+Train [22,     1] loss: 0.887
+Train [22,    70] loss: 0.774
+Validate [22,    71] loss: 0.822
+collecting
+35787
+generating
+Train [23,     1] loss: 1.042
+Train [23,    70] loss: 0.757
+Validate [23,    71] loss: 0.809
+collecting
+36615
+generating
+Train [24,     1] loss: 0.973
+Train [24,    72] loss: 0.741
+Validate [24,    71] loss: 0.799
+collecting
+35592
+generating
+Train [25,     1] loss: 0.712
+Train [25,    70] loss: 0.737
+Validate [25,    71] loss: 0.777
+collecting
+36699
+generating
+Train [26,     1] loss: 0.758
+Train [26,    72] loss: 0.724
+Validate [26,    71] loss: 0.776
+collecting
+36400
+generating
+Train [27,     1] loss: 0.671
+Train [27,    72] loss: 0.755
+Validate [27,    71] loss: 0.811
+collecting
+36093
+generating
+Train [28,     1] loss: 0.478
+Train [28,    71] loss: 0.711
+Validate [28,    71] loss: 0.763
+collecting
+36585
+generating
+Train [29,     1] loss: 0.474
+Train [29,    72] loss: 0.702
+Validate [29,    71] loss: 0.760
+collecting
+36035
+generating
+Train [30,     1] loss: 0.581
+Train [30,    71] loss: 0.690
+Validate [30,    71] loss: 0.748
+collecting
+36579
+best_loss=tensor(53.0972, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.0006958191678438862,
+  'scheduler': False,
+})
+
+generating
+collecting
+36632
+generating
+collecting
+35997
+generating
+Train [1,     1] loss: 9.077
+Train [1,    72] loss: 3.276
+Validate [1,    71] loss: 2.563
+collecting
+37078
+generating
+Train [2,     1] loss: 1.820
+Train [2,    73] loss: 1.528
+Validate [2,    71] loss: 1.360
+collecting
+35949
+generating
+Train [3,     1] loss: 1.213
+Train [3,    71] loss: 1.229
+Validate [3,    71] loss: 1.166
+collecting
+36559
+generating
+Train [4,     1] loss: 1.161
+Train [4,    72] loss: 1.077
+Validate [4,    71] loss: 1.042
+collecting
+35381
+generating
+Train [5,     1] loss: 0.967
+Train [5,    70] loss: 0.963
+Validate [5,    71] loss: 0.951
+collecting
+35651
+generating
+Train [6,     1] loss: 0.758
+Train [6,    70] loss: 0.934
+Validate [6,    71] loss: 0.901
+collecting
+36714
+generating
+Train [7,     1] loss: 0.687
+Train [7,    72] loss: 0.805
+Validate [7,    71] loss: 0.849
+collecting
+36202
+generating
+Train [8,     1] loss: 0.756
+Train [8,    71] loss: 0.816
+Validate [8,    71] loss: 0.797
+collecting
+36286
+generating
+Train [9,     1] loss: 0.698
+Train [9,    71] loss: 0.776
+Validate [9,    71] loss: 0.775
+collecting
+36300
+generating
+Train [10,     1] loss: 0.742
+Train [10,    71] loss: 0.707
+Validate [10,    71] loss: 0.844
+collecting
+36794
+generating
+Train [11,     1] loss: 0.640
+Train [11,    72] loss: 0.719
+Validate [11,    71] loss: 0.729
+collecting
+37289
+generating
+Train [12,     1] loss: 0.651
+Train [12,    73] loss: 0.703
+Validate [12,    71] loss: 0.802
+collecting
+35712
+generating
+Train [13,     1] loss: 0.534
+Train [13,    70] loss: 0.721
+Validate [13,    71] loss: 0.706
+collecting
+37014
+generating
+Train [14,     1] loss: 0.587
+Train [14,    73] loss: 0.632
+Validate [14,    71] loss: 0.698
+collecting
+36862
+generating
+Train [15,     1] loss: 0.585
+Train [15,    72] loss: 0.638
+Validate [15,    71] loss: 0.661
+collecting
+36110
+generating
+Train [16,     1] loss: 0.753
+Train [16,    71] loss: 0.603
+Validate [16,    71] loss: 0.689
+collecting
+36321
+generating
+Train [17,     1] loss: 0.479
+Train [17,    71] loss: 0.616
+Validate [17,    71] loss: 0.649
+collecting
+35957
+generating
+Train [18,     1] loss: 0.543
+Train [18,    71] loss: 0.605
+Validate [18,    71] loss: 0.642
+collecting
+35723
+generating
+Train [19,     1] loss: 0.441
+Train [19,    70] loss: 0.637
+Validate [19,    71] loss: 0.658
+collecting
+36260
+generating
+Train [20,     1] loss: 0.509
+Train [20,    71] loss: 0.568
+Validate [20,    71] loss: 0.620
+collecting
+35403
+generating
+Train [21,     1] loss: 0.572
+Train [21,    70] loss: 0.564
+Validate [21,    71] loss: 0.621
+collecting
+37328
+generating
+Train [22,     1] loss: 0.623
+Train [22,    73] loss: 0.596
+Validate [22,    71] loss: 0.602
+collecting
+35955
+generating
+Train [23,     1] loss: 0.596
+Train [23,    71] loss: 0.558
+Validate [23,    71] loss: 0.605
+collecting
+36706
+generating
+Train [24,     1] loss: 0.550
+Train [24,    72] loss: 0.573
+Validate [24,    71] loss: 0.593
+collecting
+35812
+generating
+Train [25,     1] loss: 0.534
+Train [25,    70] loss: 0.546
+Validate [25,    71] loss: 0.569
+collecting
+35798
+generating
+Train [26,     1] loss: 0.503
+Train [26,    70] loss: 0.543
+Validate [26,    71] loss: 0.572
+collecting
+35959
+generating
+Train [27,     1] loss: 0.385
+Train [27,    71] loss: 0.542
+Validate [27,    71] loss: 0.593
+collecting
+36401
+generating
+Train [28,     1] loss: 0.374
+Train [28,    72] loss: 0.544
+Validate [28,    71] loss: 0.569
+collecting
+36386
+generating
+Train [29,     1] loss: 0.567
+Train [29,    72] loss: 0.548
+Validate [29,    71] loss: 0.542
+collecting
+36893
+generating
+Train [30,     1] loss: 0.439
+Train [30,    73] loss: 0.506
+Validate [30,    71] loss: 0.566
+collecting
+36016
+best_loss=tensor(38.5128, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 4.48386822925069e-06,
+  'scheduler': False,
+})
+
+generating
+collecting
+36592
+generating
+collecting
+36011
+generating
+Train [1,     1] loss: 9.025
+Train [1,    72] loss: 7.954
+Validate [1,    71] loss: 7.012
+collecting
+36860
+generating
+Train [2,     1] loss: 6.912
+Train [2,    72] loss: 5.901
+Validate [2,    71] loss: 5.234
+collecting
+35356
+generating
+Train [3,     1] loss: 5.040
+Train [3,    70] loss: 4.962
+Validate [3,    71] loss: 4.746
+collecting
+36221
+generating
+Train [4,     1] loss: 4.827
+Train [4,    71] loss: 4.571
+Validate [4,    71] loss: 4.490
+collecting
+36274
+generating
+Train [5,     1] loss: 4.343
+Train [5,    71] loss: 4.350
+Validate [5,    71] loss: 4.248
+collecting
+37370
+generating
+Train [6,     1] loss: 4.118
+Train [6,    73] loss: 4.137
+Validate [6,    71] loss: 4.041
+collecting
+35513
+generating
+Train [7,     1] loss: 4.218
+Train [7,    70] loss: 3.934
+Validate [7,    71] loss: 3.847
+collecting
+37232
+generating
+Train [8,     1] loss: 3.751
+Train [8,    73] loss: 3.726
+Validate [8,    71] loss: 3.676
+collecting
+35424
+generating
+Train [9,     1] loss: 3.574
+Train [9,    70] loss: 3.533
+Validate [9,    71] loss: 3.517
+collecting
+36323
+generating
+Train [10,     1] loss: 3.464
+Train [10,    71] loss: 3.365
+Validate [10,    71] loss: 3.345
+collecting
+35849
+generating
+Train [11,     1] loss: 3.586
+Train [11,    71] loss: 3.216
+Validate [11,    71] loss: 3.238
+collecting
+36722
+generating
+Train [12,     1] loss: 2.875
+Train [12,    72] loss: 3.110
+Validate [12,    71] loss: 3.099
+collecting
+35970
+generating
+Train [13,     1] loss: 2.645
+Train [13,    71] loss: 3.003
+Validate [13,    71] loss: 2.969
+collecting
+36525
+generating
+Train [14,     1] loss: 2.882
+Train [14,    72] loss: 2.900
+Validate [14,    71] loss: 2.879
+collecting
+36526
+generating
+Train [15,     1] loss: 2.535
+Train [15,    72] loss: 2.718
+Validate [15,    71] loss: 2.794
+collecting
+35443
+generating
+Train [16,     1] loss: 1.974
+Train [16,    70] loss: 2.713
+Validate [16,    71] loss: 2.717
+collecting
+36688
+generating
+Train [17,     1] loss: 2.585
+Train [17,    72] loss: 2.623
+Validate [17,    71] loss: 2.635
+collecting
+37308
+generating
+Train [18,     1] loss: 2.205
+Train [18,    73] loss: 2.588
+Validate [18,    71] loss: 2.571
+collecting
+36746
+generating
+Train [19,     1] loss: 2.736
+Train [19,    72] loss: 2.452
+Validate [19,    71] loss: 2.490
+collecting
+35913
+generating
+Train [20,     1] loss: 2.301
+Train [20,    71] loss: 2.463
+Validate [20,    71] loss: 2.424
+collecting
+36467
+generating
+Train [21,     1] loss: 2.134
+Train [21,    72] loss: 2.345
+Validate [21,    71] loss: 2.351
+collecting
+36093
+generating
+Train [22,     1] loss: 2.128
+Train [22,    71] loss: 2.370
+Validate [22,    71] loss: 2.278
+collecting
+37026
+generating
+Train [23,     1] loss: 2.214
+Train [23,    73] loss: 2.236
+Validate [23,    71] loss: 2.219
+collecting
+35709
+generating
+Train [24,     1] loss: 2.139
+Train [24,    70] loss: 2.215
+Validate [24,    71] loss: 2.151
+collecting
+35936
+generating
+Train [25,     1] loss: 1.550
+Train [25,    71] loss: 2.148
+Validate [25,    71] loss: 2.101
+collecting
+36750
+generating
+Train [26,     1] loss: 2.823
+Train [26,    72] loss: 2.015
+Validate [26,    71] loss: 2.020
+collecting
+36366
+generating
+Train [27,     1] loss: 1.827
+Train [27,    72] loss: 1.938
+Validate [27,    71] loss: 1.990
+collecting
+36614
+generating
+Train [28,     1] loss: 1.519
+Train [28,    72] loss: 1.845
+Validate [28,    71] loss: 1.924
+collecting
+36103
+generating
+Train [29,     1] loss: 2.276
+Train [29,    71] loss: 1.871
+Validate [29,    71] loss: 1.855
+collecting
+34463
+generating
+Train [30,     1] loss: 1.126
+Train [30,    68] loss: 1.854
+Validate [30,    71] loss: 1.806
+collecting
+36708
+best_loss=tensor(128.1971, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'convnext',
+  'optimizer': 'fusedlamb',
+  'optimizer_lr': 0.0012612857893155875,
+  'scheduler': True,
+})
+
+generating
+collecting
+35762
+generating
+collecting
+36905
+generating
+Train [1,     1] loss: 9.030
+Train [1,    70] loss: 3.417
+Validate [1,    73] loss: 2.252
+collecting
+35928
+generating
+Train [2,     1] loss: 1.961
+Train [2,    71] loss: 1.669
+Validate [2,    73] loss: 1.805
+collecting
+36078
+generating
+Train [3,     1] loss: 1.409
+Train [3,    71] loss: 1.416
+Validate [3,    73] loss: 1.324
+collecting
+36661
+generating
+Train [4,     1] loss: 1.046
+Train [4,    72] loss: 1.253
+Validate [4,    73] loss: 1.695
+collecting
+36327
+generating
+Train [5,     1] loss: 1.138
+Train [5,    71] loss: 1.200
+Validate [5,    73] loss: 1.328
+collecting
+35928
+generating
+Train [6,     1] loss: 0.891
+Train [6,    71] loss: 1.057
+Validate [6,    73] loss: 1.165
+collecting
+36335
+generating
+Train [7,     1] loss: 0.881
+Train [7,    71] loss: 1.010
+Validate [7,    73] loss: 1.045
+collecting
+36319
+generating
+Train [8,     1] loss: 1.223
+Train [8,    71] loss: 0.936
+Validate [8,    73] loss: 1.227
+collecting
+36197
+generating
+Train [9,     1] loss: 0.977
+Train [9,    71] loss: 0.926
+Validate [9,    73] loss: 0.931
+collecting
+36489
+generating
+Train [10,     1] loss: 0.880
+Train [10,    72] loss: 0.896
+Validate [10,    73] loss: 0.998
+collecting
+35646
+generating
+Train [11,     1] loss: 0.824
+Train [11,    70] loss: 0.804
+Validate [11,    73] loss: 0.940
+collecting
+35852
+generating
+Train [12,     1] loss: 0.829
+Train [12,    71] loss: 0.824
+Validate [12,    73] loss: 0.814
+collecting
+36110
+generating
+Train [13,     1] loss: 0.731
+Train [13,    71] loss: 0.759
+Validate [13,    73] loss: 0.868
+collecting
+36729
+generating
+Train [14,     1] loss: 0.557
+Train [14,    72] loss: 0.711
+Validate [14,    73] loss: 0.851
+collecting
+37066
+generating
+Train [15,     1] loss: 0.833
+Train [15,    73] loss: 0.720
+Validate [15,    73] loss: 0.719
+collecting
+37554
+generating
+Train [16,     1] loss: 0.824
+Train [16,    74] loss: 0.677
+Validate [16,    73] loss: 0.801
+collecting
+37410
+generating
+Train [17,     1] loss: 0.529
+Train [17,    74] loss: 0.652
+Validate [17,    73] loss: 0.667
+collecting
+36416
+generating
+Train [18,     1] loss: 0.586
+Train [18,    72] loss: 0.640
+Validate [18,    73] loss: 0.684
+collecting
+36600
+generating
+Train [19,     1] loss: 0.629
+Train [19,    72] loss: 0.642
+Validate [19,    73] loss: 0.643
+collecting
+36198
+generating
+Train [20,     1] loss: 0.610
+Train [20,    71] loss: 0.600
+Validate [20,    73] loss: 0.765
+collecting
+36490
+generating
+Train [21,     1] loss: 0.568
+Train [21,    72] loss: 0.575
+Validate [21,    73] loss: 0.608
+collecting
+36625
+generating
+Train [22,     1] loss: 0.472
+Train [22,    72] loss: 0.579
+Validate [22,    73] loss: 0.587
+collecting
+36219
+generating
+Train [23,     1] loss: 0.605
+Train [23,    71] loss: 0.566
+Validate [23,    73] loss: 0.579
+collecting
+36809
+generating
+Train [24,     1] loss: 0.354
+Train [24,    72] loss: 0.540
+Validate [24,    73] loss: 0.576
+collecting
+34920
+generating
+Train [25,     1] loss: 0.520
+Train [25,    69] loss: 0.540
+Validate [25,    73] loss: 0.559
+collecting
+36864
+generating
+Train [26,     1] loss: 0.481
+Train [26,    72] loss: 0.529
+Validate [26,    73] loss: 0.570
+collecting
+35935
+generating
+Train [27,     1] loss: 0.432
+Train [27,    71] loss: 0.554
+Validate [27,    73] loss: 0.546
+collecting
+36951
+generating
+Train [28,     1] loss: 0.484
+Train [28,    73] loss: 0.540
+Validate [28,    73] loss: 0.543
+collecting
+35889
+generating
+Train [29,     1] loss: 0.504
+Train [29,    71] loss: 0.543
+Validate [29,    73] loss: 0.541
+collecting
+35697
+generating
+Train [30,     1] loss: 0.423
+Train [30,    70] loss: 0.520
+Validate [30,    73] loss: 0.541
+collecting
+37242
+best_loss=tensor(39.4932, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'relu',
+  'block': 'convnext',
+  'optimizer': 'nadam',
+  'optimizer_lr': 4.5971462201034074e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+37815
+generating
+collecting
+35802
+generating
+Train [1,     1] loss: 9.032
+Train [1,    74] loss: 8.022
+Validate [1,    70] loss: 7.019
+collecting
+36913
+generating
+Train [2,     1] loss: 7.020
+Train [2,    73] loss: 5.877
+Validate [2,    70] loss: 5.271
+collecting
+36063
+generating
+Train [3,     1] loss: 4.848
+Train [3,    71] loss: 4.907
+Validate [3,    70] loss: 4.797
+collecting
+35729
+generating
+Train [4,     1] loss: 4.402
+Train [4,    70] loss: 4.596
+Validate [4,    70] loss: 4.511
+collecting
+36824
+generating
+Train [5,     1] loss: 4.726
+Train [5,    72] loss: 4.353
+Validate [5,    70] loss: 4.275
+collecting
+36130
+generating
+Train [6,     1] loss: 3.842
+Train [6,    71] loss: 4.046
+Validate [6,    70] loss: 4.061
+collecting
+35731
+generating
+Train [7,     1] loss: 3.737
+Train [7,    70] loss: 3.858
+Validate [7,    70] loss: 3.863
+collecting
+36821
+generating
+Train [8,     1] loss: 3.436
+Train [8,    72] loss: 3.697
+Validate [8,    70] loss: 3.719
+collecting
+36662
+generating
+Train [9,     1] loss: 3.261
+Train [9,    72] loss: 3.551
+Validate [9,    70] loss: 3.553
+collecting
+37015
+generating
+Train [10,     1] loss: 3.429
+Train [10,    73] loss: 3.388
+Validate [10,    70] loss: 3.414
+collecting
+36409
+generating
+Train [11,     1] loss: 3.295
+Train [11,    72] loss: 3.247
+Validate [11,    70] loss: 3.317
+collecting
+36134
+generating
+Train [12,     1] loss: 2.602
+Train [12,    71] loss: 3.082
+Validate [12,    70] loss: 3.242
+collecting
+36293
+generating
+Train [13,     1] loss: 2.698
+Train [13,    71] loss: 3.141
+Validate [13,    70] loss: 3.134
+collecting
+34478
+generating
+Train [14,     1] loss: 2.955
+Train [14,    68] loss: 3.002
+Validate [14,    70] loss: 3.073
+collecting
+36152
+generating
+Train [15,     1] loss: 2.760
+Train [15,    71] loss: 2.948
+Validate [15,    70] loss: 3.023
+collecting
+36606
+generating
+Train [16,     1] loss: 2.369
+Train [16,    72] loss: 2.807
+Validate [16,    70] loss: 2.971
+collecting
+36183
+generating
+Train [17,     1] loss: 2.541
+Train [17,    71] loss: 2.831
+Validate [17,    70] loss: 2.925
+collecting
+36556
+generating
+Train [18,     1] loss: 2.917
+Train [18,    72] loss: 2.792
+Validate [18,    70] loss: 2.889
+collecting
+37041
+generating
+Train [19,     1] loss: 2.953
+Train [19,    73] loss: 2.840
+Validate [19,    70] loss: 2.842
+collecting
+37414
+generating
+Train [20,     1] loss: 2.511
+Train [20,    74] loss: 2.732
+Validate [20,    70] loss: 2.806
+collecting
+35438
+generating
+Train [21,     1] loss: 2.797
+Train [21,    70] loss: 2.768
+Validate [21,    70] loss: 2.785
+collecting
+36520
+generating
+Train [22,     1] loss: 2.470
+Train [22,    72] loss: 2.682
+Validate [22,    70] loss: 2.761
+collecting
+35946
+generating
+Train [23,     1] loss: 2.012
+Train [23,    71] loss: 2.648
+Validate [23,    70] loss: 2.769
+collecting
+36584
+generating
+Train [24,     1] loss: 2.694
+Train [24,    72] loss: 2.643
+Validate [24,    70] loss: 2.756
+collecting
+35736
+generating
+Train [25,     1] loss: 2.516
+Train [25,    70] loss: 2.680
+Validate [25,    70] loss: 2.726
+collecting
+36715
+generating
+Train [26,     1] loss: 2.334
+Train [26,    72] loss: 2.634
+Validate [26,    70] loss: 2.711
+collecting
+36241
+generating
+Train [27,     1] loss: 2.087
+Train [27,    71] loss: 2.614
+Validate [27,    70] loss: 2.723
+collecting
+36167
+generating
+Train [28,     1] loss: 2.744
+Train [28,    71] loss: 2.578
+Validate [28,    70] loss: 2.740
+collecting
+36892
+generating
+Train [29,     1] loss: 2.556
+Train [29,    73] loss: 2.632
+Validate [29,    70] loss: 2.754
+collecting
+35676
+generating
+Train [30,     1] loss: 2.493
+Train [30,    70] loss: 2.704
+Validate [30,    70] loss: 2.728
+collecting
+35678
+best_loss=tensor(189.7863, device='cuda:0'), best_epoch=25
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'nexception',
+  'optimizer': 'nadam',
+  'optimizer_lr': 0.0006624632712548228,
+  'scheduler': True,
+})
+
+generating
+collecting
+35919
+generating
+collecting
+35759
+generating
+Train [1,     1] loss: 9.039
+Train [1,    71] loss: 3.040
+Validate [1,    70] loss: 2.291
+collecting
+36255
+generating
+Train [2,     1] loss: 1.750
+Train [2,    71] loss: 1.423
+Validate [2,    70] loss: 1.208
+collecting
+37786
+generating
+Train [3,     1] loss: 1.245
+Train [3,    74] loss: 1.103
+Validate [3,    70] loss: 0.995
+collecting
+36293
+generating
+Train [4,     1] loss: 1.059
+Train [4,    71] loss: 0.981
+Validate [4,    70] loss: 0.955
+collecting
+37456
+generating
+Train [5,     1] loss: 0.706
+Train [5,    74] loss: 0.890
+Validate [5,    70] loss: 1.372
+collecting
+36132
+generating
+Train [6,     1] loss: 1.059
+Train [6,    71] loss: 0.836
+Validate [6,    70] loss: 0.811
+collecting
+35163
+generating
+Train [7,     1] loss: 0.840
+Train [7,    69] loss: 0.789
+Validate [7,    70] loss: 0.762
+collecting
+35834
+generating
+Train [8,     1] loss: 0.771
+Train [8,    70] loss: 0.772
+Validate [8,    70] loss: 0.703
+collecting
+36128
+generating
+Train [9,     1] loss: 0.553
+Train [9,    71] loss: 0.728
+Validate [9,    70] loss: 0.720
+collecting
+36143
+generating
+Train [10,     1] loss: 0.548
+Train [10,    71] loss: 0.676
+Validate [10,    70] loss: 0.778
+collecting
+36871
+generating
+Train [11,     1] loss: 0.571
+Train [11,    73] loss: 0.691
+Validate [11,    70] loss: 0.642
+collecting
+36067
+generating
+Train [12,     1] loss: 0.502
+Train [12,    71] loss: 0.653
+Validate [12,    70] loss: 0.668
+collecting
+35909
+generating
+Train [13,     1] loss: 0.547
+Train [13,    71] loss: 0.627
+Validate [13,    70] loss: 0.735
+collecting
+35676
+generating
+Train [14,     1] loss: 0.930
+Train [14,    70] loss: 0.606
+Validate [14,    70] loss: 0.596
+collecting
+36332
+generating
+Train [15,     1] loss: 0.559
+Train [15,    71] loss: 0.582
+Validate [15,    70] loss: 0.567
+collecting
+35879
+generating
+Train [16,     1] loss: 0.362
+Train [16,    71] loss: 0.591
+Validate [16,    70] loss: 2.343
+collecting
+36305
+generating
+Train [17,     1] loss: 1.017
+Train [17,    71] loss: 0.560
+Validate [17,    70] loss: 0.529
+collecting
+36709
+generating
+Train [18,     1] loss: 0.512
+Train [18,    72] loss: 0.523
+Validate [18,    70] loss: 0.545
+collecting
+36104
+generating
+Train [19,     1] loss: 0.532
+Train [19,    71] loss: 0.525
+Validate [19,    70] loss: 0.504
+collecting
+36737
+generating
+Train [20,     1] loss: 0.464
+Train [20,    72] loss: 0.501
+Validate [20,    70] loss: 0.489
+collecting
+35985
+generating
+Train [21,     1] loss: 0.441
+Train [21,    71] loss: 0.510
+Validate [21,    70] loss: 0.506
+collecting
+36428
+generating
+Train [22,     1] loss: 0.359
+Train [22,    72] loss: 0.468
+Validate [22,    70] loss: 0.466
+collecting
+37380
+generating
+Train [23,     1] loss: 0.428
+Train [23,    74] loss: 0.462
+Validate [23,    70] loss: 0.451
+collecting
+35850
+generating
+Train [24,     1] loss: 0.422
+Train [24,    71] loss: 0.448
+Validate [24,    70] loss: 0.467
+collecting
+36799
+generating
+Train [25,     1] loss: 0.426
+Train [25,    72] loss: 0.453
+Validate [25,    70] loss: 0.441
+collecting
+35826
+generating
+Train [26,     1] loss: 0.387
+Train [26,    70] loss: 0.448
+Validate [26,    70] loss: 0.434
+collecting
+36900
+generating
+Train [27,     1] loss: 0.535
+Train [27,    73] loss: 0.435
+Validate [27,    70] loss: 0.434
+collecting
+36182
+generating
+Train [28,     1] loss: 0.422
+Train [28,    71] loss: 0.445
+Validate [28,    70] loss: 0.428
+collecting
+36783
+generating
+Train [29,     1] loss: 0.457
+Train [29,    72] loss: 0.440
+Validate [29,    70] loss: 0.426
+collecting
+36186
+generating
+Train [30,     1] loss: 0.335
+Train [30,    71] loss: 0.439
+Validate [30,    70] loss: 0.424
+collecting
+36800
+best_loss=tensor(29.7007, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 8.50556362387642e-05,
+  'scheduler': False,
+})
+
+generating
+collecting
+36773
+generating
+collecting
+37594
+generating
+Train [1,     1] loss: 9.061
+Train [1,    72] loss: 4.147
+Validate [1,    74] loss: 3.249
+collecting
+36268
+generating
+Train [2,     1] loss: 2.690
+Train [2,    71] loss: 2.548
+Validate [2,    74] loss: 2.124
+collecting
+36293
+generating
+Train [3,     1] loss: 1.766
+Train [3,    71] loss: 1.744
+Validate [3,    74] loss: 1.543
+collecting
+36537
+generating
+Train [4,     1] loss: 1.202
+Train [4,    72] loss: 1.361
+Validate [4,    74] loss: 1.274
+collecting
+36342
+generating
+Train [5,     1] loss: 1.863
+Train [5,    71] loss: 1.201
+Validate [5,    74] loss: 1.143
+collecting
+36389
+generating
+Train [6,     1] loss: 0.769
+Train [6,    72] loss: 1.092
+Validate [6,    74] loss: 1.135
+collecting
+37712
+generating
+Train [7,     1] loss: 0.870
+Train [7,    74] loss: 1.018
+Validate [7,    74] loss: 1.010
+collecting
+35413
+generating
+Train [8,     1] loss: 0.924
+Train [8,    70] loss: 0.960
+Validate [8,    74] loss: 0.990
+collecting
+36648
+generating
+Train [9,     1] loss: 1.224
+Train [9,    72] loss: 0.982
+Validate [9,    74] loss: 0.950
+collecting
+36359
+generating
+Train [10,     1] loss: 0.946
+Train [10,    72] loss: 0.889
+Validate [10,    74] loss: 0.903
+collecting
+36443
+generating
+Train [11,     1] loss: 0.650
+Train [11,    72] loss: 0.888
+Validate [11,    74] loss: 0.902
+collecting
+36705
+generating
+Train [12,     1] loss: 0.778
+Train [12,    72] loss: 0.875
+Validate [12,    74] loss: 0.869
+collecting
+36078
+generating
+Train [13,     1] loss: 0.800
+Train [13,    71] loss: 0.857
+Validate [13,    74] loss: 0.853
+collecting
+36916
+generating
+Train [14,     1] loss: 0.786
+Train [14,    73] loss: 0.853
+Validate [14,    74] loss: 0.837
+collecting
+36500
+generating
+Train [15,     1] loss: 0.958
+Train [15,    72] loss: 0.858
+Validate [15,    74] loss: 0.819
+collecting
+35997
+generating
+Train [16,     1] loss: 1.025
+Train [16,    71] loss: 0.812
+Validate [16,    74] loss: 0.807
+collecting
+36185
+generating
+Train [17,     1] loss: 0.957
+Train [17,    71] loss: 0.811
+Validate [17,    74] loss: 0.793
+collecting
+36070
+generating
+Train [18,     1] loss: 0.684
+Train [18,    71] loss: 0.795
+Validate [18,    74] loss: 0.781
+collecting
+36614
+generating
+Train [19,     1] loss: 0.800
+Train [19,    72] loss: 0.774
+Validate [19,    74] loss: 0.769
+collecting
+35391
+generating
+Train [20,     1] loss: 0.743
+Train [20,    70] loss: 0.747
+Validate [20,    74] loss: 0.752
+collecting
+36991
+generating
+Train [21,     1] loss: 0.815
+Train [21,    73] loss: 0.775
+Validate [21,    74] loss: 0.769
+collecting
+37483
+generating
+Train [22,     1] loss: 0.779
+Train [22,    74] loss: 0.739
+Validate [22,    74] loss: 0.739
+collecting
+36391
+generating
+Train [23,     1] loss: 0.692
+Train [23,    72] loss: 0.749
+Validate [23,    74] loss: 0.767
+collecting
+36764
+generating
+Train [24,     1] loss: 0.604
+Train [24,    72] loss: 0.741
+Validate [24,    74] loss: 0.727
+collecting
+35783
+generating
+Train [25,     1] loss: 0.530
+Train [25,    70] loss: 0.737
+Validate [25,    74] loss: 0.727
+collecting
+35748
+generating
+Train [26,     1] loss: 0.460
+Train [26,    70] loss: 0.730
+Validate [26,    74] loss: 0.721
+collecting
+36762
+generating
+Train [27,     1] loss: 1.192
+Train [27,    72] loss: 0.692
+Validate [27,    74] loss: 0.706
+collecting
+36882
+generating
+Train [28,     1] loss: 0.516
+Train [28,    73] loss: 0.691
+Validate [28,    74] loss: 0.725
+collecting
+36267
+generating
+Train [29,     1] loss: 0.694
+Train [29,    71] loss: 0.690
+Validate [29,    74] loss: 0.692
+collecting
+35269
+generating
+Train [30,     1] loss: 0.763
+Train [30,    69] loss: 0.688
+Validate [30,    74] loss: 0.693
+collecting
+36637
+best_loss=tensor(51.1908, device='cuda:0'), best_epoch=28
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.046834246599448986,
+  'scheduler': False,
+})
+
+generating
+collecting
+35897
+generating
+collecting
+36073
+generating
+Train [1,     1] loss: 9.023
+Train [1,    71] loss: nan
+Validate [1,    71] loss: nan
+collecting
+36346
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'gelu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 6.03630308843752e-06,
+  'scheduler': True,
+})
+
+generating
+collecting
+36272
+generating
+collecting
+35759
+generating
+Train [1,     1] loss: 9.089
+Train [1,    71] loss: 7.715
+Validate [1,    70] loss: 6.591
+collecting
+36627
+generating
+Train [2,     1] loss: 6.239
+Train [2,    72] loss: 5.466
+Validate [2,    70] loss: 4.880
+collecting
+36036
+generating
+Train [3,     1] loss: 4.740
+Train [3,    71] loss: 4.639
+Validate [3,    70] loss: 4.426
+collecting
+36631
+generating
+Train [4,     1] loss: 3.977
+Train [4,    72] loss: 4.286
+Validate [4,    70] loss: 4.138
+collecting
+35852
+generating
+Train [5,     1] loss: 3.837
+Train [5,    71] loss: 3.992
+Validate [5,    70] loss: 3.867
+collecting
+37280
+generating
+Train [6,     1] loss: 3.776
+Train [6,    73] loss: 3.698
+Validate [6,    70] loss: 3.652
+collecting
+36668
+generating
+Train [7,     1] loss: 3.464
+Train [7,    72] loss: 3.519
+Validate [7,    70] loss: 3.441
+collecting
+35490
+generating
+Train [8,     1] loss: 3.612
+Train [8,    70] loss: 3.361
+Validate [8,    70] loss: 3.276
+collecting
+35331
+generating
+Train [9,     1] loss: 2.732
+Train [9,    70] loss: 3.199
+Validate [9,    70] loss: 3.170
+collecting
+35771
+generating
+Train [10,     1] loss: 2.591
+Train [10,    70] loss: 3.035
+Validate [10,    70] loss: 2.996
+collecting
+36303
+generating
+Train [11,     1] loss: 2.471
+Train [11,    71] loss: 2.853
+Validate [11,    70] loss: 2.903
+collecting
+36651
+generating
+Train [12,     1] loss: 3.165
+Train [12,    72] loss: 2.823
+Validate [12,    70] loss: 2.823
+collecting
+35815
+generating
+Train [13,     1] loss: 3.076
+Train [13,    70] loss: 2.751
+Validate [13,    70] loss: 2.728
+collecting
+35901
+generating
+Train [14,     1] loss: 2.752
+Train [14,    71] loss: 2.674
+Validate [14,    70] loss: 2.660
+collecting
+36258
+generating
+Train [15,     1] loss: 2.995
+Train [15,    71] loss: 2.658
+Validate [15,    70] loss: 2.613
+collecting
+36287
+generating
+Train [16,     1] loss: 2.611
+Train [16,    71] loss: 2.577
+Validate [16,    70] loss: 2.563
+collecting
+36595
+generating
+Train [17,     1] loss: 2.402
+Train [17,    72] loss: 2.539
+Validate [17,    70] loss: 2.515
+collecting
+35983
+generating
+Train [18,     1] loss: 2.797
+Train [18,    71] loss: 2.546
+Validate [18,    70] loss: 2.480
+collecting
+35473
+generating
+Train [19,     1] loss: 2.595
+Train [19,    70] loss: 2.396
+Validate [19,    70] loss: 2.452
+collecting
+35802
+generating
+Train [20,     1] loss: 2.258
+Train [20,    70] loss: 2.403
+Validate [20,    70] loss: 2.420
+collecting
+34774
+generating
+Train [21,     1] loss: 2.329
+Train [21,    68] loss: 2.415
+Validate [21,    70] loss: 2.393
+collecting
+35896
+generating
+Train [22,     1] loss: 1.967
+Train [22,    71] loss: 2.357
+Validate [22,    70] loss: 2.370
+collecting
+37105
+generating
+Train [23,     1] loss: 2.059
+Train [23,    73] loss: 2.344
+Validate [23,    70] loss: 2.377
+collecting
+36332
+generating
+Train [24,     1] loss: 2.290
+Train [24,    71] loss: 2.366
+Validate [24,    70] loss: 2.347
+collecting
+36178
+generating
+Train [25,     1] loss: 2.346
+Train [25,    71] loss: 2.337
+Validate [25,    70] loss: 2.328
+collecting
+36260
+generating
+Train [26,     1] loss: 2.557
+Train [26,    71] loss: 2.357
+Validate [26,    70] loss: 2.324
+collecting
+36113
+generating
+Train [27,     1] loss: 2.080
+Train [27,    71] loss: 2.291
+Validate [27,    70] loss: 2.333
+collecting
+35667
+generating
+Train [28,     1] loss: 2.005
+Train [28,    70] loss: 2.362
+Validate [28,    70] loss: 2.325
+collecting
+36953
+generating
+Train [29,     1] loss: 1.546
+Train [29,    73] loss: 2.330
+Validate [29,    70] loss: 2.325
+collecting
+36890
+generating
+Train [30,     1] loss: 1.929
+Train [30,    73] loss: 2.358
+Validate [30,    70] loss: 2.317
+collecting
+35715
+best_loss=tensor(162.2175, device='cuda:0'), best_epoch=29
+Configuration(values={
+  'activation': 'celu',
+  'block': 'convnext',
+  'optimizer': 'adamp',
+  'optimizer_lr': 0.05513616881316702,
+  'scheduler': False,
+})
+
+generating
+collecting
+35161
+generating
+collecting
+35946
+generating
+Train [1,     1] loss: 9.079
+Train [1,    69] loss: nan
+Validate [1,    71] loss: nan
+collecting
+36868
+generating
+Train [2,     1] loss: nan
+Configuration(values={
+  'activation': 'relu',
+  'block': 'nexception',
+  'optimizer': 'adamw',
+  'optimizer_lr': 0.00025588899606595537,
+  'scheduler': True,
+})
+
+generating
