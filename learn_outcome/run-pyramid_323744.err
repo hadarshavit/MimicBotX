@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/s3092593/MimicBotX/learn_outcome/learn_bc.py", line 168, in <module>
+    main(activation=timm.models.layers.activations.GELU, block=network.NEXcepTionBlock, optimizer='fusedlamb', lr=2.5 * 1e-3,
+  File "/home/s3092593/MimicBotX/learn_outcome/learn_bc.py", line 105, in main
+    spatial_obs, non_spatial_obs, action_mask, act_id = data
+ValueError: not enough values to unpack (expected 4, got 3)

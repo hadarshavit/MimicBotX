@@ -1,0 +1,491 @@
+[/bin/bash] #### Starting GPU TensorFlow test
+[/bin/bash] This is s3092593 and my first job has the ID 323751
+generating
+collecting
+36424
+generating
+collecting
+73094
+generating
+Train [1,     1] loss: 0.160
+Train [1,    72] loss: 8.594
+Validate [1,    98] loss: 2.045
+collecting
+36750
+generating
+Train [2,     1] loss: 0.969
+Train [2,    72] loss: 2.626
+Validate [2,    98] loss: 1.677
+collecting
+35950
+generating
+Train [3,     1] loss: 0.443
+Train [3,    71] loss: 2.941
+Validate [3,    98] loss: 2.123
+collecting
+35486
+generating
+Train [4,     1] loss: 1.724
+Train [4,    70] loss: 1.986
+Validate [4,    98] loss: 3.006
+collecting
+36831
+generating
+Train [5,     1] loss: 1.291
+Train [5,    72] loss: 1.666
+Validate [5,    98] loss: 0.973
+collecting
+36139
+generating
+Train [6,     1] loss: 0.257
+Train [6,    71] loss: 20.696
+Validate [6,    98] loss: 1.622
+collecting
+35647
+generating
+Train [7,     1] loss: 0.684
+Train [7,    70] loss: 3.392
+Validate [7,    98] loss: 0.822
+collecting
+36423
+generating
+Train [8,     1] loss: 0.320
+Train [8,    72] loss: 1.880
+Validate [8,    98] loss: 0.787
+collecting
+35114
+generating
+Train [9,     1] loss: 1.655
+Train [9,    69] loss: 0.774
+Validate [9,    98] loss: 0.696
+collecting
+36674
+generating
+Train [10,     1] loss: 0.005
+Train [10,    72] loss: 0.657
+Validate [10,    98] loss: 0.684
+collecting
+35991
+generating
+Train [11,     1] loss: 1.003
+Train [11,    71] loss: 0.608
+Validate [11,    98] loss: 0.683
+collecting
+35936
+generating
+Train [12,     1] loss: 0.974
+Train [12,    71] loss: 1.408
+Validate [12,    98] loss: 0.684
+collecting
+35515
+generating
+Train [13,     1] loss: 1.048
+Train [13,    70] loss: 0.618
+Validate [13,    98] loss: 0.684
+collecting
+36182
+generating
+Train [14,     1] loss: 1.056
+Train [14,    71] loss: 0.680
+Validate [14,    98] loss: 0.688
+collecting
+37069
+generating
+Train [15,     1] loss: 0.006
+Train [15,    73] loss: 0.611
+Validate [15,    98] loss: 0.684
+collecting
+35972
+generating
+Train [16,     1] loss: 0.975
+Train [16,    71] loss: 0.717
+Validate [16,    98] loss: 0.724
+collecting
+35939
+generating
+Train [17,     1] loss: 0.591
+Train [17,    71] loss: 0.666
+Validate [17,    98] loss: 0.695
+collecting
+37742
+generating
+Train [18,     1] loss: 0.020
+Train [18,    74] loss: 0.565
+Validate [18,    98] loss: 0.687
+collecting
+36118
+generating
+Train [19,     1] loss: 1.041
+Train [19,    71] loss: 0.688
+Validate [19,    98] loss: 0.682
+collecting
+36126
+generating
+Train [20,     1] loss: 0.913
+Train [20,    71] loss: 0.573
+Validate [20,    98] loss: 0.678
+collecting
+36626
+generating
+Train [21,     1] loss: 0.005
+Train [21,    72] loss: 0.602
+Validate [21,    98] loss: 0.690
+collecting
+36294
+generating
+Train [22,     1] loss: 0.006
+Train [22,    71] loss: 0.694
+Validate [22,    98] loss: 0.682
+collecting
+35818
+generating
+Train [23,     1] loss: 0.996
+Train [23,    70] loss: 0.597
+Validate [23,    98] loss: 0.679
+collecting
+36293
+generating
+Train [24,     1] loss: 1.068
+Train [24,    71] loss: 0.706
+Validate [24,    98] loss: 0.679
+collecting
+35788
+generating
+Train [25,     1] loss: 1.122
+Train [25,    70] loss: 0.672
+Validate [25,    98] loss: 0.672
+collecting
+35053
+generating
+Train [26,     1] loss: 1.045
+Train [26,    69] loss: 0.696
+Validate [26,    98] loss: 0.678
+collecting
+36571
+generating
+Train [27,     1] loss: 0.005
+Train [27,    72] loss: 0.564
+Validate [27,    98] loss: 0.686
+collecting
+36432
+generating
+Train [28,     1] loss: 0.835
+Train [28,    72] loss: 0.536
+Validate [28,    98] loss: 0.680
+collecting
+36013
+generating
+Train [29,     1] loss: 1.019
+Train [29,    71] loss: 0.803
+Validate [29,    98] loss: 0.676
+collecting
+37238
+generating
+Train [30,     1] loss: 1.068
+Train [30,    73] loss: 0.611
+Validate [30,    98] loss: 0.681
+collecting
+36567
+generating
+Train [31,     1] loss: 0.973
+Train [31,    72] loss: 0.760
+Validate [31,    98] loss: 0.675
+collecting
+35384
+generating
+Train [32,     1] loss: 0.886
+Train [32,    70] loss: 0.634
+Validate [32,    98] loss: 0.673
+collecting
+36563
+generating
+Train [33,     1] loss: 0.982
+Train [33,    72] loss: 0.568
+Validate [33,    98] loss: 0.680
+collecting
+35870
+generating
+Train [34,     1] loss: 1.007
+Train [34,    71] loss: 0.706
+Validate [34,    98] loss: 0.677
+collecting
+35762
+generating
+Train [35,     1] loss: 0.001
+Train [35,    70] loss: 0.449
+Validate [35,    98] loss: 0.686
+collecting
+36030
+generating
+Train [36,     1] loss: 0.003
+Train [36,    71] loss: 0.713
+Validate [36,    98] loss: 0.679
+collecting
+35685
+generating
+Train [37,     1] loss: 0.946
+Train [37,    70] loss: 0.613
+Validate [37,    98] loss: 0.676
+collecting
+36241
+generating
+Train [38,     1] loss: 1.108
+Train [38,    71] loss: 0.612
+Validate [38,    98] loss: 0.685
+collecting
+35190
+generating
+Train [39,     1] loss: 1.054
+Train [39,    69] loss: 0.763
+Validate [39,    98] loss: 0.677
+collecting
+37320
+generating
+Train [40,     1] loss: 1.014
+Train [40,    73] loss: 0.548
+Validate [40,    98] loss: 0.679
+collecting
+36542
+generating
+Train [41,     1] loss: 1.102
+Train [41,    72] loss: 0.790
+Validate [41,    98] loss: 0.685
+collecting
+36060
+generating
+Train [42,     1] loss: 1.210
+Train [42,    71] loss: 0.716
+Validate [42,    98] loss: 0.673
+collecting
+35731
+generating
+Train [43,     1] loss: 1.059
+Train [43,    70] loss: 0.473
+Validate [43,    98] loss: 0.684
+collecting
+36322
+generating
+Train [44,     1] loss: 0.001
+Train [44,    71] loss: 0.699
+Validate [44,    98] loss: 0.675
+collecting
+36324
+generating
+Train [45,     1] loss: 1.010
+Train [45,    71] loss: 0.603
+Validate [45,    98] loss: 0.684
+collecting
+36432
+generating
+Train [46,     1] loss: 1.029
+Train [46,    72] loss: 0.664
+Validate [46,    98] loss: 0.682
+collecting
+36169
+generating
+Train [47,     1] loss: 0.960
+Train [47,    71] loss: 0.693
+Validate [47,    98] loss: 0.675
+collecting
+34430
+generating
+Train [48,     1] loss: 1.102
+Train [48,    68] loss: 0.686
+Validate [48,    98] loss: 0.677
+collecting
+36071
+generating
+Train [49,     1] loss: 1.084
+Train [49,    71] loss: 0.704
+Validate [49,    98] loss: 0.699
+collecting
+37275
+generating
+Train [50,     1] loss: 0.929
+Train [50,    73] loss: 120.555
+Validate [50,    98] loss: 0.684
+collecting
+36193
+generating
+Train [51,     1] loss: 0.001
+Train [51,    71] loss: 97.834
+Validate [51,    98] loss: 3448.591
+collecting
+36695
+generating
+Train [52,     1] loss: 3593.178
+Train [52,    72] loss: 141.298
+Validate [52,    98] loss: 0.679
+collecting
+35778
+generating
+Train [53,     1] loss: 0.002
+Train [53,    70] loss: 0.515
+Validate [53,    98] loss: 0.680
+collecting
+37028
+generating
+Train [54,     1] loss: 0.981
+Train [54,    73] loss: 0.586
+Validate [54,    98] loss: 0.677
+collecting
+36555
+generating
+Train [55,     1] loss: 0.974
+Train [55,    72] loss: 0.707
+Validate [55,    98] loss: 0.677
+collecting
+37433
+generating
+Train [56,     1] loss: 0.927
+Train [56,    74] loss: 0.722
+Validate [56,    98] loss: 0.678
+collecting
+35669
+generating
+Train [57,     1] loss: 0.003
+Train [57,    70] loss: 0.638
+Validate [57,    98] loss: 0.680
+collecting
+36325
+generating
+Train [58,     1] loss: 0.992
+Train [58,    71] loss: 0.529
+Validate [58,    98] loss: 0.678
+collecting
+37135
+generating
+Train [59,     1] loss: 0.002
+Train [59,    73] loss: 0.594
+Validate [59,    98] loss: 0.675
+collecting
+37094
+generating
+Train [60,     1] loss: 1.012
+Train [60,    73] loss: 0.441
+Validate [60,    98] loss: 0.677
+collecting
+36811
+generating
+Train [61,     1] loss: 0.972
+Train [61,    72] loss: 0.641
+Validate [61,    98] loss: 0.680
+collecting
+37071
+generating
+Train [62,     1] loss: 0.002
+Train [62,    73] loss: 0.769
+Validate [62,    98] loss: 0.676
+collecting
+35322
+generating
+Train [63,     1] loss: 1.016
+Train [63,    69] loss: 0.744
+Validate [63,    98] loss: 0.692
+collecting
+34840
+generating
+Train [64,     1] loss: 0.059
+Train [64,    69] loss: 0.656
+Validate [64,    98] loss: 0.681
+collecting
+35508
+generating
+Train [65,     1] loss: 1.053
+Train [65,    70] loss: 0.773
+Validate [65,    98] loss: 0.678
+collecting
+35364
+generating
+Train [66,     1] loss: 1.068
+Train [66,    70] loss: 0.729
+Validate [66,    98] loss: 0.674
+collecting
+37203
+generating
+Train [67,     1] loss: 0.987
+Train [67,    73] loss: 0.589
+Validate [67,    98] loss: 0.674
+collecting
+37102
+generating
+Train [68,     1] loss: 0.014
+Train [68,    73] loss: 0.593
+Validate [68,    98] loss: 0.680
+collecting
+36514
+generating
+Train [69,     1] loss: 0.980
+Train [69,    72] loss: 0.619
+Validate [69,    98] loss: 0.688
+collecting
+36746
+generating
+Train [70,     1] loss: 0.014
+Train [70,    72] loss: 0.575
+Validate [70,    98] loss: 0.680
+collecting
+35390
+generating
+Train [71,     1] loss: 0.904
+Train [71,    70] loss: 0.715
+Validate [71,    98] loss: 0.678
+collecting
+37050
+generating
+Train [72,     1] loss: 1.064
+Train [72,    73] loss: 0.647
+Validate [72,    98] loss: 0.678
+collecting
+36519
+generating
+Train [73,     1] loss: 0.004
+Train [73,    72] loss: 0.591
+Validate [73,    98] loss: 0.671
+collecting
+35992
+generating
+Train [74,     1] loss: 0.933
+Train [74,    71] loss: 0.590
+Validate [74,    98] loss: 0.675
+collecting
+35769
+generating
+Train [75,     1] loss: 1.007
+Train [75,    70] loss: 0.746
+Validate [75,    98] loss: 0.671
+collecting
+35738
+generating
+Train [76,     1] loss: 0.978
+Train [76,    70] loss: 0.772
+Validate [76,    98] loss: 0.678
+collecting
+35523
+generating
+Train [77,     1] loss: 0.005
+Train [77,    70] loss: 0.540
+Validate [77,    98] loss: 0.667
+collecting
+36450
+generating
+Train [78,     1] loss: 1.055
+Train [78,    72] loss: 0.751
+Validate [78,    98] loss: 0.676
+collecting
+35989
+generating
+Train [79,     1] loss: 0.006
+Train [79,    71] loss: 0.762
+Validate [79,    98] loss: 0.679
+collecting
+36262
+generating
+Train [80,     1] loss: 0.933
+Train [80,    71] loss: nan
+Validate [80,    98] loss: nan
+collecting
+35628
+generating
+Train [81,     1] loss: nan
+Illegal position: {'x': 7, 'y': 3} HANDOFF
