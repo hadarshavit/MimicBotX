@@ -13,11 +13,9 @@ from a2c_env import a2c_scripted_actions
 from botbowl.ai.layers import *
 
 # Architecture
-model_name = '260d8284-9d44-11ec-b455-faffc23fefdb'
+model_name = '08d1a530-e079-11ec-ac3c-3cecef3aa7e8'
 env_name = f'botbowl-11'
-#model_filename = f"/data/s3092593/mgai/self_play_bot.nn"
-#model_filename = f'/data/s3092593/mgai/net_ac_final.nn'
-model_filename=f'/data/s3092593/mgai/net_bc.nn'
+model_filename = f"/data/s3092593/{model_name}.nn"
 log_filename = f"logs/{env_name}/{env_name}.dat"
 
 
@@ -124,12 +122,13 @@ class A2CAgent(Agent):
 
         self.scripted_func = scripted_func
         self.action_queue = []
-
+        
         # MODEL
-        self.policy = torch.load(filename,  map_location=torch.device('cpu'))
-        self.policy.to(memory_format=torch.contiguous_format)
+        self.policy = torch.load(filename)
+        self.policy.cpu()
         self.policy.eval()
         self.end_setup = False
+        self.device = 0
 
     def new_game(self, game, team):
         pass
@@ -150,14 +149,14 @@ class A2CAgent(Agent):
         self.env.game = game
 
         spatial_obs, non_spatial_obs, action_mask = map(A2CAgent._update_obs, self.env.get_state())
-        #non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
+        non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=0)
 
         _, actions = self.policy.act(
-            Variable(spatial_obs.float()),
-            Variable(non_spatial_obs.float()),
-            Variable(action_mask))
+            Variable(spatial_obs.float().to(device='cuda:1')),
+            Variable(non_spatial_obs.float().to(device='cuda:1')),
+            Variable(action_mask).to(device='cuda:1'))
 
-        action_idx = actions[0]
+        action_idx = actions.cpu()[0]
         action_objects = self.env._compute_action(action_idx)
 
         self.action_queue = action_objects
@@ -171,15 +170,15 @@ def main():
     # Register the bot to the framework
     def _make_my_a2c_bot(name, env_size=11):
         return A2CAgent(name=name,
-                        env_conf=EnvConf(size=env_size, pathfinding=True),
+                        env_conf=EnvConf(size=env_size),
                         scripted_func=a2c_scripted_actions,
                         filename=model_filename)
-    #botbowl.register_bot('my-a2c-bot', _make_my_a2c_bot)
+    botbowl.register_bot('my-a2c-bot', _make_my_a2c_bot)
 
     # Load configurations, rules, arena and teams
     config = botbowl.load_config("bot-bowl")
     config.competition_mode = False
-    config.pathfinding_enabled = True
+    config.pathfinding_enabled = False
     ruleset = botbowl.load_rule_set(config.ruleset)
     arena = botbowl.load_arena(config.arena)
     home = botbowl.load_team_by_filename("human", ruleset)
@@ -190,7 +189,7 @@ def main():
     # Play 10 games
     wins = 0
     draws = 0
-    n = 100
+    n = 10
     is_home = True
     tds_away = 0
     tds_home = 0
@@ -198,9 +197,9 @@ def main():
 
         if is_home:
             away_agent = botbowl.make_bot('random')
-            home_agent = _make_my_a2c_bot('my-a2c-bot')
+            home_agent = botbowl.make_bot('my-a2c-bot')
         else:
-            away_agent = _make_my_a2c_bot('my-a2c-bot')
+            away_agent = botbowl.make_bot('my-a2c-bot')
             home_agent = botbowl.make_bot("random")
         game = botbowl.Game(i, home, away, home_agent, away_agent, config, arena=arena, ruleset=ruleset)
         game.config.fast_mode = True
@@ -212,15 +211,10 @@ def main():
         winner = game.get_winner()
         if winner is None:
             draws += 1
-            print('draw')
         elif winner == home_agent and is_home:
             wins += 1
-            print('won')
         elif winner == away_agent and not is_home:
             wins += 1
-            print('won')
-        else:
-            print('lost')
 
         tds_home += game.get_agent_team(home_agent).state.score
         tds_away += game.get_agent_team(away_agent).state.score

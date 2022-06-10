@@ -16,7 +16,7 @@ def _update_obs(array: np.ndarray):
 
 class DeepHeuristic:
     def __init__(self):
-        self.predictor = torch.load('/data1/s3092593/mgai/net_good246_200.pth', map_location=torch.device('cpu')) # TODO
+        self.predictor = torch.load('/data/s3092593/mgai/mcts_net_final.nn', map_location=torch.device('cpu')) # TODO
         self.env = BotBowlEnv(EnvConf(size=11))
     
     def __call__(self, game: botbowl.Game, agent:botbowl.Agent):

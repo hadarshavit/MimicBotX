@@ -253,8 +253,13 @@ def main():
 
     # MODEL
     # ac_agent = torch.load('/data/s3092593/mgai/net_good177_200')
-    ac_agent = torch.load('/data1/s3092593/mgai/net_good295_200')
+    ac_agent = torch.load('/data/s3092593/mgai/net_bc.nn')
     ac_agent.to(memory_format=torch.contiguous_format)
+    ac_agent.cuda()
+
+    target_agent = torch.load('/data/s3092593/mgai/net_bc.nn')
+    target_agent.to(memory_format=torch.contiguous_format)
+    target_agent.cuda()
     # ac_agent.freeze_except_critic()
     # OPTIMIZER
     optimizer = create_optimizer_v2(ac_agent.parameters(), 'adamp', lr=learning_rate)
@@ -269,7 +274,7 @@ def main():
     difficulty = 0.0 if ppcg else 1.0
     dif_delta = 0.01
 
-    only_value = False
+    only_value = True
     running_loss = torch.tensor(0.0, requires_grad=False).cuda()
     criterion = torch.nn.CrossEntropyLoss()
     criterion = criterion.cuda()
@@ -321,10 +326,16 @@ def main():
     while all_steps < num_steps:
         for step in range(steps_per_update):
             with torch.no_grad():
-                _, actions = ac_agent.act(
+                if True:
+                    _, actions = target_agent.act(
                     Variable(memory.spatial_obs[step]),
                     Variable(memory.non_spatial_obs[step]),
                     Variable(memory.action_masks[step]))
+                else:
+                    _, actions = ac_agent.act(
+                        Variable(memory.spatial_obs[step]),
+                        Variable(memory.non_spatial_obs[step]),
+                        Variable(memory.action_masks[step]))
 
             action_objects = (action[0] for action in actions.cpu().numpy())
 
@@ -381,7 +392,8 @@ def main():
         actions_mask = Variable(memory.action_masks[:-1])
 
         # Evaluate the actions taken
-        action_log_probs, values, dist_entropy = ac_agent.evaluate_actions(spatial, non_spatial, actions, actions_mask)
+        action_log_probs, _, dist_entropy = target_agent.evaluate_actions(spatial, non_spatial, actions, actions_mask)
+        _, values, _ = ac_agent.evaluate_actions(spatial, non_spatial, actions, actions_mask)
 
         values = values.view(steps_per_update, num_processes, 1)
         action_log_probs = action_log_probs.view(steps_per_update, num_processes, 1)
@@ -410,6 +422,23 @@ def main():
         memory.non_spatial_obs[0].copy_(memory.non_spatial_obs[-1])
         memory.spatial_obs[0].copy_(memory.spatial_obs[-1])
         memory.action_masks[0].copy_(memory.action_masks[-1])
+
+        # if all_updates % 10 == 0:
+        #     if only_value:
+        #         bc_dataset.collect_data()
+        #         for i, data in enumerate(bc_loader, 0):
+        #             spatial_obs, non_spatial_obs, action_mask, act_id = data
+        #             spatial_obs = spatial_obs.cuda()
+        #             non_spatial_obs = non_spatial_obs.cuda()
+        #             non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
+        #             labels = act_id.cuda().flatten()
+
+        #             optimizer.zero_grad()
+        #             outputs = ac_agent(spatial_obs, non_spatial_obs)[1]
+        #             loss = criterion(outputs, labels)
+        #             loss.backward()
+        #             optimizer.step()
+        #         bc_dataset.generate_data()
 
         # Updates
         all_updates += 1
@@ -444,21 +473,6 @@ def main():
                 only_value = False
                 # print('unfreeze')
                 # ac_agent.unfreeze()
-            if only_value:
-                bc_dataset.collect_data()
-                for i, data in enumerate(bc_loader, 0):
-                    spatial_obs, non_spatial_obs, action_mask, act_id = data
-                    spatial_obs = spatial_obs.cuda()
-                    non_spatial_obs = non_spatial_obs.cuda()
-                    non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
-                    labels = act_id.cuda().flatten()
-
-                    optimizer.zero_grad()
-                    outputs = ac_agent(spatial_obs, non_spatial_obs)[1]
-                    loss = criterion(outputs, labels)
-                    loss.backward()
-                    optimizer.step()
-                bc_dataset.generate_data()
             running_loss = torch.tensor(0.0, requires_grad=False).cuda()
             td_rate = np.mean(episode_tds)
             td_rate_opp = np.mean(episode_tds_opp)

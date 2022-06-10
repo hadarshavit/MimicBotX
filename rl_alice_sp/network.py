@@ -333,7 +333,7 @@ class MimicBotXNet(nn.Module):
 
         actor = self._actor(attention_out, combined_out)
         critic = self._critic(attention_out, combined_out)
-        #print(actor.size(), critic.size())
+
         return critic, actor
 
     @torch.jit.export

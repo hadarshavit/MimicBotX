@@ -4,19 +4,18 @@ import random
 from typing import Tuple, Iterable
 
 import matplotlib.pyplot as plt
-from more_itertools import all_equal
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
-
+from timm.optim import create_optimizer_v2
 import botbowl
 from botbowl.ai.env import BotBowlEnv, RewardWrapper, EnvConf, ScriptedActionWrapper, BotBowlWrapper, PPCGWrapper
 from a2c_agent import A2CAgent, CNNPolicy
 from a2c_env import A2C_Reward, a2c_scripted_actions
 from botbowl.ai.layers import *
-from network import *
-from timm.utils import NativeScaler
+import network
+from learn_bc import BCDataset
 
 # Environment
 env_size = 11  # Options are 1,3,5,7,11
@@ -30,6 +29,7 @@ def make_env():
     env = BotBowlEnv(env_conf)
     if ppcg:
         env = PPCGWrapper(env)
+    
     env = ScriptedActionWrapper(env, scripted_func=a2c_scripted_actions)
     env = RewardWrapper(env, home_reward_func=A2C_Reward())
     return env
@@ -37,24 +37,24 @@ def make_env():
 
 # Training configuration
 num_steps = 100_000_000
-num_processes = 8
+num_processes = 10
 steps_per_update = 40
-learning_rate = 1e-3
+learning_rate = 5 * 1e-6
 gamma = 0.99
 entropy_coef = 0.01
 value_loss_coef = 0.5
 max_grad_norm = 0.05
 log_interval = 50
 save_interval = 10
-ppcg = True
+ppcg = False
 
 
 reset_steps = 5000  # The environment is reset after this many steps it gets stuck
 
 # Self-play
-selfplay = False  # Use this to enable/disable self-play
+selfplay = True  # Use this to enable/disable self-play
 selfplay_window = 1
-selfplay_save_steps = 500 * num_processes
+selfplay_save_steps = 1000 * num_processes
 selfplay_swap_steps = selfplay_save_steps
 
 # Architecture
@@ -103,15 +103,6 @@ class Memory(object):
         self.actions = self.actions.cuda()
         self.masks = self.masks.cuda()
         self.action_masks = self.action_masks.cuda()
-    
-    def cpu(self):
-        self.spatial_obs = self.spatial_obs.cpu()
-        self.non_spatial_obs = self.non_spatial_obs.cpu()
-        self.rewards = self.rewards.cpu()
-        self.returns = self.returns.cpu()
-        self.actions = self.actions.cpu()
-        self.masks = self.masks.cpu()
-        self.action_masks = self.action_masks.cpu()
 
     def insert(self, step, spatial_obs, non_spatial_obs, action, reward, mask, action_masks):
         self.spatial_obs[step + 1].copy_(torch.from_numpy(spatial_obs).float())
@@ -126,148 +117,6 @@ class Memory(object):
         for step in reversed(range(self.rewards.shape[0])):
             self.returns[step] = self.returns[step + 1] * gamma * self.masks[step] + self.rewards[step]
 
-# class MultiEnv:
-#     def __init__(self, envs):
-#         self.envs = envs
-#         self.ppcg_wrappers = [env.get_wrapper_with_type(PPCGWrapper) for env in envs]
-#         self.tds = [0] * len(self.envs)
-#         self.tds_opp = [0] * len(self.envs)
-    
-#     def set_difficulty(self, difficulty):
-#         for ppcg_wrapper in self.ppcg_wrappers:
-#             if ppcg_wrapper:
-#                 ppcg_wrapper.difficulty = difficulty
-    
-#     def step(self, actions, reset, next_opp):
-#         results = []
-        
-#         for i, env in enumerate(self.envs):
-#             (spatial_obs, non_spatial_obs, action_mask), reward, done, info = env.step(actions[i])
-#             game = env.game
-#             tds_scored = game.state.home_team.state.score - self.tds[i]
-#             tds_opp_scored = game.state.away_team.state.score - self.tds_opp[i]
-#             self.tds[i] = game.state.home_team.state.score
-#             self.tds_opp[i] = game.state.away_team.state.score
-
-#             if reset or done:
-#                 done = True
-#                 env.root_env.away_agent = next_opp
-#                 self.tds[i] = 0
-#                 self.tds_opp[i] = 0
-#             results.append((spatial_obs, non_spatial_obs, action_mask, reward, tds_scored, tds_opp_scored, done))
-#             # all_spatial_obs.append(spatial_obs)
-#             # all_non_spatial_obs.append(non_spatial_obs)
-#             # all_actions_masks.append(action_mask)
-#             # all_rewards.append(reward)
-#             # all_dones(done
-        
-#         # for i, env in enumerate(self.envs):
-#         #     if reset or all_dones[i]:
-#         #         all_dones[i] = True
-#         #         env.root_env.away_agent = next_opp
-#         #         self.tds[i] = 0
-#         #         self.tds_opp[i] = 0
-
-
-#         return results
-    
-#     def reset(self, next_opp):
-#         results = []
-
-#         for i in range(len(self.envs)):
-#             self.envs[i].root_env.away_agent = next_opp
-#             spatial_obs, non_spatial_obs, action_mask = self.envs[i].reset()
-#             results.append((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False))
-        
-#         self.tds = [0] * len(self.envs)
-#         self.tds_opp = [0] * len(self.envs)
-
-#         return results
-
-
-# def worker(remote, parent_remote, envs: MultiEnv, worker_id):
-#     parent_remote.close()
-
-#     steps = 0
-#     tds = 0
-#     tds_opp = 0
-#     next_opp = botbowl.make_bot('scripted')
-
-#     while True:
-#         command, data = remote.recv()
-#         if command == 'step':
-#             steps += 1
-#             action, dif = data[0], data[1]
-#             envs.set_difficulty(dif)
-
-#             results = envs.step(action, steps >= reset_steps, next_opp)
-
-#             remote.send(results)
-
-#         elif command == 'reset':
-#             steps = 0
-#             results = envs.reset(next_opp)
-#             remote.send(results)
-
-#         elif command == 'swap':
-#             if worker_id < 1:
-#                 next_opp = data
-#         elif command == 'close':
-#             break
-
-
-# class VecEnv:
-#     def __init__(self, envs):
-#         """
-#         envs: list of botbowl environments to run in subprocesses
-#         """
-#         self.closed = False
-#         nenvs = len(envs)
-#         self.remotes, self.work_remotes = zip(*[Pipe() for _ in range(nenvs)])
-
-#         self.ps = [Process(target=worker, args=(work_remote, remote, env, envs.index(env)))
-#                    for (work_remote, remote, env) in zip(self.work_remotes, self.remotes, envs)]
-
-#         for p in self.ps:
-#             p.daemon = True  # If the main process crashes, we should not cause things to hang
-#             p.start()
-#         for remote in self.work_remotes:
-#             remote.close()
-
-#     def step(self, actions: Iterable[int], difficulty=1.0) -> Tuple[np.ndarray, ...]:
-#         """
-#         Takes one step in each environment, returns the results as stacked numpy arrays
-#         """
-#         for remote, action in zip(self.remotes, actions):
-#             remote.send(('step', [action, difficulty]))
-#         results = [remote.recv() for remote in self.remotes]
-#         return tuple(map(np.stack, zip(*results)))
-
-#     def reset(self, difficulty=1.0):
-#         for remote in self.remotes:
-#             remote.send(('reset', difficulty))
-#         results = [remote.recv() for remote in self.remotes]
-#         results = [item for sublist in results for item in sublist]
-#         print('keee', len(results[0]), len(results))
-#         return tuple(map(np.stack, zip(*results)))
-
-#     def swap(self, agent):
-#         for remote in self.remotes:
-#             remote.send(('swap', agent))
-
-#     def close(self):
-#         if self.closed:
-#             return
-
-#         for remote in self.remotes:
-#             remote.send(('close', None))
-#         for p in self.ps:
-#             p.join()
-#         self.closed = True
-
-#     @property
-#     def num_envs(self):
-#         return len(self.remotes)
 
 def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
     parent_remote.close()
@@ -275,11 +124,11 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
     steps = 0
     tds = 0
     tds_opp = 0
-    next_opp = botbowl.make_bot('random')
+    next_opp = botbowl.make_bot('scripted')
 
     ppcg_wrapper: Optional[PPCGWrapper] = env.get_wrapper_with_type(PPCGWrapper)
     swap = False
-    first = 0
+
     while True:
         command, data = remote.recv()
         if command == 'step':
@@ -301,16 +150,15 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
                 if steps >= reset_steps:
                     print("Max. number of steps exceeded! Consider increasing the number.")
                 done = True
+                if worker_id < 8 and swap:
+                    if env.root_env.away_agent != next_opp:
+                        print('swapping')
+                        env.root_env.away_agent.policy.cpu()
+                        del env.root_env.away_agent.policy
+                        del env.root_env.away_agent
+                    swap = False
+                    
                 env.root_env.away_agent = next_opp
-                # if swap:
-                #     print('swap', worker_id)
-                #     print('prev', env.root_env.away_agent)
-                #     if first > 1:
-                #         del env.root_env.away_agent.policy
-                #     env.root_env.away_agent = next_opp
-                #     env.root_env.away_agent.policy.cuda()
-                #     swap = False
-                #     print('end swap', worker_id)
                 spatial_obs, non_spatial_obs, action_mask = env.reset()
                 steps = 0
                 tds = 0
@@ -321,25 +169,21 @@ def worker(remote, parent_remote, env: BotBowlWrapper, worker_id):
             steps = 0
             tds = 0
             tds_opp = 0
-            # if swap:
-            #     print('swap', worker_id)
-            #     if first > 1:
-            #         del env.root_env.away_agent.policy
-            #     env.root_env.away_agent = next_opp
-            #     env.root_env.away_agent.policy.cuda()
-            #     swap = False
-            #     print('end swap', worker_id)
             env.root_env.away_agent = next_opp
+            swap = True
             spatial_obs, non_spatial_obs, action_mask = env.reset()
             remote.send((spatial_obs, non_spatial_obs, action_mask, 0.0, 0, 0, False))
 
         elif command == 'swap':
-            if worker_id < 0:
-                print('swapping')
-                swap = True
-                first += 1
+            if worker_id < 8:
+                data.policy.to(device='cuda:1')
                 next_opp = data
-                print(next_opp)
+                swap = True
+                print('swap pend')
+            else:
+                data.policy.cpu()
+                next_opp = botbowl.make_bot('scripted')
+            # torch.cuda.empty_cache()
         elif command == 'close':
             break
 
@@ -397,9 +241,7 @@ class VecEnv:
 
 
 def main():
-    # self_play_envs = MultiEnv([make_env() for _ in range(int(num_processes / 2))])
-    
-    # envs = VecEnv([self_play_envs] + [MultiEnv([make_env()]) for _ in range(int(num_processes / 2))])
+    torch.cuda.device(0)
     envs = VecEnv([make_env() for _ in range(num_processes)])
 
     env = make_env()
@@ -410,24 +252,27 @@ def main():
     del env, non_spat_obs, action_mask  # remove from scope to avoid confusion further down
 
     # MODEL
-    ac_agent = MimicBotXNet(spatial_obs_space,
-                         non_spatial_obs_space,
-                         action_space,
-                         activation=timm.models.layers.activations.GELU,
-                         block=NEXcepTionBlock)
-    ac_agent.cuda()
-
+    # ac_agent = torch.load('/data/s3092593/mgai/net_good177_200')
+    ac_agent = torch.load('/data/s3092593/mgai/net_ac_final.nn')
+    ac_agent.to(memory_format=torch.contiguous_format)
+    # ac_agent.freeze_except_critic()
     # OPTIMIZER
-    optimizer = optim.RAdam(ac_agent.parameters(), learning_rate)
-
+    optimizer = create_optimizer_v2(ac_agent.parameters(), 'adamp', lr=learning_rate)
+    bc_dataset = BCDataset(True)
+    #bc_dataset.generate_data()
+    bc_loader = torch.utils.data.DataLoader(bc_dataset, 
+                                                batch_size=256, shuffle=False, num_workers=8)
     # MEMORY STORE
     memory = Memory(steps_per_update, num_processes, spatial_obs_space, (1, non_spatial_obs_space), action_space)
     memory.cuda()
-
     # PPCG
     difficulty = 0.0 if ppcg else 1.0
     dif_delta = 0.01
 
+    only_value = False
+    running_loss = torch.tensor(0.0, requires_grad=False).cuda()
+    criterion = torch.nn.CrossEntropyLoss()
+    criterion = criterion.cuda()
     # Variables for storing stats
     all_updates = 0
     all_episodes = 0
@@ -475,11 +320,11 @@ def main():
 
     while all_steps < num_steps:
         for step in range(steps_per_update):
-
-            _, actions = ac_agent.act(
-                Variable(memory.spatial_obs[step]),
-                Variable(memory.non_spatial_obs[step]),
-                Variable(memory.action_masks[step]))
+            with torch.no_grad():
+                _, actions = ac_agent.act(
+                    Variable(memory.spatial_obs[step]),
+                    Variable(memory.non_spatial_obs[step]),
+                    Variable(memory.action_masks[step]))
 
             action_objects = (action[0] for action in actions.cpu().numpy())
 
@@ -521,7 +366,8 @@ def main():
         # -- TRAINING -- #
 
         # bootstrap next value
-        next_value = ac_agent(Variable(memory.spatial_obs[-1], requires_grad=False), Variable(memory.non_spatial_obs[-1], requires_grad=False))[0].data
+        next_value = ac_agent(Variable(memory.spatial_obs[-1], requires_grad=False), 
+        Variable(memory.non_spatial_obs[-1], requires_grad=False))[0].data
 
         # Compute returns
         memory.compute_returns(next_value, gamma)
@@ -549,8 +395,12 @@ def main():
         #policy_losses.append(action_loss)
 
         optimizer.zero_grad()
-
-        total_loss = (value_loss * value_loss_coef + action_loss - dist_entropy * entropy_coef)
+        if only_value:
+            running_loss += value_loss
+            print('Value LOSS:', value_loss, running_loss)
+            total_loss = value_loss
+        else:
+            total_loss = (value_loss * value_loss_coef + action_loss - dist_entropy * entropy_coef)
         total_loss.backward()
 
         nn.utils.clip_grad_norm_(ac_agent.parameters(), max_grad_norm)
@@ -590,6 +440,26 @@ def main():
 
         # Logging
         if all_updates % log_interval == 0 and len(episode_rewards) >= num_processes:
+            if running_loss / 50 < 0.05 or all_steps > 1_000_000:
+                only_value = False
+                # print('unfreeze')
+                # ac_agent.unfreeze()
+            if only_value:
+                bc_dataset.collect_data()
+                for i, data in enumerate(bc_loader, 0):
+                    spatial_obs, non_spatial_obs, action_mask, act_id = data
+                    spatial_obs = spatial_obs.cuda()
+                    non_spatial_obs = non_spatial_obs.cuda()
+                    non_spatial_obs = torch.unsqueeze(non_spatial_obs, dim=1)
+                    labels = act_id.cuda().flatten()
+
+                    optimizer.zero_grad()
+                    outputs = ac_agent(spatial_obs, non_spatial_obs)[1]
+                    loss = criterion(outputs, labels)
+                    loss.backward()
+                    optimizer.step()
+                bc_dataset.generate_data()
+            running_loss = torch.tensor(0.0, requires_grad=False).cuda()
             td_rate = np.mean(episode_tds)
             td_rate_opp = np.mean(episode_tds_opp)
             episode_tds.clear()
@@ -611,7 +481,7 @@ def main():
             log = "Updates: {}, Episodes: {}, Timesteps: {}, Win rate: {:.2f}, TD rate: {:.2f}, TD rate opp: {:.2f}, Mean reward: {:.3f}, Difficulty: {:.2f}" \
                 .format(all_updates, all_episodes, all_steps, win_rate, td_rate, td_rate_opp, mean_reward, difficulty)
 
-            log_to_file = "{}, {}, {}, {}, {}, {}, {}\n" \
+            log_to_file = "{}, {}, {}, {}, {}, {}, {}, {}\n" \
                 .format(all_updates, all_episodes, all_steps, win_rate, td_rate, td_rate_opp, mean_reward, difficulty)
 
             # Save to files

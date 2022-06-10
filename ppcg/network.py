@@ -227,32 +227,24 @@ class MimicBotXNet(nn.Module):
     def _create_non_spatial_processing(self):
         self.non_spatial_processing = nn.Sequential(
             nn.Linear(self.non_spatial_shape, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True)
         )
 
     def _create_combined_fc(self):
         self.combined_fc = nn.Sequential(
             nn.Linear(self.spatial_shape[1] * self.spatial_shape[2] * 128 + 1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True),
             nn.Linear(1024, 1024),
-            nn.BatchNorm1d(1024),
             self.activation(inplace=True)
         )
 

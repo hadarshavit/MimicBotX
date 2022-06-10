@@ -40,7 +40,7 @@ class BCDataset(Dataset):
     
     def generate_data(self):
         print('generating')
-        for _ in range(1):
+        for _ in range(20):
             self.futures.append(self.executor.submit(generate_bc.main))
     
     def collect_data(self):
