@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/home/s3092593/MimicBotX/learn_outcome/learn_bc.py", line 10, in <module>
-    from a2c_agent import CNNPolicy
-ModuleNotFoundError: No module named 'a2c_agent'

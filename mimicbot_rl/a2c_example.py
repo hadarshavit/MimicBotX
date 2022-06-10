@@ -254,14 +254,14 @@ def main():
     # MODEL
     # ac_agent = torch.load('/data/s3092593/mgai/net_good177_200')
     ac_agent = torch.load('/local/s3092593/models/botbowl-11/96d7995c-df9f-11ec-9e63-3cecef3aa7e8.nn')
-    # ac_agent.to(memory_format=torch.contiguous_format)
+    ac_agent.to(memory_format=torch.contiguous_format)
     # ac_agent.freeze_except_critic()
     # OPTIMIZER
     optimizer = create_optimizer_v2(ac_agent.parameters(), 'adamp', lr=learning_rate)
-    # bc_dataset = BCDataset(True)
-    # bc_dataset.generate_data()
-    # bc_loader = torch.utils.data.DataLoader(bc_dataset, 
-                                                # batch_size=256, shuffle=False, num_workers=8)
+    bc_dataset = BCDataset(True)
+    bc_dataset.generate_data()
+    bc_loader = torch.utils.data.DataLoader(bc_dataset, 
+                                                batch_size=256, shuffle=False, num_workers=8)
     # MEMORY STORE
     memory = Memory(steps_per_update, num_processes, spatial_obs_space, (1, non_spatial_obs_space), action_space)
     memory.cuda()
@@ -444,20 +444,20 @@ def main():
                 only_value = False
                 # print('unfreeze')
                 # ac_agent.unfreeze()
-            # if only_value:
-            #     bc_dataset.collect_data()
-            #     for i, data in enumerate(bc_loader, 0):
-            #         spatial_obs, non_spatial_obs, action_mask, act_id = data
-            #         spatial_obs = spatial_obs.cuda()
-            #         non_spatial_obs = non_spatial_obs.cuda()
-            #         labels = act_id.cuda().flatten()
+            if only_value:
+                bc_dataset.collect_data()
+                for i, data in enumerate(bc_loader, 0):
+                    spatial_obs, non_spatial_obs, action_mask, act_id = data
+                    spatial_obs = spatial_obs.cuda()
+                    non_spatial_obs = non_spatial_obs.cuda()
+                    labels = act_id.cuda().flatten()
 
-            #         optimizer.zero_grad()
-            #         outputs = ac_agent(spatial_obs, non_spatial_obs)[1]
-            #         loss = criterion(outputs, labels)
-            #         loss.backward()
-            #         optimizer.step()
-            #     bc_dataset.generate_data()
+                    optimizer.zero_grad()
+                    outputs = ac_agent(spatial_obs, non_spatial_obs)[1]
+                    loss = criterion(outputs, labels)
+                    loss.backward()
+                    optimizer.step()
+                bc_dataset.generate_data()
             running_loss = torch.tensor(0.0, requires_grad=False).cuda()
             td_rate = np.mean(episode_tds)
             td_rate_opp = np.mean(episode_tds_opp)
